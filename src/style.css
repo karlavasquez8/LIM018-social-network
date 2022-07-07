@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+}
+
+.containerIndex {
+    display: flex;
+    background-image: url(../img/backgroundInicio.webp);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position-x: center;
+    height: 100vh;
+    color: #FFFFFF;
+}
+
+.containerTransparentIndex {
+    background: linear-gradient(180deg, #270F13 49.75%, #54222B 96.96%);
+    opacity: 0.64;
+    height: 100vh;
+
+}
+
+.content {
+    order: 10000;
+}
