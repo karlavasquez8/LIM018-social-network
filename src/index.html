@@ -13,22 +13,48 @@
  <body>
    <section class="fristView">
      <div class="containerIndex">
-       <img src="../img/cubiertos.png" alt="Cubiertos">
+       <img src="./img/cubiertos.png" alt="Cubiertos">
        <h1> HELP TASTER </h1>
        <h2> ¿Que deseas probar hoy? </h2>
        <span> Te ayudamos a encontrar los mejores lugares para disfrutar tus comidas!!</span>
 
        <div>
-         Botones Firebase
+         <button>Inicia con </button>
        </div>
     
        <span>¿No tienes una cuenta ?</span>
-   
        <a href="#Register">Registrate aqui</a>
       </div>  
    </section>
-   
-   <script type="module" src="main.js"></script>
+
+   <!--Aquí empieza firebase-->
+   <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+ 
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyA6QCQrxc2nNyhpOs3-Ka8Wm5EacSmqa5Y",
+      authDomain: "help-taster-lim018k.firebaseapp.com",
+      projectId: "help-taster-lim018k",
+      storageBucket: "help-taster-lim018k.appspot.com",
+      messagingSenderId: "85164950299",
+      appId: "1:85164950299:web:0eb68842bad8d95c7c49be",
+      measurementId: "G-1MVRC4SJW4"
+    };
+ 
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+   </script>
+   <!--Aquí termine firebase-->
+
+
+    <script type="module" src="main.js"></script>
 
   </body>
 </html>
