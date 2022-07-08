@@ -26,7 +26,7 @@
     ]
   },
   "storage": {
-    "rules": "storage.rules"
+    "rules": "database.rules"
   },
   "emulators": {
     "auth": {
@@ -34,9 +34,6 @@
     },
     "functions": {
       "port": 5001
-    },
-    "firestore": {
-      "port": 8080
     },
     "database": {
       "port": 9000
@@ -47,11 +44,8 @@
     "pubsub": {
       "port": 8085
     },
-    "storage": {
-      "port": 9199
-    },
     "ui": {
-      "enabled": false
+      "enabled": true
     }
   },
   "remoteconfig": {
