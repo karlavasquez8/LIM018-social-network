@@ -1,30 +1,68 @@
+:root{
+    --fontMain: 400 1rem 'Open Sans';
+    --h1: 800 3rem 'Alumni Sans';
+    --h2: 700 1.5rem 'Inter'; 
+    
+}
+
 body {
     margin: 0;
 }
 
-.containerIndex {
-    
+.firstView {
     background-image: linear-gradient(180deg, rgba(39, 15, 19, 0.56) 0%, rgba(56, 22, 28, 0.72079) 81.98%, #54222B 100%),
     url(./img/backgroundInicio.webp);
     background-attachment: fixed;
     background-size: cover;
     background-position-x: center;
     height: 100vh;
-    color: #FFFFFF;
 
-    text-align: center;
-    justify-content: center;
-    padding: 50px 0px;
 }
 
+.containerIndex {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    color: #FFFFFF;
+    padding-inline: 2rem;
+    padding-block-start: 5rem; 
+    padding-block-end: 2rem;
+    
+}
 
-/* .containerTransparentIndex {
-    background: linear-gradient(180deg, #270F13 49.75%, #54222B 96.96%);
-    opacity: 0.64;
-    height: 100vh;
-} */
+.buttonIndex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+    margin-block: 1rem;
 
-/* .content {
-    order: 10000;
+}
 
-} */
+button {
+    font-family: Open Sans ;
+    width: 329px;
+    height: 60px;
+    padding: 18px 18px 18px 64px;
+    box-shadow: 0px 15px 25px rgba(173, 0, 0, 0.29);
+    border-radius: 4px;
+    border: none;
+}
+
+h1 {
+    font: var(--h1);
+    margin: 0;
+}
+
+span {
+    font: var(--fontMain);
+}
+
+a {
+    color: #FFFFFF;
+}
+
+h2{
+    font: var(--h2);
+}
