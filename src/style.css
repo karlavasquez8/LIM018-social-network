@@ -5,7 +5,7 @@ body {
 .containerIndex {
     
     background-image: linear-gradient(180deg, rgba(39, 15, 19, 0.56) 0%, rgba(56, 22, 28, 0.72079) 81.98%, #54222B 100%),
-    url(../img/backgroundInicio.webp);
+    url(./img/backgroundInicio.webp);
     background-attachment: fixed;
     background-size: cover;
     background-position-x: center;
