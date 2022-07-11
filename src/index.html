@@ -11,21 +11,8 @@
    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@800&family=Inter:wght@100;200;300;400;700&family=Open+Sans:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
  </head>
  <body>
-   <section class="fristView">
-     <div class="containerIndex">
-       <img src="./img/cubiertos.png" alt="Cubiertos">
-       <h1> HELP TASTER </h1>
-       <h2> ¿Que deseas probar hoy? </h2>
-       <span> Te ayudamos a encontrar los mejores lugares para disfrutar tus comidas!!</span>
-
-       <div>
-         <button>Inicia con </button>
-       </div>
-    
-       <span>¿No tienes una cuenta ?</span>
-       <a href="#Register">Registrate aqui</a>
-      </div>  
-   </section>
+   <section id ='root' ></section>  
+   
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
@@ -49,10 +36,7 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
   </script>
+
   <script type="module" src="main.js"></script>
-
-
-    <script type="module" src="main.js"></script>
-
   </body>
 </html>
