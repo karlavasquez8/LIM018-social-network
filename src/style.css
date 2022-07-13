@@ -5,7 +5,10 @@
     --fontMain: 400 1rem 'Open Sans';
     --h1: 800 3rem 'Alumni Sans';
     --h2: 700 1.5rem 'Inter'; 
+<<<<<<< HEAD
     --h3: 800 2.5rem 'Open Sans';
+=======
+>>>>>>> 3bfe634671aae44ae1216d2914a31b8e4380d2d4
 }
 
 body {
@@ -19,7 +22,6 @@ body {
     background-size: cover;
     background-position-x: center;
     height: 100vh;
-
 }
 
 .containerIndex {
@@ -30,7 +32,6 @@ body {
     padding-inline: 2rem;
     padding-block-start: 5rem; 
     padding-block-end: 2rem;
-    
 }
 
 .buttonIndex {
