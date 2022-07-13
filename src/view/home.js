@@ -1,5 +1,7 @@
 export default () => {
-    const home = ` 
+    const home = 
+   /*
+    ` 
     <section class="home">
         <div class="headerHome">
           <h1>HELP TASTER</h1>
@@ -16,9 +18,13 @@ export default () => {
         </div>
         <div class="createpost">
           <textarea class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
+          
           <div class="iconosPost">
-            <span class="material-symbols-outlined">add_location_alt</span>
-            <span class="material-symbols-outlined">image</span>
+            <button id="btnPublicar" class="btnPublicar">Publicar</button>
+            <div>
+              <span class="material-symbols-outlined">add_location_alt</span>
+              <span class="material-symbols-outlined">image</span>
+            </div>
           </div>
         </div>
         <div class="course first">
@@ -26,10 +32,9 @@ export default () => {
             <h3>Restaurante Papachos</h3>
             <p>publicado por Karla Vasquez</p>
           </div>
-          <button class="like">
-        
-          </button>
+          <button class="like"></button>
         </div>
+       
         <div class="course second">
           <div class="contentPubli">
             <h3>Nuna Raymi</h3>
@@ -38,8 +43,13 @@ export default () => {
            <button class="like">
          </button>
         </div>
+        <div class="sectionSearch">
+          <div class="cajita">Home</div>
+          <div class="cajita">Buscar</div>
+        </div>
        </section>
-    `;
+
+    `;*/
 
     const divRegister = document.createElement("div")
     divRegister.classList.add('registers');
