@@ -1,0 +1,132 @@
+[debug] [2022-07-08T21:52:53.964Z] ----------------------------------------------------------------------
+[debug] [2022-07-08T21:52:53.965Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2022-07-08T21:52:53.966Z] CLI Version:   11.2.1
+[debug] [2022-07-08T21:52:53.966Z] Platform:      darwin
+[debug] [2022-07-08T21:52:53.966Z] Node Version:  v16.15.0
+[debug] [2022-07-08T21:52:53.967Z] Time:          Fri Jul 08 2022 16:52:53 GMT-0500 (hora estándar de Perú)
+[debug] [2022-07-08T21:52:53.967Z] ----------------------------------------------------------------------
+[debug] 
+[warn] ⚠  JSON error trying to load /Users/karlita/LIM018-social-network/.firebaserc 
+[debug] [2022-07-08T21:52:54.032Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-08T21:52:54.032Z] > authorizing via signed-in user (karlavasquez817@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/karlita/LIM018-social-network
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-07-08T21:54:10.998Z] Using project from CLI flag: help-taster-lim018
+[debug] [2022-07-08T21:54:10.999Z] > refreshing access token with scopes: []
+[debug] [2022-07-08T21:54:11.001Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2022-07-08T21:54:11.001Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-07-08T21:54:11.499Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2022-07-08T21:54:11.499Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2022-07-08T21:54:11.538Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/help-taster-lim018 [none]
+[debug] [2022-07-08T21:54:12.237Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/help-taster-lim018 200
+[debug] [2022-07-08T21:54:12.237Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/help-taster-lim018 {"projectId":"help-taster-lim018","projectNumber":"650967119985","displayName":"Help Taster","name":"projects/help-taster-lim018","resources":{"hostingSite":"help-taster-lim018","storageBucket":"help-taster-lim018.appspot.com","locationId":"us-central"},"state":"ACTIVE"}
+[info] i  Using project help-taster-lim018 (Help Taster) 
+[info] 
+=== Database Setup
+[info] i  database: ensuring required API firebasedatabase.googleapis.com is enabled... 
+[debug] [2022-07-08T21:54:12.256Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/firebasedatabase.googleapis.com [none]
+[debug] [2022-07-08T21:54:13.502Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/firebasedatabase.googleapis.com 200
+[debug] [2022-07-08T21:54:13.502Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/firebasedatabase.googleapis.com [omitted]
+[info] ✔  database: required API firebasedatabase.googleapis.com is enabled 
+[info] 
+[debug] [2022-07-08T21:54:13.503Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/help-taster-lim018 [none]
+[debug] [2022-07-08T21:54:14.183Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/help-taster-lim018 200
+[debug] [2022-07-08T21:54:14.183Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/help-taster-lim018 {"projectId":"help-taster-lim018","projectNumber":"650967119985","displayName":"Help Taster","name":"projects/help-taster-lim018","resources":{"hostingSite":"help-taster-lim018","storageBucket":"help-taster-lim018.appspot.com","locationId":"us-central"},"state":"ACTIVE"}
+[debug] [2022-07-08T21:54:47.045Z] >>> [apiv2][query] POST https://firebasedatabase.googleapis.com/v1beta/projects/help-taster-lim018/locations/us-central1/instances databaseId=help-taster-lim018-default-rtdb&validateOnly=true
+[debug] [2022-07-08T21:54:47.045Z] >>> [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/help-taster-lim018/locations/us-central1/instances {"type":"default_database"}
+[debug] [2022-07-08T21:54:48.375Z] <<< [apiv2][status] POST https://firebasedatabase.googleapis.com/v1beta/projects/help-taster-lim018/locations/us-central1/instances 200
+[debug] [2022-07-08T21:54:48.376Z] <<< [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/help-taster-lim018/locations/us-central1/instances {"name":"projects/650967119985/locations/us-central1/instances/help-taster-lim018-default-rtdb","project":"projects/650967119985","databaseUrl":"https://help-taster-lim018-default-rtdb.firebaseio.com","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[debug] [2022-07-08T21:54:48.377Z] >>> [apiv2][query] POST https://firebasedatabase.googleapis.com/v1beta/projects/help-taster-lim018/locations/us-central1/instances databaseId=help-taster-lim018-default-rtdb
+[debug] [2022-07-08T21:54:48.377Z] >>> [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/help-taster-lim018/locations/us-central1/instances {"type":"default_database"}
+[debug] [2022-07-08T21:54:49.988Z] <<< [apiv2][status] POST https://firebasedatabase.googleapis.com/v1beta/projects/help-taster-lim018/locations/us-central1/instances 200
+[debug] [2022-07-08T21:54:49.989Z] <<< [apiv2][body] POST https://firebasedatabase.googleapis.com/v1beta/projects/help-taster-lim018/locations/us-central1/instances {"name":"projects/650967119985/locations/us-central1/instances/help-taster-lim018-default-rtdb","project":"projects/650967119985","databaseUrl":"https://help-taster-lim018-default-rtdb.firebaseio.com","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[info] 
+[info] Firebase Realtime Database Security Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
+[debug] [2022-07-08T21:55:11.338Z] >>> [apiv2][query] GET https://help-taster-lim018-default-rtdb.firebaseio.com/.settings/rules.json [none]
+[debug] [2022-07-08T21:55:12.483Z] <<< [apiv2][status] GET https://help-taster-lim018-default-rtdb.firebaseio.com/.settings/rules.json 200
+[debug] [2022-07-08T21:55:12.483Z] <<< [apiv2][body] GET https://help-taster-lim018-default-rtdb.firebaseio.com/.settings/rules.json [stream]
+[info] ✔  Database Rules for help-taster-lim018-default-rtdb have been written to database.rules.json. 
+[info] Future modifications to database.rules.json will update Realtime Database Security Rules when you run
+[info] firebase deploy.
+[info] 
+=== Firestore Setup
+[debug] [2022-07-08T21:55:12.488Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/firestore.googleapis.com [none]
+[debug] [2022-07-08T21:55:13.648Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/firestore.googleapis.com 200
+[debug] [2022-07-08T21:55:13.648Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/firestore.googleapis.com [omitted]
+[debug] [2022-07-08T21:55:13.649Z] >>> [apiv2][query] GET https://appengine.googleapis.com/v1/apps/help-taster-lim018 [none]
+[debug] [2022-07-08T21:55:14.723Z] <<< [apiv2][status] GET https://appengine.googleapis.com/v1/apps/help-taster-lim018 200
+[debug] [2022-07-08T21:55:14.723Z] <<< [apiv2][body] GET https://appengine.googleapis.com/v1/apps/help-taster-lim018 {"name":"apps/help-taster-lim018","id":"help-taster-lim018","authDomain":"gmail.com","locationId":"us-central","codeBucket":"staging.help-taster-lim018.appspot.com","servingStatus":"SERVING","defaultHostname":"help-taster-lim018.uc.r.appspot.com","defaultBucket":"help-taster-lim018.appspot.com","serviceAccount":"help-taster-lim018@appspot.gserviceaccount.com","gcrDomain":"us.gcr.io","databaseType":"CLOUD_FIRESTORE","featureSettings":{"splitHealthChecks":true,"useContainerOptimizedOs":true}}
+[debug] [2022-07-08T21:55:14.723Z] database_type: CLOUD_FIRESTORE
+[debug] [2022-07-08T21:55:14.724Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-08T21:55:14.724Z] > authorizing via signed-in user (karlavasquez817@gmail.com)
+[debug] [2022-07-08T21:55:14.724Z] [iam] checking project help-taster-lim018 for permissions ["firebase.projects.get"]
+[debug] [2022-07-08T21:55:14.725Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/help-taster-lim018:testIamPermissions [none]
+[debug] [2022-07-08T21:55:14.725Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/help-taster-lim018:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-07-08T21:55:16.002Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/help-taster-lim018:testIamPermissions 200
+[debug] [2022-07-08T21:55:16.003Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/help-taster-lim018:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2022-07-08T21:55:44.530Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/help-taster-lim018/releases pageSize=10&pageToken=
+[debug] [2022-07-08T21:55:45.955Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/help-taster-lim018/releases 200
+[debug] [2022-07-08T21:55:45.955Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/help-taster-lim018/releases {"releases":[{"name":"projects/help-taster-lim018/releases/cloud.firestore","rulesetName":"projects/help-taster-lim018/rulesets/2187c085-144d-454e-8528-82190e43475d","createTime":"2022-07-07T23:31:29.780183Z","updateTime":"2022-07-07T23:31:29.780183Z"}]}
+[debug] [2022-07-08T21:55:45.956Z] Found ruleset: projects/help-taster-lim018/rulesets/2187c085-144d-454e-8528-82190e43475d
+[debug] [2022-07-08T21:55:45.957Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/help-taster-lim018/rulesets/2187c085-144d-454e-8528-82190e43475d [none]
+[debug] [2022-07-08T21:55:47.244Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/help-taster-lim018/rulesets/2187c085-144d-454e-8528-82190e43475d 200
+[debug] [2022-07-08T21:55:47.245Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/help-taster-lim018/rulesets/2187c085-144d-454e-8528-82190e43475d [omitted]
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2022-07-08T21:55:55.499Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/help-taster-lim018/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2022-07-08T21:55:55.500Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/help-taster-lim018/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false [none]
+[debug] [2022-07-08T21:55:57.418Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/help-taster-lim018/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2022-07-08T21:55:57.418Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/help-taster-lim018/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2022-07-08T21:55:57.430Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/help-taster-lim018/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false 200
+[debug] [2022-07-08T21:55:57.430Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/help-taster-lim018/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false {"fields":[{"name":"projects/help-taster-lim018/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[info] 
+=== Functions Setup
+[info] 
+[info] A functions directory will be created in your project with sample code
+[info] pre-configured. Functions can be deployed with firebase deploy.
+[info] 
+[debug] [2022-07-08T21:55:57.432Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-08T21:55:57.432Z] > authorizing via signed-in user (karlavasquez817@gmail.com)
+[debug] [2022-07-08T21:55:57.432Z] [iam] checking project help-taster-lim018 for permissions ["firebase.projects.get"]
+[debug] [2022-07-08T21:55:57.433Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/help-taster-lim018:testIamPermissions [none]
+[debug] [2022-07-08T21:55:57.433Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/help-taster-lim018:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-07-08T21:55:58.678Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/help-taster-lim018:testIamPermissions 200
+[debug] [2022-07-08T21:55:58.678Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/help-taster-lim018:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-07-08T21:55:58.678Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/cloudfunctions.googleapis.com [none]
+[debug] [2022-07-08T21:55:58.680Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/runtimeconfig.googleapis.com [none]
+[debug] [2022-07-08T21:55:59.638Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/runtimeconfig.googleapis.com 200
+[debug] [2022-07-08T21:55:59.638Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2022-07-08T21:55:59.807Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/cloudfunctions.googleapis.com 200
+[debug] [2022-07-08T21:55:59.807Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/help-taster-lim018/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  Wrote functions/package.json 

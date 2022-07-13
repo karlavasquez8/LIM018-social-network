@@ -1,30 +1,78 @@
+@import './css/register.css';
+@import './css/home.css';
+:root{
+    --fontMain: 400 1rem 'Open Sans';
+    --h1: 800 3rem 'Alumni Sans';
+    --h2: 700 1.5rem 'Inter'; 
+    --h3: 800 2.5rem 'Open Sans';
+}
+
 body {
     margin: 0;
 }
 
-.containerIndex {
-    
-    background-image: linear-gradient(180deg, rgba(39, 15, 19, 0.56) 0%, rgba(56, 22, 28, 0.72079) 81.98%, #54222B 100%),
+.firstView {
+    background-image: linear-gradient(180deg, rgba(39, 15, 19, 0.56) 0%, rgba(56, 22, 28, 0.72079) 96%, #54222B 100%),
     url(./img/backgroundInicio.webp);
     background-attachment: fixed;
     background-size: cover;
     background-position-x: center;
     height: 100vh;
     color: #FFFFFF;
-
     text-align: center;
-    justify-content: center;
-    padding: 50px 0px;
 }
 
+.containerIndex {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    color: #FFFFFF;
+    padding-inline: 2rem;
+    padding-block-start: 5rem; 
+    padding-block-end: 2rem;
+}
 
-/* .containerTransparentIndex {
-    background: linear-gradient(180deg, #270F13 49.75%, #54222B 96.96%);
-    opacity: 0.64;
-    height: 100vh;
-} */
+.formRegister {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0px;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+}
 
-/* .content {
-    order: 10000;
+button {
+    font-family: Open Sans ;
+    display: flex;
+    gap: 1rem;
+    font-family: Open Sans ;
+    width: 19.68rem;
+    height: 3.75rem;
+    padding: 18px 18px 18px 64px;
+    box-shadow: 0px 15px 25px rgba(173, 0, 0, 0.29);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
 
-} */
+button:active{
+    transform: scale(.9);
+}
+
+h1 {
+    font: var(--h1);
+    margin: 0;
+}
+
+span {
+    font: var(--fontMain);
+}
+
+a {
+    color: #FFFFFF;
+}
+
+h2{
+    font: var(--h2);
+}
+
