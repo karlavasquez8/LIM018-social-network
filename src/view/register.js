@@ -1,4 +1,4 @@
-import {createNewUser} from '../firebase/auth.js'
+import { createNewUser} from '../firebase/auth.js'
 
 const register = {
   template : () => {
@@ -29,8 +29,11 @@ const register = {
    event.preventDefault()
     const form = new FormData (event.target)
     createNewUser(form.get('email'), form.get('password'))
+
   })
   }
 }
 
 export default register
+
+

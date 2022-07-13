@@ -6,6 +6,6 @@ import home from "./home.js"
 const components = {
     Login:login,
     Register : register,
-    Home: home
+    Home: home,
 };
 export { components };
