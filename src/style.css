@@ -1,10 +1,10 @@
 @import './css/register.css';
 @import './css/home.css';
-
 :root{
     --fontMain: 400 1rem 'Open Sans';
     --h1: 800 3rem 'Alumni Sans';
     --h2: 700 1.5rem 'Inter'; 
+    --h3: 800 2.5rem 'Open Sans';
 }
 
 body {
@@ -18,6 +18,8 @@ body {
     background-size: cover;
     background-position-x: center;
     height: 100vh;
+    color: #FFFFFF;
+    text-align: center;
 }
 
 .containerIndex {
@@ -30,17 +32,19 @@ body {
     padding-block-end: 2rem;
 }
 
-.buttonIndex {
+.formRegister {
     display: flex;
     justify-content: center;
+    padding: 50px 0px;
     align-items: center;
     gap: 1rem;
     flex-direction: column;
-    margin-block: 1rem;
-
 }
 
 button {
+    display: flex;
+    gap: 1rem;
+    font-family: Open Sans ;
     display: flex;
     gap: 1rem;
     font-family: Open Sans ;
@@ -73,3 +77,4 @@ a {
 h2{
     font: var(--h2);
 }
+
