@@ -8,6 +8,6 @@ const components = {
     Login:login,
     LoginEmail: loginEmail,
     Register : register,
-    Home: home
+    Home: home,
 };
 export { components };
