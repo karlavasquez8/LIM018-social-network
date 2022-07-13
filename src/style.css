@@ -42,6 +42,8 @@ body {
 }
 
 button {
+    display: flex;
+    gap: 1rem;
     font-family: Open Sans ;
     display: flex;
     gap: 1rem;

@@ -7,10 +7,16 @@ const changeView = (route) => {
   case '' : 
   container.appendChild(components.Login.template());
   break;
+
+  case '#/loginEmail':
+  container.appendChild(components.LoginEmail.template());
+  break;
+  
   case '#/register': 
   container.appendChild(components.Register.template());
   components.Register.init()
   break;
+
   case '#/home':
   {return container.appendChild(components.Home());}
   default:
