@@ -18,7 +18,7 @@ const loginEmail = {
     const divLoginEmail= document.createElement("div")
     divLoginEmail.classList.add('loginEmail');
     divLoginEmail.innerHTML= loginEmail;
-    return divRegister
+    return divLoginEmail
   },
 }
 
