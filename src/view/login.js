@@ -26,16 +26,17 @@ const login = {
       </section>`;
        
       const divLogin = document.createElement ('div')
-      divLogin.innerHTML = login
+      divLogin.classList.add('login');
+      divLogin.innerHTML = login;
     return divLogin
   },
 
   init: ()=> {
-    const btnEmail = document.querySelector('#btn-email')
-    btnEmail.addEventListener('click',() => {
-      changeView(window.location.hash);
+    //const btnEmail = document.querySelector('#btn-email')
+    //btnEmail.addEventListener('click',() => {
+      //changeView(window.location.hash);
     
-    })
+   // })
   }
 }
 
