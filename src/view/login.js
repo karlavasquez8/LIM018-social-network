@@ -21,7 +21,7 @@ const login = {
                 Inicia con Email</a>
             </div>
             <span>¿No tienes una cuenta ?</span>
-            <a href="#/register">Registrate aqui</a>
+            <a href="#/register"> Registrate aqui</a>
           </div>  
       </section>`;
        
@@ -31,13 +31,13 @@ const login = {
     return divLogin
   },
 
-  init: ()=> {
+  //init: ()=> {
     //const btnEmail = document.querySelector('#btn-email')
     //btnEmail.addEventListener('click',() => {
       //changeView(window.location.hash);
     
    // })
-  }
+  //}
 }
 
 export default login
