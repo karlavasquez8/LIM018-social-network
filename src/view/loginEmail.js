@@ -16,7 +16,7 @@ const loginEmail = {
       </section>`;
   
       const divLoginEmail = document.createElement("div")
-      divLoginEmail.classList.add('registers');
+      divLoginEmail.classList.add('loginEmail');
       divLoginEmail.innerHTML= loginEmail;
       return divLoginEmail
     },
@@ -25,4 +25,5 @@ const loginEmail = {
     }
   }
   
+
   export default loginEmail

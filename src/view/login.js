@@ -15,6 +15,8 @@ const login = {
                 <img src="./img/Facebook.png">
                 Inicia con Faceboook</a>
               <a href="#/loginEmail" class = "button">
+                Inicia con Faceboook</button>
+              <button id="btn-email">
                 <img src="./img/E-mail.png">
                 Inicia con Email</a>
             </div>
@@ -27,9 +29,13 @@ const login = {
       divLogin.innerHTML = login
     return divLogin
   },
-  init:() => {
-    console.log ('login')
+
+  init: ()=> {
+    const btnEmail = document.querySelector('#btn-email')
+    btnEmail.addEventListener('click',() => {
+      changeView(window.location.hash);
     
+    })
   }
 }
 
