@@ -6,7 +6,7 @@ import loginEmail from "./loginEmail.js"
 
 const components = {
     Login:login,
-    LoginEmail: loginEmail,
+    LoginEmail:loginEmail,
     Register : register,
     Home: home,
 };

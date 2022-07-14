@@ -21,6 +21,7 @@ const loginEmail = {
     return divLoginEmail
   },
 }
+  
 
 
   export default loginEmail

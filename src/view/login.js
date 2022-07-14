@@ -8,15 +8,17 @@ const login = {
             <h2> ¿Que deseas probar hoy? </h2>
             <span> Te ayudamos a encontrar los mejores lugares para disfrutar tus comidas!!</span>
             <div class="buttonIndex">
-              <button>
+              <a href="#/google" class="button">
                 <img src="./img/Google.png">
-                Inicia con Google</button>
-              <button>
+                Inicia con Google</a>
+              <a href="#/facebook" class="button">
                 <img src="./img/Facebook.png">
+                Inicia con Faceboook</a>
+              <a href="#/loginEmail" class = "button">
                 Inicia con Faceboook</button>
               <button id="btn-email">
                 <img src="./img/E-mail.png">
-                Inicia con Email</button>
+                Inicia con Email</a>
             </div>
             <span>¿No tienes una cuenta ?</span>
             <a href="#/register">Registrate aqui</a>
