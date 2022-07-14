@@ -1,54 +1,58 @@
-import { getAuth, 
+import {
+  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-sendEmailVerification } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js'
+  sendEmailVerification,
+// eslint-disable-next-line import/no-unresolved
+} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 import app from './config.js';
 
 const auth = getAuth(app);
 
 const createNewUser = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
+    .then((userCredential) => {
+      const user = userCredential.user;
       sendEmailVerification(auth.currentUser)
-      .then(() => {
-        console.log ('correo enviado')
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
-}
+        .then(() => {
+          console.log('correo enviado');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+};
 
-const logIn = (email, password)=>{
+const logIn = (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log (errorMessage)
-  });
+    .then((userCredential) => {
+      const user = userCredential.user;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+    });
+};
 
-}
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const emailVerified = user.emailVerified;
     const photoURL = user.photoURL;
     const uid = user.uid;
-    console.log ( user)
-    
+    console.log(user);
   } else {
-    console.log ('se deslogeo')
+    console.log('se deslogeo');
     // User is signed out
     // ...
   }
 });
-export {createNewUser, logIn}
 
+
+
+export { createNewUser, logIn };

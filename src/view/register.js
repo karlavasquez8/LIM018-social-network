@@ -1,7 +1,7 @@
-import { createNewUser} from '../firebase/auth.js'
+import { createNewUser } from '../firebase/auth.js';
 
 const register = {
-  template : () => {
+  template: () => {
     const register = ` 
     <section class="firstView">
     <div class="containerIndex">
@@ -18,22 +18,19 @@ const register = {
     </div>
     </section>`;
 
-    const divRegister = document.createElement("div")
+    const divRegister = document.createElement('div');
     divRegister.classList.add('registers');
-    divRegister.innerHTML= register;
-    return divRegister
+    divRegister.innerHTML = register;
+    return divRegister;
   },
-  init: ()=> {
-  const formRegister = document.querySelector('.formRegister')
-  formRegister.addEventListener('submit',(event) => {
-   event.preventDefault()
-    const form = new FormData (event.target)
-    createNewUser(form.get('email'), form.get('password'))
+  init: () => {
+    const formRegister = document.querySelector('.formRegister');
+    formRegister.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const form = new FormData(event.target);
+      createNewUser(form.get('email'), form.get('password'));
+    });
+  },
+};
 
-  })
-  }
-}
-
-export default register
-
-
+export default register;
