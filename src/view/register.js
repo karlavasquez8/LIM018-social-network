@@ -23,6 +23,7 @@ const register = {
     divRegister.innerHTML = register;
     return divRegister;
   },
+
   init: () => {
     const formRegister = document.querySelector('.formRegister');
     formRegister.addEventListener('submit', (event) => {
