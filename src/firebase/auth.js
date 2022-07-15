@@ -45,7 +45,7 @@ onAuthStateChanged(auth, (user) => {
     const emailVerified = user.emailVerified;
     const photoURL = user.photoURL;
     const uid = user.uid;
-    console.log(user);
+    console.log ( logeado)
   } else {
     console.log('se deslogeo');
     // User is signed out

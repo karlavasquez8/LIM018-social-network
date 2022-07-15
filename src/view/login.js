@@ -31,15 +31,8 @@ const login = {
     divLogin.querySelector('#googleLogin').addEventListener('click', loginGoogle);
     return divLogin;
   },
-
-  // init: ()=> {
-  // const btnEmail = document.querySelector('#btn-email')
-  // btnEmail.addEventListener('click',() => {
-  // changeView(window.location.hash);
-
-  // })
-  // }
-
-};
+  init: ()=> {
+  }
+}
 
 export default login;
