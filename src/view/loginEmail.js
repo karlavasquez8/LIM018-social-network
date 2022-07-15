@@ -1,5 +1,5 @@
 const loginEmail = {
-  template : () => {
+  template: () => {
     const loginEmail = ` 
     <section class="firstView">
     <div class="containerIndex">
@@ -10,16 +10,14 @@ const loginEmail = {
       <form class="formRegister">
         <input name="email" type="email" class="inputRegister" placeholder="E-mail">
         <input name="password" type="password" class ="inputRegister" placeholder="Contraseña">
-        <button type="submit" class="buttonRegister"> Registrar </button>
+        <button type="submit" class="buttonRegister"> Iniciar sesión </button>
       </form>
     </div>
     </section>`;
 
-    const divLoginEmail= document.createElement("div")
+    const divLoginEmail = document.createElement('div');
     divLoginEmail.classList.add('loginEmail');
-    divLoginEmail.innerHTML= loginEmail;
-    return divLoginEmail
+    divLoginEmail.innerHTML = loginEmail;
+    return divLoginEmail;
   },
-} 
-
-  export default loginEmail
+export default loginEmail;
