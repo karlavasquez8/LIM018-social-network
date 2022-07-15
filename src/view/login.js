@@ -15,9 +15,7 @@ const login = {
                 <img src="./img/Facebook.png">
                 Inicia con Faceboook</a>
               <a href="#/loginEmail" class = "button">
-                Inicia con Faceboook</button>
-              <button id="btn-email">
-                <img src="./img/E-mail.png">
+              <img src="./img/E-mail.png">
                 Inicia con Email</a>
             </div>
             <span>¿No tienes una cuenta ?</span>
