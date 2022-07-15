@@ -1,5 +1,5 @@
 export default () => {
-    const home = ` 
+  const home = ` 
     <section class="home">
         <div class="headerHome">
           <h1>HELP TASTER</h1>
@@ -41,8 +41,8 @@ export default () => {
        </section>
     `;
 
-    const divRegister = document.createElement("div")
-    divRegister.classList.add('registers');
-    divRegister.innerHTML= home;
-    return divRegister
-}
+  const divRegister = document.createElement('div');
+  divRegister.classList.add('registers');
+  divRegister.innerHTML = home;
+  return divRegister;
+};
