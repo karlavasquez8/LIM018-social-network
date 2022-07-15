@@ -30,11 +30,6 @@ const login = {
   },
 
   init: ()=> {
-    //const btnEmail = document.querySelector('#btn-email')
-    //btnEmail.addEventListener('click',() => {
-      //changeView(window.location.hash);
-    
-   // })
   }
 }
 
