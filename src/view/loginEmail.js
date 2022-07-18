@@ -20,9 +20,6 @@ const loginEmail = {
     divLoginEmail.innerHTML = loginEmail;
     return divLoginEmail;
   },
-  init: () => {
-
-  },
 };
 
-export { loginEmail };
+export default loginEmail;

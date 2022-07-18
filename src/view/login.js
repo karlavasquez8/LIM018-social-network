@@ -15,13 +15,13 @@ const login = {
                 Inicia con Google</a>
               <a href="#/facebook" class="button">
                 <img src="./img/Facebook.png">
-                Inicia con Faceboook</a>
+                Inicia con Facebook</a>
               <a href="#/loginEmail" class = "button">
                 <img src="./img/E-mail.png">
                 Inicia con Email</a>
             </div>
             <span>¿No tienes una cuenta ?</span>
-            <a href="#/register">Registrate aqui</a>
+            <a href="#/register"> Registrate aqui</a>
           </div>  
       </section>`;
 
@@ -31,10 +31,15 @@ const login = {
     divLogin.querySelector('#googleLogin').addEventListener('click', loginGoogle);
     return divLogin;
   },
-  init: () => {
 
-  },
+  // init: ()=> {
+  // const btnEmail = document.querySelector('#btn-email')
+  // btnEmail.addEventListener('click',() => {
+  // changeView(window.location.hash);
+
+  // })
+  // }
 
 };
 
-export { login };
+export default login;

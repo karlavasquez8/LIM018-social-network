@@ -9,7 +9,6 @@ const changeView = (route) => {
       break;
     case '#/loginEmail':
       container.appendChild(components.LoginEmail.template());
-      components.LoginEmail.init();
       break;
     case '#/register':
       container.appendChild(components.Register.template());
