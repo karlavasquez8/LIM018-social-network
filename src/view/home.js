@@ -1,4 +1,4 @@
-import { logOut } from "../firebase/auth.js";
+import { logOut } from '../firebase/auth.js';
 
 const home = {
   template: () => {
