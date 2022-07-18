@@ -1,4 +1,4 @@
-import { createNewUser } from '../firebase/auth.js';
+import { createNewUser, observer } from '../firebase/auth.js';
 
 const register = {
   template: () => {
@@ -33,6 +33,7 @@ const register = {
 
   init: () => {
     const formRegister = document.querySelector('.formRegister');
+
     formRegister.addEventListener('submit', (event) => {
       event.preventDefault();
       const form = new FormData(event.target);
