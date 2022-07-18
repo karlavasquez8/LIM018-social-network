@@ -3,9 +3,13 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  sendEmailVerification, signInWithPopup, GoogleAuthProvider, signOut,
+  sendEmailVerification,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
+
 import app from './config.js';
 
 const auth = getAuth(app);
@@ -18,6 +22,7 @@ export const createNewUser = (email, password) => {
       sendEmailVerification(auth.currentUser)
         .then(() => {
           console.log('correo enviado');
+          // eslint-disable-next-line no-use-before-define
           logOut();
         })
         .catch((error) => {
@@ -25,6 +30,7 @@ export const createNewUser = (email, password) => {
         });
     })
     .catch((error) => {
+      console.log(error);
       const errorCode = error.code;
       const errorMessage = error.message;
     });
@@ -47,10 +53,10 @@ export const logIn = (email, password) => {
       alert('usuario no se logeo', errorCode, errorMessage);
     });
 };
-
-// observador va recibir como parametros funciones para saber en que momento se autenticado,
-// el noAuth es una funcion tonta,
+// observador va recibir como parametros funciones para
+// saber en que momento se autenticado, el noAuth es una funcion tonta,
 // si no le pasan nada va ser una funcion y si le pasan va reemplazar al valor por defecto
+
 export const observer = (authCallBack, noAuthCallBack = () => {}) => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -84,7 +90,6 @@ export const logOut = () => {
   signOut(auth).then(() => {
     // Sign-out successful.
     console.log('cerrosesion');
-    window.location.hash = '';
   }).catch((error) => {
     // An error happened.
   });

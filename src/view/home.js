@@ -53,7 +53,11 @@ const home = {
   },
 
   init: () => {
-    document.querySelector('#btn-salir').addEventListener('click', logOut);
+    document.querySelector('#btn-salir').addEventListener('click',(event) =>{
+      event.preventDefault();
+      logOut();
+      window.location.hash = '';
+    });
   },
 
 };

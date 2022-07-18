@@ -17,11 +17,11 @@ const changeView = (route) => {
       container.appendChild(components.Register.template());
       components.Register.init();
       break;
-
     case '#/home':
       container.appendChild(components.Home.template());
       components.Home.init();
-      default:
+    // eslint-disable-next-line no-fallthrough
+    default:
       break;
   }
 
@@ -30,7 +30,6 @@ const changeView = (route) => {
       window.location.hash = '#/home';
     }
   }
-
   observer(authCallBack);
 };
 

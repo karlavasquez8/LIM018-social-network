@@ -1,3 +1,14 @@
+.form-email {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.8rem;
+    gap: 1rem;
+}
+
+
+
 .inputRegister {
     display: flex;
     flex-direction: column;
@@ -37,4 +48,13 @@ input::placeholder {
     font: var(--fontMain);
     text-decoration: none;
     text-align: center;
+}
+
+.condicion {
+    font-size: 0.8rem;
+    margin-block-start: 1rem;
+}
+
+.email {
+    height: 100vh;
 }
