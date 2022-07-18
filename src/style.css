@@ -1,5 +1,7 @@
 @import './css/register.css';
 @import './css/home.css';
+@import './css/modal.css';
+
 :root{
     --fontMain: 400 1rem 'Open Sans';
     --h1: 800 3rem 'Alumni Sans';
