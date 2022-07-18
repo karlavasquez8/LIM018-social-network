@@ -1,4 +1,4 @@
-import { loginGoogle} from '../firebase/auth.js';
+import { loginGoogle } from '../firebase/auth.js';
 
 const login = {
   template: () => {
@@ -10,7 +10,7 @@ const login = {
             <h2> ¿Que deseas probar hoy? </h2>
             <span> Te ayudamos a encontrar los mejores lugares para disfrutar tus comidas!!</span>
             <div class="buttonIndex">
-              <a href="#/google" class="button" id="googleLogin">
+              <a href="#/home" class="button" id="googleLogin">
                 <img src="./img/Google.png">
                 Inicia con Google</a>
               <a href="#/facebook" class="button">

@@ -1,5 +1,5 @@
 import { components } from '../view/index.js';
-import {observer} from '../firebase/auth.js'
+import { observer } from '../firebase/auth.js';
 // aqui exportaras las funciones que necesites
 const container = document.getElementById('container');
 const changeView = (route) => {
@@ -17,20 +17,20 @@ const changeView = (route) => {
       container.appendChild(components.Register.template());
       components.Register.init();
       break;
-
     case '#/home':
-    { return container.appendChild(components.Home()); }
+      container.appendChild(components.Home.template());
+      components.Home.init();
+    // eslint-disable-next-line no-fallthrough
     default:
       break;
   }
 
-  function authCallBack(user){
-    if (user.emailVerified){
-      window.location.hash = '#/home'
+  function authCallBack(user) {
+    if (user.emailVerified) {
+      window.location.hash = '#/home';
     }
   }
-  
-  observer(authCallBack)
+  observer(authCallBack);
 };
 
 export { changeView };
