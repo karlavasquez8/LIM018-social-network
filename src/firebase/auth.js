@@ -46,6 +46,7 @@ onAuthStateChanged(auth, (user) => {
     const photoURL = user.photoURL;
     const uid = user.uid;
     console.log(user);
+    window.location.hash = '';
   } else {
     console.log('se deslogeo');
     // User is signed out

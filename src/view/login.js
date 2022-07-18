@@ -1,4 +1,4 @@
-import { loginGoogle} from '../firebase/auth.js';
+import { loginGoogle } from '../firebase/auth.js';
 
 const login = {
   template: () => {
