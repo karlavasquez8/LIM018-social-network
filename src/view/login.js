@@ -28,18 +28,11 @@ const login = {
     const divLogin = document.createElement('div');
     divLogin.classList.add('login');
     divLogin.innerHTML = login;
-    divLogin.querySelector('#googleLogin').addEventListener('click', loginGoogle);
     return divLogin;
   },
-
-  // init: ()=> {
-  // const btnEmail = document.querySelector('#btn-email')
-  // btnEmail.addEventListener('click',() => {
-  // changeView(window.location.hash);
-
-  // })
-  // }
-
-};
+  init: ()=> {
+    document.querySelector('#googleLogin').addEventListener('click', loginGoogle);
+  }
+}
 
 export default login;

@@ -1,4 +1,9 @@
 .inputRegister {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
     width: 230px;
     background: rgba(255, 255, 255, 0.22);
     border: 0;
@@ -6,6 +11,7 @@
     text-decoration: none;
     border-bottom: rgba(255, 255, 255, 0.24);
 }
+
 
 .inputRegister:focus {
     outline: none;
