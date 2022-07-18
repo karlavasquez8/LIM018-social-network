@@ -18,7 +18,9 @@ const changeView = (route) => {
       components.Register.init();
       break;
     case '#/home':
-    { return container.appendChild(components.Home()); }
+      container.appendChild(components.Home.template());
+      components.Home.init();
+    // eslint-disable-next-line no-fallthrough
     default:
       break;
   }

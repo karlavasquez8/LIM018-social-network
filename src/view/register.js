@@ -9,14 +9,14 @@ const register = {
       <h1> HELP TASTER </h1>
       <h2> Registrate aquí</h2>
       <span> Podras ver las fotos de los lugares que tienen la mejor comida de tú país..</span>
-      <form class="formRegister">
+      <form class="form-email">
         <input name="email" type="email" class="inputRegister" placeholder="E-mail">
+        <span class= "condicion"> Tu contraseña debe contener 6 caracteres</span>
         <input name="password" type="password" class ="inputRegister" placeholder="Contraseña">
         <button type="submit" class="buttonRegister"> Registrar </button>
       </form>
       <span> Al registrarte, aceptas nuestras Condiciones,la Política de datos y la Política de cookies.</span>
     </div>
-
     <div class="modalContainer">
       <div class="modal">
         <img src="./img/verificacion.webp"></img> 

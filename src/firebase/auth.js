@@ -89,6 +89,7 @@ export const loginGoogle = () => {
 export const logOut = () => {
   signOut(auth).then(() => {
     // Sign-out successful.
+    console.log('cerrosesion');
   }).catch((error) => {
     // An error happened.
   });
