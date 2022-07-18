@@ -28,10 +28,10 @@ const login = {
     const divLogin = document.createElement('div');
     divLogin.classList.add('login');
     divLogin.innerHTML = login;
-    divLogin.querySelector('#googleLogin').addEventListener('click', loginGoogle);
     return divLogin;
   },
   init: ()=> {
+    document.querySelector('#googleLogin').addEventListener('click', loginGoogle);
   }
 }
 

@@ -3,20 +3,22 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  sendEmailVerification, signInWithPopup, GoogleAuthProvider,
+  sendEmailVerification, signInWithPopup, GoogleAuthProvider,signOut,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 import app from './config.js';
 
 const auth = getAuth(app);
 
-const createNewUser = (email, password) => {
+export const createNewUser = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
+      console.log(user)
       sendEmailVerification(auth.currentUser)
         .then(() => {
           console.log('correo enviado');
+          logOut()
         })
         .catch((error) => {
           console.log(error);
@@ -28,41 +30,42 @@ const createNewUser = (email, password) => {
     });
 };
 
-const logIn = (email, password) => {
+export const logIn = (email, password) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
+      if (!user.emailVerified){
+        alert('correo no verificado')
+      }else{
+        window.location.hash = '#/home';
+        alert ('correo verificado')
+      }
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorMessage);
+      alert ('usuario no se logeo', errorCode,errorMessage);
     });
 };
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    const emailVerified = user.emailVerified;
-    const photoURL = user.photoURL;
-    const uid = user.uid;
-    console.log ( logeado)
-  } else {
-    console.log('se deslogeo');
-    // User is signed out
-    // ...
+//observador va recibir como parametros funciones para saber en que momento se autenticado, el noAuth es una funcion tonta, si no le pasan nada va ser una funcion y si le pasan va reemplazar al valor por defecto
+   export const observer = (authCallBack, noAuthCallBack = () =>{}) =>{
+    onAuthStateChanged (auth, (user) => {
+      if (user) {
+        authCallBack(user)
+      } else {
+          noAuthCallBack()
+      }
+    });
   }
-});
+  
 
 const provider = new GoogleAuthProvider();
 export const loginGoogle = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
-      // The signed-in user info.
       const user = result.user;
-    // ...
     }).catch((error) => {
     // Handle Errors here.
       const errorCode = error.code;
@@ -75,4 +78,11 @@ export const loginGoogle = () => {
     });
 };
 
-export { createNewUser, logIn };
+export const logOut = () => {
+  signOut(auth).then(() => {
+    // Sign-out successful.
+  }).catch((error) => {
+    // An error happened.
+  });
+} 
+
