@@ -1,14 +1,12 @@
-.modalContainer {
+.modal-container {
     width: 100%;
     height: 100vh;
-
-    visibility: hidden;;
+    display: none;
     position: fixed;
     z-index: 1000;
     top: 0;
     left: 0;
     background: rgb(0,0,0,0.6);
-    display: flex;
     justify-content: center;
     align-items: center;
 
@@ -26,8 +24,8 @@
     padding: 1rem;
     font: var(--fontMain);
     margin: auto;
+    margin-inline: 2rem;
     color: black;
-
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -36,5 +34,15 @@
 .modal img {
     width: 20%;
     align-content: center;
+}
 
+.btn-modal{
+    background: #F63D5D;
+    color: #FFFFFF;
+    box-shadow: none;
+    width: fit-content;
+}
+
+.show-modal{
+    display: flex;
 }
