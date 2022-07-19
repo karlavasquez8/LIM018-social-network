@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -14,30 +15,26 @@ import app from './config.js';
 
 const auth = getAuth(app);
 
-export const createNewUser = (email, password) => {
-  return createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      sendEmailVerification(auth.currentUser)
-        .then(() => {
-          console.log('correo enviado');
-          // eslint-disable-next-line no-use-before-define
-          logOut();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      return user
-    })
-};
+export const createNewUser = (email, password) => createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    sendEmailVerification(auth.currentUser)
+      .then(() => {
+        console.log('correo enviado');
+        // eslint-disable-next-line no-use-before-define
+        logOut();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return user;
+  });
 
-export const logIn = (email, password) => {
-  return signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      return user
-    })
-};
+export const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    return user;
+  });
 // observador va recibir como parametros funciones para
 // saber en que momento se autenticado, el noAuth es una funcion tonta,
 // si no le pasan nada va ser una funcion y si le pasan va reemplazar al valor por defecto
