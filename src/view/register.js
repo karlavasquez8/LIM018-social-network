@@ -32,9 +32,9 @@ const register = {
   },
 
   init: () => {
-    const formRegister = document.querySelector('.formRegister');
+    const formEmail = document.querySelector('.form-email');
 
-    formRegister.addEventListener('submit', (event) => {
+    formEmail.addEventListener('submit', (event) => {
       event.preventDefault();
       const form = new FormData(event.target);
       // createNewUser(form.get('email'), form.get('password')).then(
