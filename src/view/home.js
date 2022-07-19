@@ -4,30 +4,34 @@ const home = {
   template: () => {
     const home = ` 
         <section class="home">
-            <div class="headerHome">
+            <div class="header-home">
               <h1>HELP TASTER</h1>
-              <button id="btn-salir">
+              <button id="btn-salir" class="btn-salir">
                 <img src="./img/salir.png">
               </button>
             </div>
-            <div class="headerHome">
-              <div class="descriptionImg">
+            <div class="header-home">
+              <div class="description-img">
                 <img src="./img/images 1.png">
               </div>
-              <div class="headerInfo">
-                <h2 class="homeH2">Home</h2>
+              <div class="header-info">
+                <h2 class="home-h2">Home</h2>
                 <span>¡Qué bueno verte kami!</span>
               </div>
             </div>
-            <div class="createpost">
+            <div class="create-post">
               <textarea class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
-              <div class="iconosPost">
-                <span class="material-symbols-outlined">add_location_alt</span>
-                <span class="material-symbols-outlined">image</span>
+              <div class="iconos-post">
+                <div>
+                  <span class="material-symbols-outlined">add_location_alt</span>
+                  <span class="material-symbols-outlined">image</span>
+                </div>
+                <button class="btn-publicar">Publicar</button>
+
               </div>
             </div>
             <div class="course first">
-              <div class="contentPubli">
+              <div class="content-publi">
                 <h3>Restaurante Papachos</h3>
                 <p>publicado por Karla Vasquez</p>
               </div>
@@ -36,12 +40,11 @@ const home = {
               </button>
             </div>
             <div class="course second">
-              <div class="contentPubli">
+              <div class="content-publi">
                 <h3>Nuna Raymi</h3>
                 <p>publicado por Gabriela Rojas</p>
               </div>
-               <button class="like">
-             </button>
+               <button class="like"></button>
             </div>
            </section>
         `;

@@ -15,10 +15,9 @@ import app from './config.js';
 const auth = getAuth(app);
 
 export const createNewUser = (email, password) => {
-  createUserWithEmailAndPassword(auth, email, password)
+  return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
       sendEmailVerification(auth.currentUser)
         .then(() => {
           console.log('correo enviado');
@@ -28,30 +27,16 @@ export const createNewUser = (email, password) => {
         .catch((error) => {
           console.log(error);
         });
+      return user
     })
-    .catch((error) => {
-      console.log(error);
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
 };
 
 export const logIn = (email, password) => {
-  signInWithEmailAndPassword(auth, email, password)
+  return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      if (!user.emailVerified) {
-        alert('correo no verificado');
-      } else {
-        window.location.hash = '#/home';
-        alert('correo verificado');
-      }
+      return user
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert('usuario no se logeo', errorCode, errorMessage);
-    });
 };
 // observador va recibir como parametros funciones para
 // saber en que momento se autenticado, el noAuth es una funcion tonta,
