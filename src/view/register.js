@@ -10,11 +10,11 @@ const register = {
       <h2> Registrate aquí</h2>
       <span> Podrás ver las fotos de los lugares que tienen la mejor comida de tú país..</span>
       <form class="form-email">
-        <input name="name" type="text" class="input-register" placeholder="Nombre">
+        <input name="name" type="text" class="input-register" placeholder="Nombre ">
         <input name="email" type="email" class="input-register" placeholder="E-mail">
         <div>
-          <input name="password" type="password" class ="input-register" placeholder="Contraseña">
-          <p class= "condicion"> Tu contraseña debe contener mínimo 6 carácteres</p>
+        <input name="password" type="password" class ="input-register" placeholder="Contraseña">
+        <p class= "condicion"> Tu contraseña debe contener mínimo 6 carácteres</p>
         </div>
         <button type="submit" class="button-register"> Registrar </button>
       </form>
@@ -50,6 +50,7 @@ const register = {
           /*  // eslint-disable-next-line no-alert
           alert('llena tus datos'); */
           console.log(error);
+
         });
     });
     const closeModal = document.querySelector('.btn-modal');

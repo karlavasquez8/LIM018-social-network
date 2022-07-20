@@ -1,4 +1,5 @@
-import { logIn } from '../firebase/auth.js';
+/* eslint-disable default-case */
+import { logIn, observer } from '../firebase/auth.js';
 
 const loginEmail = {
   template: () => {
@@ -16,6 +17,11 @@ const loginEmail = {
         <p class= "condicion login" id="error-contraseña"></p>
         <button type="submit" class="btn-log-email"> Iniciar sesión </button>
       </form>
+      <a href="#newPassword"> Recupera tu contraseña </a>
+      <div class="newRegister"> 
+        <span>¿No tienes una cuenta ?</span>
+        <a href="#Register">Registrate aqui</a>
+      </div>
     </div>
     <div class="modal-container">
     <div class="modal no-verified-email">
@@ -41,6 +47,7 @@ const loginEmail = {
       event.preventDefault();
       errorUser.innerHTML = '';
       errorPassword.innerHTML = '';
+      
       // eslint-disable-next-line max-len
       const formEmail = new FormData(event.target); /* el event.target se refiere elemento clickado  */
       logIn(formEmail.get('email'), formEmail.get('password'))
@@ -60,6 +67,7 @@ const loginEmail = {
               errorPassword.innerHTML = 'Contraseña incorrecta';
               break;
           }
+          
           console.log(message);
         });
     });
