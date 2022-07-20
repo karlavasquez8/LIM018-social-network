@@ -47,7 +47,10 @@ const register = {
           modal.classList.add('show-modal');
         })
         .catch((error) => {
-          alert('llena tus datos');
+          /*  // eslint-disable-next-line no-alert
+          alert('llena tus datos'); */
+          console.log(error);
+
         });
     });
     const closeModal = document.querySelector('.btn-modal');

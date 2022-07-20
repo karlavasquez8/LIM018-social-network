@@ -14,6 +14,9 @@ import {
 import app from './config.js';
 
 const auth = getAuth(app);
+/* console.log(auth); */
+
+// eslint-disable-next-line max-len
 
 export const createNewUser = (email, password) => createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {

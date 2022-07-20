@@ -47,16 +47,18 @@ const loginEmail = {
       event.preventDefault();
       errorUser.innerHTML = '';
       errorPassword.innerHTML = '';
-      const formEmail = new FormData(event.target);
+      
+      // eslint-disable-next-line max-len
+      const formEmail = new FormData(event.target); /* el event.target se refiere elemento clickado  */
       logIn(formEmail.get('email'), formEmail.get('password'))
+      /*  Get - devuelve el primer valor asociado con una clave dada en un objeto  */
         .then((user) => {
           if (!user.emailVerified) {
-            modal.classList.add('show-modal');
-          } else {
-            window.location.hash = '#/home';
+            modal.classList.add('show-modal'); // ¿?
           }
         })
         .catch(({ code }) => {
+          // eslint-disable-next-line default-case
           switch (code) {
             case 'auth/user-not-found':
               errorUser.innerHTML = 'El correo electronico que ingresaste no esta conectado a una cuenta';
@@ -65,6 +67,8 @@ const loginEmail = {
               errorPassword.innerHTML = 'Contraseña incorrecta';
               break;
           }
+          
+          console.log(message);
         });
     });
     const closeModal = document.querySelector('.btn-modal');

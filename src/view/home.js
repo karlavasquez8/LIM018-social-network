@@ -1,4 +1,4 @@
-import { logOut } from "../firebase/auth.js";
+import { logOut } from '../firebase/auth.js';
 
 const home = {
   template: () => {
@@ -35,10 +35,9 @@ const home = {
                 <h3>Restaurante Papachos</h3>
                 <p>publicado por Karla Vasquez</p>
               </div>
-              <button class="like">
-            
-              </button>
+              <button class="like"></button>
             </div>
+
             <div class="course second">
               <div class="content-publi">
                 <h3>Nuna Raymi</h3>
@@ -56,8 +55,8 @@ const home = {
   },
 
   init: () => {
-    document.querySelector('#btn-salir').addEventListener('click',(event) =>{
-      event.preventDefault();
+    document.querySelector('#btn-salir').addEventListener('click', (event) => {
+      event.preventDefault(); // cancela el evento sin detener el resto del fx del evento
       logOut();
       window.location.hash = '';
     });
