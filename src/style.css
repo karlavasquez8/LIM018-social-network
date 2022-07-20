@@ -13,8 +13,11 @@ body {
     margin: 0;
 }
 
-.container {
+#container {
     height: 100vh;
+}
+.registers, .login {
+    height: 100%;
 }
 
 .first-view {
@@ -23,20 +26,20 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-position-x: center;
-   height: 100%;
+    height: 100%;
     color: #FFFFFF;
     text-align: center;
 }
 
 .container-index {
+    display: flex;
+    align-items: center;
     flex-direction: column;
     text-align: center;
     justify-content: center;
     color: #FFFFFF;
-    padding-inline: 2rem;
-    padding-block-start: 5rem; 
-    padding-block-end: 2rem;
     height: 100%;
+    padding: 0 5rem;
 }
 
 .form-register {
