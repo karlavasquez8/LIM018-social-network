@@ -3,13 +3,13 @@ import { loginGoogle } from '../firebase/auth.js';
 const login = {
   template: () => {
     const login = `
-      <section class="firstView">
-          <div class="containerIndex">
+      <section class="first-view">
+          <div class="container-index">
             <img src="./img/cubiertos.png" alt="Cubiertos">
             <h1> HELP TASTER </h1>
             <h2> ¿Que deseas probar hoy? </h2>
             <span> Te ayudamos a encontrar los mejores lugares para disfrutar tus comidas!!</span>
-            <div class="buttonIndex">
+            <div class="button-index">
               <a href="#/home" class="button" id="googleLogin">
                 <img src="./img/Google.png">
                 Inicia con Google</a>

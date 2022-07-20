@@ -13,46 +13,29 @@ import {
 import app from './config.js';
 
 const auth = getAuth(app);
+/* console.log(auth); */
 
-export const createNewUser = (email, password) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      console.log(user);
-      sendEmailVerification(auth.currentUser)
-        .then(() => {
-          console.log('correo enviado');
-          // eslint-disable-next-line no-use-before-define
-          logOut();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })
-    .catch((error) => {
-      console.log(error);
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
-};
+// eslint-disable-next-line max-len
+export const createNewUser = (email, password) => createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    sendEmailVerification(auth.currentUser)
+      .then(() => {
+        console.log('correo enviado');
+        // eslint-disable-next-line no-use-before-define
+        logOut();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return user;
+  });
 
-export const logIn = (email, password) => {
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      if (!user.emailVerified) {
-        alert('correo no verificado');
-      } else {
-        window.location.hash = '#/home';
-        alert('correo verificado');
-      }
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert('usuario no se logeo', errorCode, errorMessage);
-    });
-};
+export const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    return user;
+  });
 // observador va recibir como parametros funciones para
 // saber en que momento se autenticado, el noAuth es una funcion tonta,
 // si no le pasan nada va ser una funcion y si le pasan va reemplazar al valor por defecto
