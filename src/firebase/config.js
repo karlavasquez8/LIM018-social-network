@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
+/* import { firestore } from 'https://www.gstatic.com/firebasejs/9.9.0/firebase-firestore.js'; */
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBUB3V4PmreHZy4X1UUv1vtnpUL0crfpBk',
@@ -11,4 +12,5 @@ const firebaseConfig = {
   measurementId: 'G-QJ5VX5ES9N',
 };
 const app = initializeApp(firebaseConfig);
+
 export default app;

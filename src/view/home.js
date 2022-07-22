@@ -1,4 +1,4 @@
-import { logOut } from '../firebase/auth.js';
+import { logOut, observer, updateUser } from '../firebase/auth.js';
 
 const home = {
   template: () => {
@@ -16,7 +16,7 @@ const home = {
               </div>
               <div class="header-info">
                 <h2 class="home-h2">Home</h2>
-                <span>¡Qué bueno verte kami!</span>
+                <span>¡Qué bueno verte <strong id='currentName'> kami</strong>!</span>
               </div>
             </div>
             <div class="create-post">
@@ -55,6 +55,12 @@ const home = {
   },
 
   init: () => {
+    function authCallBack(user) {
+      const currentUser = document.querySelector('#currentName');
+      currentUser.innerHTML = user.displayName;
+    }
+    observer(authCallBack);
+
     document.querySelector('#btn-salir').addEventListener('click', (event) => {
       event.preventDefault(); // cancela el evento sin detener el resto del fx del evento
       logOut();
