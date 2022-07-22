@@ -47,7 +47,7 @@ const loginEmail = {
       event.preventDefault();
       errorUser.innerHTML = '';
       errorPassword.innerHTML = '';
-      
+
       // eslint-disable-next-line max-len
       const formEmail = new FormData(event.target); /* el event.target se refiere elemento clickado  */
       logIn(formEmail.get('email'), formEmail.get('password'))
@@ -67,8 +67,6 @@ const loginEmail = {
               errorPassword.innerHTML = 'Contraseña incorrecta';
               break;
           }
-          
-          console.log(message);
         });
     });
     const closeModal = document.querySelector('.btn-modal');

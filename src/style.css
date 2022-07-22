@@ -16,7 +16,7 @@ body {
 #container {
     height: 100vh;
 }
-.registers, .login {
+.registers, .login, .loginEmail {
     height: 100%;
 }
 
