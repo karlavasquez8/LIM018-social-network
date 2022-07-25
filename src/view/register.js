@@ -16,11 +16,11 @@ const register = {
         <input name="password" type="password" class ="input-register" placeholder="Contraseña">
         <p class= "condicion"> Tu contraseña debe contener mínimo 6 carácteres</p>
         </div>
-        <button type="submit" class="button-register"> Registrar </button>
+        <button type="submit" class ="button-register"> Registrar </button>
       </form>
       <span> Al registrarte, aceptas nuestras Condiciones,la Política de datos y la Política de cookies.</span>
     </div>
-    <div class="modal-container">
+    <div class="modal-container">pull 
       <div class="modal">
         <img src="./img/verificacion.webp"></img> 
         <span>Para continuar con la creación de tu nueva cuenta de Help Taster, verifica tu dirección de correo electrónico.</span>
@@ -50,7 +50,6 @@ const register = {
           /*  // eslint-disable-next-line no-alert
           alert('llena tus datos'); */
           console.log(error);
-
         });
     });
     const closeModal = document.querySelector('.btn-modal');

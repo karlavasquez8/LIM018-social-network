@@ -16,7 +16,8 @@ body {
 #container {
     height: 100vh;
 }
-.registers, .login {
+
+.registers, .login , .loginEmail{
     height: 100%;
 }
 
@@ -38,8 +39,8 @@ body {
     text-align: center;
     justify-content: center;
     color: #FFFFFF;
-    height: 100%;
-    padding: 0 5rem;
+    
+    padding-block-start:2rem;
 }
 
 .form-register {

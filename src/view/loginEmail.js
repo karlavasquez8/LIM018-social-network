@@ -12,15 +12,15 @@ const loginEmail = {
       <span>Disfruta de la mejor comida creada para las personas amantes de codígo!</span>
       <form class="form-email">
         <input name="email" type="email" class="input-register" placeholder="E-mail">
-        <p class= "condicion login" id="error-usuario"></p>
+        <p class= "condicion loginError" id="error-usuario"></p>
         <input name="password" type="password" class ="input-register" placeholder="Contraseña">
-        <p class= "condicion login" id="error-contraseña"></p>
+        <p class= "condicion loginError" id="error-contraseña"></p>
         <button type="submit" class="btn-log-email"> Iniciar sesión </button>
       </form>
       <a href="#newPassword"> Recupera tu contraseña </a>
       <div class="newRegister"> 
         <span>¿No tienes una cuenta ?</span>
-        <a href="#Register">Registrate aqui</a>
+        <a href="#/register">Registrate aqui</a>
       </div>
     </div>
     <div class="modal-container">
@@ -47,7 +47,6 @@ const loginEmail = {
       event.preventDefault();
       errorUser.innerHTML = '';
       errorPassword.innerHTML = '';
-      
       // eslint-disable-next-line max-len
       const formEmail = new FormData(event.target); /* el event.target se refiere elemento clickado  */
       logIn(formEmail.get('email'), formEmail.get('password'))
@@ -67,7 +66,6 @@ const loginEmail = {
               errorPassword.innerHTML = 'Contraseña incorrecta';
               break;
           }
-          
           console.log(message);
         });
     });
