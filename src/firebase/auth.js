@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default-member */
 /* eslint-disable max-len */
 import {
   getAuth,
@@ -8,9 +9,21 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
+  updateProfile,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 
+import {
+  getFirestore, // Conección a firestore
+  setDoc,
+  doc,
+  addDoc, // Documento
+  collection, // Colección de datos
+  onSnapshot,
+// eslint-disable-next-line import/no-unresolved
+} from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
+
+// eslint-disable-next-line import/no-named-as-default
 import app from './config.js';
 
 const auth = getAuth(app);
@@ -77,5 +90,21 @@ export const logOut = () => {
     console.log('cerrosesion');
   }).catch((error) => {
     // An error happened.
+  });
+};
+
+const db = getFirestore(app); // conección a la BD
+// Con el type module se puede exportar fx
+export const updateUser = (currentUser, inputName) => {
+  console.log(currentUser);
+  updateProfile(currentUser, {
+    displayName: inputName,
+  }).then((user) => {
+    // Profile updated!
+    console.log(user);
+    // ...
+  }).catch((error) => {
+    // An error occurred
+    // ...
   });
 };
