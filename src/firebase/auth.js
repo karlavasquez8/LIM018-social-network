@@ -19,12 +19,9 @@ import {
   addDoc, // Documento
   collection, // Colección de datos
   onSnapshot,
+  getDocs,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
-
-
-
-
 
 // eslint-disable-next-line import/no-named-as-default
 import app from './config.js';
@@ -110,8 +107,11 @@ export const updateUser = (currentUser, inputName) => {
     // An error occurred
     // ...
   });
-
-  /* console.log(inputName, inputEmail, inputPassword); */
-  
-  // En el doc voy a guardar 1 obj que tiene los valores de los inputs
 };
+
+export const savePost = (post) => {
+  addDoc(collection(db, 'publication'), post);
+};
+
+
+export const getPost = () => getDocs(collection(db, 'publication'));

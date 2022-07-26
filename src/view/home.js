@@ -1,4 +1,6 @@
-import { logOut, observer, updateUser } from '../firebase/auth.js';
+import {
+  getPost, logOut, observer, savePost,
+} from '../firebase/auth.js';
 
 const home = {
   template: () => {
@@ -12,14 +14,14 @@ const home = {
             </div>
             <div class="header-home">
               <div class="description-img">
-                <img src="./img/images 1.png">
+                <img class="photo-user" src="" referrerpolicy="no-referrer">
               </div>
               <div class="header-info">
                 <h2 class="home-h2">Home</h2>
-                <span>¡Qué bueno verte <strong id='currentName'> kami</strong>!</span>
+                <span>¡Qué bueno verte <strong class='currentName'></strong>!</span>
               </div>
             </div>
-            <div class="create-post">
+            <form class="create-post">
               <textarea class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
               <div class="iconos-post">
                 <div>
@@ -29,22 +31,9 @@ const home = {
                 <button class="btn-publicar">Publicar</button>
 
               </div>
-            </div>
-            <div class="course first">
-              <div class="content-publi">
-                <h3>Restaurante Papachos</h3>
-                <p>publicado por Karla Vasquez</p>
-              </div>
-              <button class="like"></button>
-            </div>
+            </form>
 
-            <div class="course second">
-              <div class="content-publi">
-                <h3>Nuna Raymi</h3>
-                <p>publicado por Gabriela Rojas</p>
-              </div>
-               <button class="like"></button>
-            </div>
+            <div id='contentPost'></div>
            </section>
         `;
 
@@ -55,11 +44,66 @@ const home = {
   },
 
   init: () => {
+    // Creando post
+    const containerPost = document.querySelector('#contentPost');
+    const postForm = document.querySelector('.create-post');
+    const post = document.querySelector('.publicacion');
+    const btnPublicar = document.querySelector('.btn-publicar');
+
+    
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      const querySnapshot = await getPost();
+
+      let html = '';
+
+      querySnapshot.forEach((doc) => {
+        const contentPost = doc.data();
+        console.log(contentPost);
+        html += ` 
+          <div class="course second">
+            <div class="content-publi">
+              <h3>Nuna Raymi</h3>
+              <p>${contentPost.content}</p>
+              <p>${contentPost.userName}</p>
+            </div>
+            <button class="like"></button>
+            <button class="coment"></button>
+          </div>
+        `;
+      });
+      containerPost.innerHTML = html;
+    });
+    let currentUser;
+    // Traer el nombre de usuario
     function authCallBack(user) {
-      const currentUser = document.querySelector('#currentName');
-      currentUser.innerHTML = user.displayName;
+      currentUser = user;
+      const currentName = document.querySelector('.currentName');
+      const photoUser = document.querySelector('.photo-user')
+
+      currentName.innerHTML = user.displayName;
+      photoUser.setAttribute("src", user.photoURL);
+
     }
     observer(authCallBack);
+
+    btnPublicar.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const userPublication = post.value;
+      savePost({
+        content: userPublication,
+        title: '',
+        userName: currentUser.displayName,
+        userID: currentUser.uid,
+        avatar: currentUser.photoURL,
+        urlImage: '',
+        likes: 0,
+        commets: [],
+
+      });
+      postForm.reset();
+    });
 
     document.querySelector('#btn-salir').addEventListener('click', (event) => {
       event.preventDefault(); // cancela el evento sin detener el resto del fx del evento
