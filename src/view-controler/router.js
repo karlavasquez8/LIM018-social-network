@@ -2,6 +2,8 @@ import { components } from '../view/index.js';
 import { observer } from '../firebase/auth.js';
 // aqui exportaras las funciones que necesites
 const container = document.getElementById('container');
+let currentUser ;
+
 const changeView = (route) => {
   container.innerHTML = '';
   switch (route) {
@@ -18,7 +20,7 @@ const changeView = (route) => {
       components.Register.init();
       break;
     case '#/home':
-      container.appendChild(components.Home.template());
+      container.appendChild(components.Home.template(currentUser));
       components.Home.init();
     // eslint-disable-next-line no-fallthrough
     default:
@@ -26,6 +28,8 @@ const changeView = (route) => {
   }
 
   function authCallBack(user) {
+     currentUser = user;
+
     if (user.emailVerified) {
       window.location.hash = '#/home';
     }
