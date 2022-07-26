@@ -20,6 +20,7 @@ import {
   addDoc, // Documento
   collection, // Colección de datos
   onSnapshot,
+  getDocs,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
 
@@ -108,3 +109,10 @@ export const updateUser = (currentUser, inputName) => {
     // ...
   });
 };
+
+export const savePost = (post) => {
+  addDoc(collection(db, 'publication'), post);
+};
+
+
+export const getPost = () => getDocs(collection(db, 'publication'));

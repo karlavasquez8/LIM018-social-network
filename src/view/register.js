@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { createNewUser, observer, updateUser } from '../firebase/auth.js';
+import { createNewUser, observer, updateUser} from '../firebase/auth.js';
 /* import { saveForm } from '../firebase/config.js'; */
 
 const register = {
