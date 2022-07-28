@@ -64,6 +64,7 @@ const home = {
           <div class="course second">
             <div class="content-publi">
               <h3>Nuna Raymi</h3>
+              <img class="photo-user" src="{contentPost.avatar}" referrerpolicy="no-referrer">
               <p>${contentPost.content}</p>
               <p>${contentPost.userName}</p>
             </div>
