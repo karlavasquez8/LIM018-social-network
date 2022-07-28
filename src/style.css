@@ -1,6 +1,7 @@
 @import './css/email-register.css';
 @import './css/home.css';
 @import './css/modal.css';
+@import './css/nav.css';
 
 :root{
     --fontMain: 400 1rem 'Open Sans';
@@ -26,8 +27,8 @@ body {
     url(./img/backgroundInicio.webp);
     background-attachment: fixed;
     background-size: cover;
-    background-position-x: center;
     height: 100%;
+    background-position-x: center;
     color: #FFFFFF;
     text-align: center;
 }
@@ -39,8 +40,7 @@ body {
     text-align: center;
     justify-content: center;
     color: #FFFFFF;
-    
-    padding-block-start:2rem;
+    height: 100%;
 }
 
 .form-register {
@@ -53,12 +53,14 @@ body {
 }
 
 
-button , .button {
+button {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
     font: var(--fontMain);
     width: 16rem;
-    padding: 18px 18px 18px 64px;
+    padding: 0.8rem;
     box-shadow: 0px 15px 25px rgba(173, 0, 0, 0.29);
     border-radius: 4px;
     border: none;
@@ -68,14 +70,6 @@ button , .button {
     text-decoration: none;
 }
 
-.button-index {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 1rem;
-    margin:1rem
-}
 .button:active{
     transform: scale(.9);
 }
@@ -87,18 +81,15 @@ h1 {
 
 span {
     font: var(--fontMain);
+    margin: 0.5rem;
 }
 
 a {
     color: #FFFFFF;
+    margin: 0.3rem;
 }
 
 h2{
     font: var(--h2);
-}
-
-button {
-    display: block;
-    padding: 1rem;
-   
+    margin: 0.3rem;
 }

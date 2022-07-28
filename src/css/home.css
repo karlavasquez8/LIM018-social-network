@@ -21,13 +21,6 @@
     padding-top: 0.5rem;
 }
 
-.btn-salir{
-    width: fit-content;
-    box-shadow: none;
-
-}
-
-
 .publicacion {
     width: 300px;
     height: 79px;
@@ -63,7 +56,6 @@
 }
 
 .iconos-post{
-   
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -71,29 +63,72 @@
     align-items: flex-end;
 }
 
-.course {
-    display: flex;
-    margin: auto;
-    justify-content: start;
-    align-items: flex-end;
-    justify-content: space-between;
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 77%),url(../img/juane.jpg);
-    background-position: center;
-    background-size: contain;
-    border-radius: 0.5rem;
-    width: 327px;
-    height: 200px;
-    margin-block: 2rem;
-    
+.container-publi {
+    background-color: white;
+    box-shadow: 2px 4px 4px 2px rgba(0, 0, 0, 0.25);
+    margin: 2rem;
+    padding: 1rem;
 }
 
-.second {
-
+.container-publi-img {
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 77%),url(../img/picante.jpg);
     background-position: center;
-    background-size: contain;
-    background-repeat: repeat;
+    display: flex;
+    margin: 0.3rem;
+    justify-content:flex-end;
+    flex-direction: column;
     border-radius: 0.5rem;
+    height: 190px;
+    
+} 
+
+.info-publi {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.content-publi {
+    justify-content: flex-start;
+    padding-inline: 1rem;
+}
+
+h4 {
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-size: 14px;
+
+}
+
+.interacciones {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.description {
+    color: #000000;
+}
+
+.btn-interaccion {
+    padding: 0.3rem;
+    background: #F63D5D;
+    border-radius: 10px;
+    gap:0.3rem;
+}
+
+.btn-interaccion img{
+    width: 1rem;
+}
+
+.conteo{
+    margin: 0;
+}
+
+.photo-user-post {
+    width: 3.06rem;
+    border-radius: 50%;
 }
 
 .like , .coment {
@@ -134,9 +169,6 @@ p {
    
 }
 
-.content-publi {
-    padding-inline: 1rem;
-}
 
 .btn-publicar{
     display: block;

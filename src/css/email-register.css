@@ -16,6 +16,7 @@
     text-decoration: none;
     border-bottom: rgba(255, 255, 255, 0.24);
     margin: 0;
+    border-radius: 0.3rem;
 }
 
 .input-register:focus {
@@ -61,4 +62,18 @@ input::placeholder {
 
 .loginError {
     font-weight: 600;
+}
+
+.separator {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.hr {
+    width: 90px;
+    height: 1px;
+    margin: 20px;
+    background-color: #FFFFFF;
 }
