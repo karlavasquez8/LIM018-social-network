@@ -1,0 +1,15 @@
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: row;
+    background-color: white;
+    position: sticky;
+    bottom: 0;
+    gap: 1rem;
+
+}
+
+.show-modal-publication{
+    display: flex;
+}
