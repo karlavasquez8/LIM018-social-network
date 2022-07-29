@@ -16,6 +16,7 @@
     text-decoration: none;
     border-bottom: rgba(255, 255, 255, 0.24);
     margin: 0;
+    border-radius: 0.3rem;
 }
 
 .input-register:focus {
@@ -45,8 +46,7 @@ input::placeholder {
 .condicion {
     font-size: 0.7rem;
     margin-block-start: 1rem;
-    color: burlywood;
-    font-weight: bold ;
+    color: #FFFFFF;
     margin:0;
 }
 
@@ -58,4 +58,22 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     margin-block-start: 2.5rem;
+}
+
+.loginError {
+    font-weight: 600;
+}
+
+.separator {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.hr {
+    width: 90px;
+    height: 1px;
+    margin: 20px;
+    background-color: #FFFFFF;
 }
