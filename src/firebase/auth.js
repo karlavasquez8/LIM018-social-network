@@ -116,4 +116,4 @@ export const savePost = (post) => {
 
 export const getPost = () => getDocs(collection(db, 'publication'));
 
-export const onGetPost = (callback) => onSnapshot (collection(db, 'publication'), callback);
+export const onGetPost = (callback) => onSnapshot(collection(db, 'publication'), callback);

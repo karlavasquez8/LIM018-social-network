@@ -67,7 +67,7 @@ const home = {
         querySnapshot.forEach((doc) => {
           const contentPost = doc.data();
           const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/corazon.png';
-          console.log(contentPost);
+
           html += ` 
         <div class="container-publi">
           <div class="container-publi-img">
@@ -81,11 +81,6 @@ const home = {
           <div class="info-publi">
             <h4>Restaurante Bambu</h4>
             <p class="description">${contentPost.content}</p>
-
-            <select class="selectOptions">
-              <option value="editar">Editar</option>
-              <option value="eliminar">Eliminar</option>
-            </select>
 
             <div class="interacciones">
               <button class="btn-interaccion"> 
