@@ -15,16 +15,16 @@ const home = {
       <div id = "contentPost"></div>
 
       <div class="nav">
-        <div class="home-nav btnNav">
-          <button id="home-modal">
+        <div class="home-nav">
+          <button id="home-modal" class="btn-nav">
             <img src="./img/recipe (Stroke).png">Home</button>
         </div>
-        <div class="publicar-nav btnNav">
-          <button id="publicar-modal">
+        <div class="publicar-nav">
+          <button id="publicar-modal" class="btn-nav">
             <img src="./img/photo_camera.png">Publicar</button>
         </div>
-        <div class="buscar-nav btnNav">
-          <button id="buscar-modal">
+        <div class="buscar-nav">
+          <button id="buscar-modal" class="btn-nav">
             <img src="./img/search.png">Buscar</button>
         </div>
       </div>
@@ -66,16 +66,17 @@ const home = {
 
         querySnapshot.forEach((doc) => {
           const contentPost = doc.data();
-          const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/corazon.png';
+          const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/photo-user-blanco.png';
 
           html += ` 
         <div class="container-publi">
           <div class="container-publi-img">
-            <img>
             <div class="content-publi">
               <img class="photo-user-post" src="${avatarUser}" referrerpolicy="no-referrer">
-              <p>${contentPost.userName}</p>
-              <span>hace 2 horas</span>
+              <div>
+              <p class="user-publi">${contentPost.userName}</p>
+              <span class="time-publi">hace 2 horas</span>
+              </div>
             </div>
           </div>
           <div class="info-publi">
@@ -104,9 +105,11 @@ const home = {
     // Traer el nombre de usuario
     function authCallBack(user) {
       currentUser = user; // Usuario actual
-      /* const currentName = document.querySelector('.currentName'); */
       const photoUser = document.querySelector('.photo-user');
       photoUser.setAttribute('src', user.photoURL); // Cambia el contenido src x la foto
+      if (user.photoURL == null) {
+        photoUser.setAttribute('src', '../img/photo-user.png');
+      }
     }
     observer(authCallBack);
 
