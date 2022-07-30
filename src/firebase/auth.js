@@ -19,7 +19,7 @@ import {
   doc,
   addDoc, // Documento
   collection, // Colección de datos
-  onSnapshot,
+  onSnapshot, // Cuando los datos cambien
   getDocs,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
@@ -31,7 +31,6 @@ const auth = getAuth(app);
 /* console.log(auth); */
 
 // eslint-disable-next-line max-len
-
 export const createNewUser = (email, password) => createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
@@ -110,9 +109,11 @@ export const updateUser = (currentUser, inputName) => {
   });
 };
 
+// Guardar los post
 export const savePost = (post) => {
   addDoc(collection(db, 'publication'), post);
 };
 
-
 export const getPost = () => getDocs(collection(db, 'publication'));
+
+export const onGetPost = (callback) => onSnapshot(collection(db, 'publication'), callback);

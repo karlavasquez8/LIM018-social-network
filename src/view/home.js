@@ -1,10 +1,10 @@
 import {
-  getPost, logOut, observer, savePost,
+  getPost, logOut, observer, savePost, onGetPost,
 } from '../firebase/auth.js';
 
 const home = {
-  template: () => {
-    const home = ` 
+  template: () => { /* Backticks: Permiten concatenar y trabajar con cadenas */
+    const home = `   
     <section class="home">
       <div class="header-home">
         <h1>HELP TASTER</h1>
@@ -15,25 +15,24 @@ const home = {
       <div id = "contentPost"></div>
 
       <div class="nav">
-        <div class="home-nav">
-          <img src="./img/recipe (Stroke).png">
-          <span>Home<span>
+        <div class="home-nav btnNav">
+          <button id="home-modal">
+            <img src="./img/recipe (Stroke).png">Home</button>
         </div>
-        <div class="publicar-nav">
+        <div class="publicar-nav btnNav">
           <button id="publicar-modal">
-            <img src="./img/photo_camera.png">
-            Publicar</button>
+            <img src="./img/photo_camera.png">Publicar</button>
         </div>
-        <div class="buscar-nav">
-          <img src="./img/search.png">
-          <span>Buscar</span>
+        <div class="buscar-nav btnNav">
+          <button id="buscar-modal">
+            <img src="./img/search.png">Buscar</button>
         </div>
       </div>
 
-          <div class="modal-container">
-            <div class="modal no-verified-email">
-            <form class="create-post">
-              <textarea class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
+      <div class="modal-container">
+        <div class="modal no-verified-email">
+          <form class="create-post">
+            <textarea class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
               <div class="iconos-post">
                 <div>
                   <span class="material-symbols-outlined">add_location_alt</span>
@@ -41,11 +40,11 @@ const home = {
                 </div>
                 <button class="btn-publicar">Publicar</button>
               </div>
-            </form>
-            </div>
-          </div>
-           </section>
-        `;
+          </form>
+        </div>
+      </div>
+    </section>
+    `;
 
     const divRegister = document.createElement('div');
     divRegister.classList.add('registers');
@@ -62,28 +61,32 @@ const home = {
     const modalPublication = document.querySelector('.modal-container');
 
     window.addEventListener('DOMContentLoaded', async () => {
-      const querySnapshot = await getPost();
+      onGetPost((querySnapshot) => { // Cuando ocurra 1 cambio te mando los nuevos dts
+        let html = '';
 
-      let html = '';
+        querySnapshot.forEach((doc) => {
+          const contentPost = doc.data();
+          const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/corazon.png';
 
-      querySnapshot.forEach((doc) => {
-        const contentPost = doc.data();
-        console.log(contentPost);
-        html += ` 
+          html += ` 
         <div class="container-publi">
           <div class="container-publi-img">
             <img>
             <div class="content-publi">
+              <img class="photo-user-post" src="${avatarUser}" referrerpolicy="no-referrer">
+              <p>${contentPost.userName}</p>
+              <span>hace 2 horas</span>
               <img class="photo-user-post" src="${contentPost.avatar}" referrerpolicy="no-referrer">
               <div>
               <p class="user-publi">${contentPost.userName}</p>
               <span class="time-publi">hace 2 horas</span>
-              </div>
+
             </div>
           </div>
           <div class="info-publi">
             <h4>Restaurante Bambu</h4>
             <p class="description">${contentPost.content}</p>
+
             <div class="interacciones">
               <button class="btn-interaccion"> 
               <img src = "../img/corazon.png">
@@ -97,22 +100,24 @@ const home = {
           </div>
         </div>
         `;
+        });
+        containerPost.innerHTML = html;
       });
-      containerPost.innerHTML = html;
     });
+
     let currentUser;
     // Traer el nombre de usuario
     function authCallBack(user) {
-      currentUser = user;
-      const currentName = document.querySelector('.currentName');
+      currentUser = user; // Usuario actual
+      /* const currentName = document.querySelector('.currentName'); */
       const photoUser = document.querySelector('.photo-user');
-      photoUser.setAttribute('src', user.photoURL);
+      photoUser.setAttribute('src', user.photoURL); // Cambia el contenido src x la foto
     }
     observer(authCallBack);
 
     const publicarModal = document.querySelector('#publicar-modal');
     publicarModal.addEventListener('click', () => {
-      modalPublication.classList.add('show-modal-publication');
+      modalPublication.classList.add('show-modal-publication'); // Esta en nav.css
     });
 
     btnPublicar.addEventListener('click', (event) => {
