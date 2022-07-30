@@ -22,7 +22,7 @@ const register = {
       </form>
       <span> Al registrarte, aceptas nuestras Condiciones,la Política de datos y la Política de cookies.</span>
     </div>
-    <div class="modal-container">pull 
+    <div class="modal-container"> 
       <div class="modal">
         <img src="./img/verificacion.webp"></img> 
         <span>Para continuar con la creación de tu nueva cuenta de Help Taster, verifica tu dirección de correo electrónico.</span>

@@ -76,6 +76,11 @@ const home = {
               <img class="photo-user-post" src="${avatarUser}" referrerpolicy="no-referrer">
               <p>${contentPost.userName}</p>
               <span>hace 2 horas</span>
+              <img class="photo-user-post" src="${contentPost.avatar}" referrerpolicy="no-referrer">
+              <div>
+              <p class="user-publi">${contentPost.userName}</p>
+              <span class="time-publi">hace 2 horas</span>
+
             </div>
           </div>
           <div class="info-publi">
@@ -116,6 +121,7 @@ const home = {
     });
 
     btnPublicar.addEventListener('click', (event) => {
+      
       event.preventDefault();
       modalPublication.classList.remove('show-modal-publication');
 
