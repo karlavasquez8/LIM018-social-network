@@ -75,8 +75,10 @@ const home = {
             <img>
             <div class="content-publi">
               <img class="photo-user-post" src="${contentPost.avatar}" referrerpolicy="no-referrer">
-              <p>${contentPost.userName}</p>
-              <span>hace 2 horas</span>
+              <div>
+              <p class="user-publi">${contentPost.userName}</p>
+              <span class="time-publi">hace 2 horas</span>
+              </div>
             </div>
           </div>
           <div class="info-publi">
@@ -84,7 +86,7 @@ const home = {
             <p class="description">${contentPost.content}</p>
             <div class="interacciones">
               <button class="btn-interaccion"> 
-              <img src = "../img/corazon.png"
+              <img src = "../img/corazon.png">
               <span class="conteo">123</span>
               </button>
               <button class="btn-interaccion">
@@ -114,6 +116,7 @@ const home = {
     });
 
     btnPublicar.addEventListener('click', (event) => {
+      
       event.preventDefault();
       modalPublication.classList.remove('show-modal-publication');
 
