@@ -28,7 +28,6 @@ const home = {
             <img src="./img/search.png">Buscar</button>
         </div>
       </div>
-
       <div class="modal-container">
         <div class="modal no-verified-email">
           <form class="create-post">
@@ -69,18 +68,14 @@ const home = {
           const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/corazon.png';
 
           html += ` 
-        <div class="container-publi">
+          <div class="container-publi">
           <div class="container-publi-img">
-            <img>
             <div class="content-publi">
               <img class="photo-user-post" src="${avatarUser}" referrerpolicy="no-referrer">
-              <p>${contentPost.userName}</p>
-              <span>hace 2 horas</span>
-              <img class="photo-user-post" src="${contentPost.avatar}" referrerpolicy="no-referrer">
               <div>
               <p class="user-publi">${contentPost.userName}</p>
               <span class="time-publi">hace 2 horas</span>
-
+              </div>
             </div>
           </div>
           <div class="info-publi">
@@ -121,10 +116,8 @@ const home = {
     });
 
     btnPublicar.addEventListener('click', (event) => {
-      
       event.preventDefault();
       modalPublication.classList.remove('show-modal-publication');
-
       const userPublication = post.value;
       savePost({
         content: userPublication,
