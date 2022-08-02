@@ -12,22 +12,34 @@ const home = {
           <img class="photo-user" src="" referrerpolicy="no-referrer">
         </div>
       </div>
-      <div id = "contentPost"></div>
-
+      <div id = "contentPost">
+          <div class="container-publi">
+          <div class="description-img">
+            <img class="photo-user" src="" referrerpolicy="no-referrer">
+          </div>
+          <h2><strong class='currentName'></strong></h2>
+          <span>Description</span>
+          <p>Me gusta la cocina , soy  aficionada. Mis platos  favoritos son el chaufa y el picante de camarones a la tacneña </p>
+          <img src="./img/group.png"><span>23 followers      3 following</span>
+          </div>
+      </div>
       <div class="nav">
-        <div class="home-nav btnNav">
-          <button id="home-modal">
+        <div class="home-nav">
+          <button id="home-modal" class="btn-nav">
             <img src="./img/recipe (Stroke).png">Home</button>
         </div>
-        <div class="publicar-nav btnNav">
-          <button id="publicar-modal">
+        <div class="publicar-nav">
+          <button id="publicar-modal" class="btn-nav">
             <img src="./img/photo_camera.png">Publicar</button>
         </div>
-        <div class="buscar-nav btnNav">
-          <button id="buscar-modal">
+        <div class="buscar-nav">
+          <button id="buscar-modal" class="btn-nav">
             <img src="./img/search.png">Buscar</button>
         </div>
       </div>
+
+      
+
       <div class="modal-container">
         <div class="modal no-verified-email">
           <form class="create-post">
@@ -65,7 +77,7 @@ const home = {
 
         querySnapshot.forEach((doc) => {
           const contentPost = doc.data();
-          const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/corazon.png';
+          const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/photo-user-blanco.png';
 
           html += ` 
           <div class="container-publi">
@@ -104,9 +116,11 @@ const home = {
     // Traer el nombre de usuario
     function authCallBack(user) {
       currentUser = user; // Usuario actual
-      /* const currentName = document.querySelector('.currentName'); */
       const photoUser = document.querySelector('.photo-user');
       photoUser.setAttribute('src', user.photoURL); // Cambia el contenido src x la foto
+      if (user.photoURL == null) {
+        photoUser.setAttribute('src', '../img/photo-user.png');
+      }
     }
     observer(authCallBack);
 

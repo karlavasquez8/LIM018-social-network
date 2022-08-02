@@ -1,9 +1,9 @@
 .nav {
     display: flex;
-    justify-content: space-between;
-    padding: 0 1rem;
+    align-items: center;
     background-color: white;
     position: sticky;
+    width: fit-content;
     bottom: 0;
 
 }
@@ -12,7 +12,8 @@
     display: flex;
 }
 
-.btnNav{ 
-    background-color: blueviolet;
-    display: flex;
+.btn-nav{ 
+    width: fit-content;
+    box-shadow: none;
+
 }
