@@ -1,5 +1,5 @@
 import {
-  getPost, logOut, observer, savePost, onGetPost,
+  getPost, logOut, observer, savePost, onGetPost, deletePost,
 } from '../firebase/auth.js';
 
 const home = {
@@ -71,6 +71,31 @@ const home = {
     const btnPublicar = document.querySelector('.btn-publicar');
     const modalPublication = document.querySelector('.modal-container');
 
+    // Menú desplegable
+    function menuPublication() {
+      const menusDesplegables = document.querySelectorAll('.img-tree-dots');
+      menusDesplegables.forEach((menuDesplegable) => {
+        menuDesplegable.addEventListener('click', (event) => {
+          const btnMenu = event.target.closest('.menu-desplegable').querySelector('.btn-edit-delete');
+          if (btnMenu.classList.contains('show-menu')) {
+            btnMenu.classList.remove('show-menu');
+          } else {
+            btnMenu.classList.add('show-menu');
+          }
+        });
+      });
+    }
+
+    // Eliminar post
+    function deletePostFinal() {
+      const btnsDeletes = containerPost.querySelectorAll('.btn-delete');
+      btnsDeletes.forEach((btn) => {
+        btn.addEventListener('click', ({ target: { dataset } }) => {
+          deletePost(dataset.id);
+        });
+      });
+    }
+
     window.addEventListener('DOMContentLoaded', async () => {
       onGetPost((querySnapshot) => { // Cuando ocurra 1 cambio te mando los nuevos dts
         let html = '';
@@ -82,7 +107,18 @@ const home = {
           html += ` 
           <div class="container-publi">
           <div class="container-publi-img">
-            <div class="content-publi">
+
+            <div class="menu-desplegable">
+              <button class="img-tree-dots" >
+                <img src="../img/menu-desplegable.png">
+              </button>
+              <ul class="btn-edit-delete">
+                <li><button type="button" class="btn-edit menu">Editar</button></li>
+                <li><button type="button" class="btn-delete menu" data-id="${doc.id}">Eliminar</button></li>
+              </ul>
+            </div>
+
+            <div class="content-publi">            
               <img class="photo-user-post" src="${avatarUser}" referrerpolicy="no-referrer">
               <div>
               <p class="user-publi">${contentPost.userName}</p>
@@ -108,7 +144,11 @@ const home = {
         </div>
         `;
         });
+
         containerPost.innerHTML = html;
+        console.log(containerPost);
+        menuPublication();
+        deletePostFinal();
       });
     });
 
