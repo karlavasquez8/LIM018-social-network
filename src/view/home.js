@@ -1,5 +1,5 @@
 import {
-  getPost, logOut, observer, savePost, onGetPost, deletePost,
+  getPost, logOut, observer, savePost, onGetPost, deletePost, editPost,
 } from '../firebase/auth.js';
 
 const home = {
@@ -31,8 +31,8 @@ const home = {
 
       <div class="modal-container">
         <div class="modal no-verified-email">
-          <form class="create-post">
-            <textarea class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
+          <form id="create-post" class="create-post">
+            <textarea id="publicacion" class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
               <div class="iconos-post">
                 <div>
                   <span class="material-symbols-outlined">add_location_alt</span>
@@ -75,37 +75,40 @@ const home = {
       });
     }
 
-    // Eliminar post
+    // Eliminando post
     function deletePostFinal() {
-      const btnsDeletes = containerPost.querySelectorAll('.btn-delete');
-      btnsDeletes.forEach((btn) => {
-        btn.addEventListener('click', ({ target: { dataset } }) => {
-          deletePost(dataset.id);
+      const btnsDelete = containerPost.querySelectorAll('.btn-delete');
+      btnsDelete.forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+          deletePost(event.target.dataset.id);
         });
       });
     }
 
-    window.addEventListener('DOMContentLoaded', async () => {
-      onGetPost((querySnapshot) => { // Cuando ocurra 1 cambio te mando los nuevos dts
-        let html = '';
+    let currentUser;
+    // Haciendo el post
+    onGetPost((querySnapshot) => { // Cuando ocurra 1 cambio te mando los nuevos dts
+      let html = '';
 
-        querySnapshot.forEach((doc) => {
-          const contentPost = doc.data();
-          const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/photo-user-blanco.png';
+      querySnapshot.forEach((doc) => {
+        // Si el userID del post no es igual al id del currentUser no muestro el boton de eliminar
+        const contentPost = doc.data();
+        const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/photo-user-blanco.png';
+        /* console.log(contentPost.userID, currentUser.uid); */
 
-          html += ` 
+        html += ` 
         <div class="container-publi">
           <div class="container-publi-img">
 
-            <div class="menu-desplegable">
+            ${contentPost.userID === currentUser.uid ? `<div class="menu-desplegable" >
               <button class="img-tree-dots" >
                 <img src="../img/menu-desplegable.png">
               </button>
               <ul class="btn-edit-delete">
-                <li><button type="button" class="btn-edit menu">Editar</button></li>
+                <li><button type="button" class="btn-edit menu" data-id="${doc.id}">Editar</button></li>
                 <li><button type="button" class="btn-delete menu" data-id="${doc.id}">Eliminar</button></li>
               </ul>
-            </div>
+            </div>` : ''}
 
             <div class="content-publi">            
               <img class="photo-user-post" src="${avatarUser}" referrerpolicy="no-referrer">
@@ -132,16 +135,26 @@ const home = {
           </div>
         </div>
         `;
-        });
+      });
 
-        containerPost.innerHTML = html;
-        console.log(containerPost);
-        menuPublication();
-        deletePostFinal();
+      containerPost.innerHTML = html;
+      menuPublication();
+      deletePostFinal();
+
+      // Editar post
+
+      const btnsEdit = containerPost.querySelectorAll('.btn-edit');
+      btnsEdit.forEach((btn) => {
+        btn.addEventListener('click', async (event) => {
+          const doc = await editPost(event.target.dataset.id);
+          const postear = doc.data();
+
+          postForm.publicacion.value = postForm.publicacion;
+        });
       });
     });
 
-    let currentUser;
+    /* let currentUser; */
     // Traer el nombre de usuario
     function authCallBack(user) {
       currentUser = user; // Usuario actual

@@ -22,6 +22,7 @@ import {
   onSnapshot, // Cuando los datos cambien
   getDocs,
   deleteDoc,
+  getDoc,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
 
@@ -122,6 +123,5 @@ export const onGetPost = (callback) => onSnapshot(collection(db, 'publication'),
 // Función para eliminar los posts
 export const deletePost = (id) => deleteDoc(doc(db, 'publication', id));
 
-/* // Función para editar los posts
-export const editPost = (idPost, updatePost) => updateDoc(doc(db, 'post', idPost), updatePost);
- */
+// Función para editar los posts
+export const editPost = (id) => getDoc(doc(db, 'publication', id));
