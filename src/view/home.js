@@ -1,5 +1,5 @@
 import {
-  getPost, logOut, observer, savePost, onGetPost, deletePost, editPost,
+  getPost, logOut, observer, savePost, onGetPost, deletePost, editPost, updatePost,
 } from '../firebase/auth.js';
 
 const home = {
@@ -38,7 +38,7 @@ const home = {
                   <span class="material-symbols-outlined">add_location_alt</span>
                   <span class="material-symbols-outlined">image</span>
                 </div>
-                <button class="btn-publicar">Publicar</button>
+                <button id="btn-publicar" class="btn-publicar">Publicar</button>
               </div>
           </form>
         </div>
@@ -59,6 +59,16 @@ const home = {
     const post = document.querySelector('.publicacion');
     const btnPublicar = document.querySelector('.btn-publicar');
     const modalPublication = document.querySelector('.modal-container');
+    let editStatus = false; // Para editar
+    let id = '';
+
+    function showModal() {
+      modalPublication.classList.add('show-modal-publication'); // Esta en nav.css
+    }
+
+    function removeModal() {
+      modalPublication.classList.remove('show-modal-publication');
+    }
 
     // Menú desplegable
     function menuPublication() {
@@ -81,6 +91,27 @@ const home = {
       btnsDelete.forEach((btn) => {
         btn.addEventListener('click', (event) => {
           deletePost(event.target.dataset.id);
+        });
+      });
+    }
+
+    // Editar post
+    function editPostFinal() {
+      const btnsEdit = containerPost.querySelectorAll('.btn-edit');
+      btnsEdit.forEach((btn) => {
+        btn.addEventListener('click', async (event) => {
+          showModal();
+          const doc = await editPost(event.target.dataset.id);
+          const publication = doc.data();
+
+          postForm.publicacion.value = publication.content;
+
+          editStatus = true;
+          id = event.target.dataset.id;
+          postForm['btn-publicar'].innerText = 'Guardar';
+          // obtener el modal
+          // llenar los campos
+          // mostarr el modal
         });
       });
     }
@@ -140,18 +171,7 @@ const home = {
       containerPost.innerHTML = html;
       menuPublication();
       deletePostFinal();
-
-      // Editar post
-
-      const btnsEdit = containerPost.querySelectorAll('.btn-edit');
-      btnsEdit.forEach((btn) => {
-        btn.addEventListener('click', async (event) => {
-          const doc = await editPost(event.target.dataset.id);
-          const postear = doc.data();
-
-          postForm.publicacion.value = postForm.publicacion;
-        });
-      });
+      editPostFinal();
     });
 
     /* let currentUser; */
@@ -168,25 +188,34 @@ const home = {
 
     const publicarModal = document.querySelector('#publicar-modal');
     publicarModal.addEventListener('click', () => {
-      modalPublication.classList.add('show-modal-publication'); // Esta en nav.css
+      showModal();
     });
 
     btnPublicar.addEventListener('click', (event) => {
       event.preventDefault();
-      modalPublication.classList.remove('show-modal-publication');
+      removeModal();
 
-      const userPublication = post.value;
-      savePost({
-        content: userPublication,
-        title: '',
-        userName: currentUser.displayName,
-        userID: currentUser.uid,
-        avatar: currentUser.photoURL,
-        urlImage: '',
-        likes: 0,
-        commets: [],
+      if (!editStatus) {
+        const userPublication = post.value;
+        savePost({
+          content: userPublication,
+          title: '',
+          userName: currentUser.displayName,
+          userID: currentUser.uid,
+          avatar: currentUser.photoURL,
+          urlImage: '',
+          likes: 0,
+          commets: [],
+        });
+      } else {
+        updatePost(
+          id,
+          {
+            content: post.value,
+          },
+        );
+      }
 
-      });
       postForm.reset();
     });
   },
