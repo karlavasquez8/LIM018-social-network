@@ -4,29 +4,30 @@ const login = {
   template: () => {
     const login = `
       <section class="first-view">
-          <div class="container-index">
-            <img src="./img/cubiertos.png" alt="Cubiertos">
-            <h1> HELP TASTER </h1>
-            <h2> ¿Que deseas probar hoy? </h2>
-            <span> Te ayudamos a encontrar los mejores lugares para disfrutar tus comidas!!</span>
-            <form class="form-email">
-              <input name="email" type="email" class="input-register" placeholder="E-mail">
-              <p class= "condicion loginError" id="error-usuario"></p>
-              <input name="password" type="password" class ="input-register" placeholder="Contraseña">
-              <p class= "condicion loginError" id="error-contraseña"></p>
-              <button type="submit" class="btn-log-email"> Iniciar sesión </button>
-            </form>
-            <a href="#newPassword"> Recupera tu contraseña </a>
-            <div class="separator"><hr class="hr">O<hr class="hr"></div>
-            <div class="button-index">
-              <button class="button" id="googleLogin">
-                <img src="./img/Google.png">
-                Inicia con Google</button>
-            </div>
-            <span>¿No tienes una cuenta ?</span>
-            <a href="#/register"> Registrate aqui</a>
-          </div>  
-          <div class="modal-container">
+        <div class="container-index">
+          <img src="./img/cubiertos.png" alt="Cubiertos">
+          <h1> HELP TASTER </h1>
+          <h2> ¿Que deseas probar hoy? </h2>
+          <span> Te ayudamos a encontrar los mejores lugares para disfrutar tus comidas!!</span>
+          <form class="form-email">
+            <input name="email" type="email" class="input-register" placeholder="E-mail">
+            <p class= "condicion loginError" id="error-usuario"></p>
+            <input name="password" type="password" class ="input-register" placeholder="Contraseña">
+            <p class= "condicion loginError" id="error-contraseña"></p>
+            <button type="submit" class="btn-log-email"> Iniciar sesión </button>
+          </form>
+          <a href="#newPassword"> Recupera tu contraseña </a>
+          <div class="separator"><hr class="hr">O<hr class="hr"></div>
+          <div class="button-index">
+            <button class="button" id="googleLogin">
+              <img src="./img/Google.png">
+              Inicia con Google
+            </button>
+          </div>
+          <span>¿No tienes una cuenta ?</span>
+          <a href="#/register"> Registrate aqui</a>
+        </div>  
+        <div class="modal-container">
           <div class="modal no-verified-email">
             <img src="./img/verificacion.webp"></img> 
             <span> No se verifico, revisa su correo</span>

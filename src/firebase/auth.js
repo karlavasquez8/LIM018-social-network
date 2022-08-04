@@ -23,22 +23,25 @@ import {
   getDocs,
   deleteDoc,
   getDoc,
+  updateDoc,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
 
 // eslint-disable-next-line import/no-named-as-default
 import app from './config.js';
 
-const auth = getAuth(app);
+// REGISTRAR USUARIOS NUEVOS
+const auth = getAuth(app); // Registra usuarios nuevos
 /* console.log(auth); */
 
 // eslint-disable-next-line max-len
 export const createNewUser = (email, password) => createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
+    /* console.log(userCredential); */
     const user = userCredential.user;
     sendEmailVerification(auth.currentUser)
       .then(() => {
-        console.log('correo enviado');
+        console.log('correo enviado'); // Aceptar y me regresa al login
         // eslint-disable-next-line no-use-before-define
         logOut();
       })
@@ -48,6 +51,7 @@ export const createNewUser = (email, password) => createUserWithEmailAndPassword
     return user;
   });
 
+// INICIAR SESIÓN CON EMAIL
 export const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
@@ -125,3 +129,6 @@ export const deletePost = (id) => deleteDoc(doc(db, 'publication', id));
 
 // Función para editar los posts
 export const editPost = (id) => getDoc(doc(db, 'publication', id));
+
+// Función para actualizar posts
+export const updatePost = (id, newFields) => updateDoc(doc(db, 'publication', id), newFields);
