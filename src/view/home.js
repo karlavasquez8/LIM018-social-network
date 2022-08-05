@@ -12,7 +12,7 @@ const home = {
           <img class="photo-user" src="" referrerpolicy="no-referrer">
         </div>
       </div>
-      <div id = "contentPost"></div>
+      <div id = "contentPost" class = "content-post"></div>
 
       <div class="nav">
         <div class="home-nav">
@@ -62,8 +62,16 @@ const home = {
     let editStatus = false; // Para editar
     let id = '';
 
+    function blockScroll() {
+      document.querySelector(".content-post").classList.add("hidden-scroll")
+    } 
+    function activateScroll() {
+      document.querySelector(".content-post").classList.remove("hidden-scroll")
+    }
+
     function showModal() {
-      modalPublication.classList.add('show-modal-publication'); // Esta en nav.css
+      modalPublication.classList.add('show-modal-publication'); 
+      // Esta en nav.css
     }
 
     function removeModal() {
@@ -101,6 +109,7 @@ const home = {
       btnsEdit.forEach((btn) => {
         btn.addEventListener('click', async (event) => {
           showModal();
+          blockScroll()
           const doc = await editPost(event.target.dataset.id);
           const publication = doc.data();
 
@@ -113,6 +122,7 @@ const home = {
           // llenar los campos
           // mostarr el modal
         });
+        activateScroll()
       });
     }
 
@@ -189,11 +199,13 @@ const home = {
     const publicarModal = document.querySelector('#publicar-modal');
     publicarModal.addEventListener('click', () => {
       showModal();
+      blockScroll()
     });
 
     btnPublicar.addEventListener('click', (event) => {
       event.preventDefault();
       removeModal();
+      activateScroll()
 
       if (!editStatus) {
         const userPublication = post.value;
