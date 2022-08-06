@@ -129,5 +129,3 @@ export const editPost = (id) => getDoc(doc(db, 'publication', id));
 
 // Función para actualizar posts
 export const updatePost = (id, newFields) => updateDoc(doc(db, 'publication', id), newFields);
-
-export const 

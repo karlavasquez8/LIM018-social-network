@@ -12,7 +12,7 @@ const home = {
           <img class="photo-user" src="" referrerpolicy="no-referrer">
         </div>
       </div>
-      <div id = "contentPost"></div>
+      <div id = "contentPost" class = "content-post"></div>
 
       <div class="nav">
         <div class="home-nav">
@@ -28,8 +28,6 @@ const home = {
             <img src="./img/search.png">Buscar</button>
         </div>
       </div>
-
-      
 
       <div class="modal-container">
         <div class="modal no-verified-email">
@@ -65,14 +63,14 @@ const home = {
     let id = '';
 
     function blockScroll() {
-      document.querySelector(".content-post").classList.add("hidden-scroll")
-    } 
+      document.querySelector('.content-post').classList.add('hidden-scroll');
+    }
     function activateScroll() {
-      document.querySelector(".content-post").classList.remove("hidden-scroll")
+      document.querySelector('.content-post').classList.remove('hidden-scroll');
     }
 
     function showModal() {
-      modalPublication.classList.add('show-modal-publication'); 
+      modalPublication.classList.add('show-modal-publication');
       // Esta en nav.css
     }
 
@@ -97,12 +95,34 @@ const home = {
 
     // Eliminando post
     function deletePostFinal() {
-      const btnsDeletes = containerPost.querySelectorAll('.btn-delete');
-      btnsDeletes.forEach((btn) => {
-        btn.addEventListener('click', ({ target: { dataset } }) => {
-          deletePost(dataset.id);
+      const btnsDelete = containerPost.querySelectorAll('.btn-delete');
+      btnsDelete.forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+          deletePost(event.target.dataset.id);
         });
-        activateScroll()
+      });
+    }
+
+    // Editar post
+    function editPostFinal() {
+      const btnsEdit = containerPost.querySelectorAll('.btn-edit');
+      btnsEdit.forEach((btn) => {
+        btn.addEventListener('click', async (event) => {
+          showModal();
+          blockScroll();
+          const doc = await editPost(event.target.dataset.id);
+          const publication = doc.data();
+
+          postForm.publicacion.value = publication.content;
+
+          editStatus = true;
+          id = event.target.dataset.id;
+          postForm['btn-publicar'].innerText = 'Guardar';
+          // obtener el modal
+          // llenar los campos
+          // mostarr el modal
+        });
+        activateScroll();
       });
     }
 
@@ -114,11 +134,10 @@ const home = {
       querySnapshot.forEach((doc) => {
         // Si el userID del post no es igual al id del currentUser no muestro el boton de eliminar
         const contentPost = doc.data();
-        console.log({contentPost})
         const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/photo-user-blanco.png';
         /* console.log(contentPost.userID, currentUser.uid); */
 
-          html += ` 
+        html += ` 
         <div class="container-publi">
           <div class="container-publi-img">
 
@@ -180,25 +199,35 @@ const home = {
     const publicarModal = document.querySelector('#publicar-modal');
     publicarModal.addEventListener('click', () => {
       showModal();
-      blockScroll()
+      blockScroll();
     });
 
     btnPublicar.addEventListener('click', (event) => {
       event.preventDefault();
-      modalPublication.classList.remove('show-modal-publication');
+      removeModal();
+      activateScroll();
 
-      const userPublication = post.value;
-      savePost({
-        content: userPublication,
-        title: '',
-        userName: currentUser.displayName,
-        userID: currentUser.uid,
-        avatar: currentUser.photoURL,
-        urlImage: '',
-        likes: 0,
-        commets: [],
+      if (!editStatus) {
+        const userPublication = post.value;
+        savePost({
+          content: userPublication,
+          title: '',
+          userName: currentUser.displayName,
+          userID: currentUser.uid,
+          avatar: currentUser.photoURL,
+          urlImage: '',
+          likes: 0,
+          commets: [],
+        });
+      } else {
+        updatePost(
+          id,
+          {
+            content: post.value,
+          },
+        );
+      }
 
-      });
       postForm.reset();
     });
   },
