@@ -268,6 +268,7 @@ p {
     margin: 0;
     list-style: none;
 }
+
 #contentPost {
     display: flex;
     flex-direction: column;

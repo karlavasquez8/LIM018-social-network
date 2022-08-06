@@ -10,6 +10,7 @@ import {
   GoogleAuthProvider,
   signOut,
   updateProfile,
+  sendPasswordResetEmail,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 
@@ -112,6 +113,11 @@ export const updateUser = (currentUser, inputName) => {
   });
 };
 
+export const recoverPass = (email) => {
+  sendPasswordResetEmail(auth, email);
+};
+
+// Firestore
 // Guardar los post
 export const savePost = (post) => {
   addDoc(collection(db, 'publication'), post);

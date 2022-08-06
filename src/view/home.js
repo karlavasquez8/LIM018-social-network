@@ -32,6 +32,7 @@ const home = {
       <div class="modal-container">
         <div class="modal no-verified-email">
           <form id="create-post" class="create-post">
+            <input type="text" id = "name-restaurant" placeholder="¿Que restaurante recomiendas?">
             <textarea id="publicacion" class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
               <div class="iconos-post">
                 <div>
@@ -56,6 +57,7 @@ const home = {
     // Creando post
     const containerPost = document.querySelector('#contentPost');
     const postForm = document.querySelector('.create-post');
+    const nameRestaurant = document.querySelector('#name-restaurant');
     const post = document.querySelector('.publicacion');
     const btnPublicar = document.querySelector('.btn-publicar');
     const modalPublication = document.querySelector('.modal-container');
@@ -160,7 +162,7 @@ const home = {
             </div>
           </div>
           <div class="info-publi">
-            <h4>Restaurante Bambu</h4>
+            <h4>${contentPost.title}</h4>
             <p class="description">${contentPost.content}</p>
 
             <div class="interacciones">
@@ -209,9 +211,10 @@ const home = {
 
       if (!editStatus) {
         const userPublication = post.value;
+        const userRestaurant = nameRestaurant.value;
         savePost({
           content: userPublication,
-          title: '',
+          title: userRestaurant,
           userName: currentUser.displayName,
           userID: currentUser.uid,
           avatar: currentUser.photoURL,
