@@ -114,6 +114,7 @@ const home = {
       querySnapshot.forEach((doc) => {
         // Si el userID del post no es igual al id del currentUser no muestro el boton de eliminar
         const contentPost = doc.data();
+        console.log({contentPost})
         const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/photo-user-blanco.png';
         /* console.log(contentPost.userID, currentUser.uid); */
 
