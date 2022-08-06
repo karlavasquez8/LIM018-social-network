@@ -106,7 +106,7 @@ const home = {
         clickContinue = noopFunction, 
         beforeLoad = noopFunction, 
         onClose = noopFunction
-    } = configModal;
+      } = configModal;
 
       postForm['btn-publicar'].innerText = continueText;
 
@@ -155,9 +155,12 @@ const home = {
         clickContinue,
         onClose: () => {
           removeModal(clickContinue);
+          activateScroll()
+        },
+        beforeLoad:()=>{
+          blockScroll();
         }
       });
-      blockScroll()
     });
 
     let currentUser;
@@ -258,13 +261,13 @@ const home = {
             clickContinue,
             onClose: () => {
               removeModal(clickContinue);
+              activateScroll();
+            },
+            beforeLoad:()=>{
+              blockScroll();
             }
           });
-
-          blockScroll()
         });
-        
-        activateScroll()
       });
     }
   },
