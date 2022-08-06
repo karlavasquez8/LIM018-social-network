@@ -1,5 +1,5 @@
 import {
-  getPost, logOut, observer, savePost, onGetPost, deletePost,
+  getPost, logOut, observer, savePost, onGetPost, deletePost, editPost, updatePost,
 } from '../firebase/auth.js';
 
 const home = {
@@ -12,17 +12,8 @@ const home = {
           <img class="photo-user" src="" referrerpolicy="no-referrer">
         </div>
       </div>
-      <div id = "contentPost">
-          <div class="container-publi">
-          <div class="description-img">
-            <img class="photo-user" src="" referrerpolicy="no-referrer">
-          </div>
-          <h2><strong class='currentName'></strong></h2>
-          <span>Description</span>
-          <p>Me gusta la cocina , soy  aficionada. Mis platos  favoritos son el chaufa y el picante de camarones a la tacneña </p>
-          <img src="./img/group.png"><span>23 followers      3 following</span>
-          </div>
-      </div>
+      <div id = "contentPost"></div>
+
       <div class="nav">
         <div class="home-nav">
           <button id="home-modal" class="btn-nav">
@@ -42,14 +33,14 @@ const home = {
 
       <div class="modal-container">
         <div class="modal no-verified-email">
-          <form class="create-post">
-            <textarea class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
+          <form id="create-post" class="create-post">
+            <textarea id="publicacion" class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
               <div class="iconos-post">
                 <div>
                   <span class="material-symbols-outlined">add_location_alt</span>
                   <span class="material-symbols-outlined">image</span>
                 </div>
-                <button class="btn-publicar">Publicar</button>
+                <button id="btn-publicar" class="btn-publicar">Publicar</button>
               </div>
           </form>
         </div>
@@ -70,6 +61,24 @@ const home = {
     const post = document.querySelector('.publicacion');
     const btnPublicar = document.querySelector('.btn-publicar');
     const modalPublication = document.querySelector('.modal-container');
+    let editStatus = false; // Para editar
+    let id = '';
+
+    function blockScroll() {
+      document.querySelector(".content-post").classList.add("hidden-scroll")
+    } 
+    function activateScroll() {
+      document.querySelector(".content-post").classList.remove("hidden-scroll")
+    }
+
+    function showModal() {
+      modalPublication.classList.add('show-modal-publication'); 
+      // Esta en nav.css
+    }
+
+    function removeModal() {
+      modalPublication.classList.remove('show-modal-publication');
+    }
 
     // Menú desplegable
     function menuPublication() {
@@ -86,37 +95,41 @@ const home = {
       });
     }
 
-    // Eliminar post
+    // Eliminando post
     function deletePostFinal() {
       const btnsDeletes = containerPost.querySelectorAll('.btn-delete');
       btnsDeletes.forEach((btn) => {
         btn.addEventListener('click', ({ target: { dataset } }) => {
           deletePost(dataset.id);
         });
+        activateScroll()
       });
     }
 
-    window.addEventListener('DOMContentLoaded', async () => {
-      onGetPost((querySnapshot) => { // Cuando ocurra 1 cambio te mando los nuevos dts
-        let html = '';
+    let currentUser;
+    // Haciendo el post
+    onGetPost((querySnapshot) => { // Cuando ocurra 1 cambio te mando los nuevos dts
+      let html = '';
 
-        querySnapshot.forEach((doc) => {
-          const contentPost = doc.data();
-          const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/photo-user-blanco.png';
+      querySnapshot.forEach((doc) => {
+        // Si el userID del post no es igual al id del currentUser no muestro el boton de eliminar
+        const contentPost = doc.data();
+        const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/photo-user-blanco.png';
+        /* console.log(contentPost.userID, currentUser.uid); */
 
           html += ` 
-          <div class="container-publi">
+        <div class="container-publi">
           <div class="container-publi-img">
 
-            <div class="menu-desplegable">
+            ${contentPost.userID === currentUser.uid ? `<div class="menu-desplegable" >
               <button class="img-tree-dots" >
                 <img src="../img/menu-desplegable.png">
               </button>
               <ul class="btn-edit-delete">
-                <li><button type="button" class="btn-edit menu">Editar</button></li>
+                <li><button type="button" class="btn-edit menu" data-id="${doc.id}">Editar</button></li>
                 <li><button type="button" class="btn-delete menu" data-id="${doc.id}">Eliminar</button></li>
               </ul>
-            </div>
+            </div>` : ''}
 
             <div class="content-publi">            
               <img class="photo-user-post" src="${avatarUser}" referrerpolicy="no-referrer">
@@ -143,16 +156,15 @@ const home = {
           </div>
         </div>
         `;
-        });
-
-        containerPost.innerHTML = html;
-        console.log(containerPost);
-        menuPublication();
-        deletePostFinal();
       });
+
+      containerPost.innerHTML = html;
+      menuPublication();
+      deletePostFinal();
+      editPostFinal();
     });
 
-    let currentUser;
+    /* let currentUser; */
     // Traer el nombre de usuario
     function authCallBack(user) {
       currentUser = user; // Usuario actual
@@ -166,12 +178,14 @@ const home = {
 
     const publicarModal = document.querySelector('#publicar-modal');
     publicarModal.addEventListener('click', () => {
-      modalPublication.classList.add('show-modal-publication'); // Esta en nav.css
+      showModal();
+      blockScroll()
     });
 
     btnPublicar.addEventListener('click', (event) => {
       event.preventDefault();
       modalPublication.classList.remove('show-modal-publication');
+
       const userPublication = post.value;
       savePost({
         content: userPublication,
