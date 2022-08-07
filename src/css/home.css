@@ -290,3 +290,6 @@ p {
     align-items: center;
 }
 
+.btn[disabled] {
+    background-color: #333;
+}
