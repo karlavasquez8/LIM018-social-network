@@ -33,11 +33,10 @@ const home = {
       <div class="modal-container">
         <div class="modal no-verified-email">
           <form id="create-post" class="create-post">
-            <input type="text" id = "name-restaurant" placeholder="¿Que restaurante recomiendas?">
-            <textarea id="publicacion" class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
+            <label><input type="text" id = "name-restaurant" class="name-restaurant" placeholder="Restaurante"></label>
+            <textarea id="publicacion" class="publicacion" placeholder="¿Por qué nos recomiendas este lugar?"></textarea>
               <div class="iconos-post">
                 <div>
-                  <span class="material-symbols-outlined">add_location_alt</span>
                   <span class="material-symbols-outlined">image</span>
                 </div>
                 <button id="btn-publicar" class="btn-primary btn-publicar">Publicar</button>
@@ -64,7 +63,7 @@ const home = {
     const modalPublication = document.querySelector('.modal-container');
     let currentUser;
 
-        /* let currentUser; */
+    /* let currentUser; */
     // Traer el nombre de usuario, (el observador)
     function authCallBack(user) {
       currentUser = user; // Usuario actual
@@ -73,7 +72,6 @@ const home = {
       if (user.photoURL == null) {
         photoUser.setAttribute('src', '../img/photo-user.png');
       }
-
     }
     observer(authCallBack);
 
@@ -84,7 +82,7 @@ const home = {
       querySnapshot.forEach((doc) => {
         // Si el userID del post no es igual al id del currentUser no muestro el boton de eliminar
         const contentPost = doc.data();
-        const avatarUser = contentPost.avatar === null ? './img/photo-user-blanco.png' : contentPost.avatar ;
+        const avatarUser = contentPost.avatar === null ? './img/photo-user-blanco.png' : contentPost.avatar;
         /* console.log(contentPost.userID, currentUser.uid); */
 
         html += ` 
@@ -134,16 +132,15 @@ const home = {
       editPostFinal();
     });
 
-    //evento cuando le dan click al boton del nav-publicar
+    // evento cuando le dan click al boton del nav-publicar
     const btnPublicarNav = document.querySelector('#btn-publicar-nav');
     btnPublicarNav.addEventListener('click', () => {
-
       const clickContinue = (event) => {
         event.preventDefault();
 
         const userPublication = post.value;
         const userRestaurant = nameRestaurant.value;
-        
+
         savePost({
           content: userPublication,
           title: userRestaurant,
@@ -154,21 +151,20 @@ const home = {
           likes: 0,
           commets: [],
         });
-        removeModal(clickContinue)
+        removeModal(clickContinue);
         postForm.reset();
-      }
+      };
 
       showModal({
-        beforeLoad:()=>{
+        beforeLoad: () => {
           blockScroll();
         },
         clickContinue,
         onClose: () => {
           removeModal(clickContinue);
-        }
+        },
       });
     });
-    
 
     // Eliminando post
     function deletePostFinal() {
@@ -180,45 +176,45 @@ const home = {
       });
     }
 
-    //funciones para bloquear y activar scroll del modal
+    // funciones para bloquear y activar scroll del modal
     function blockScroll() {
-      document.querySelector(".content-post").classList.add("hidden-scroll")
-    } 
-
-    function activateScroll() {
-      document.querySelector(".content-post").classList.remove("hidden-scroll")
+      document.querySelector('.content-post').classList.add('hidden-scroll');
     }
 
-    //funcion para mostrar modal
+    function activateScroll() {
+      document.querySelector('.content-post').classList.remove('hidden-scroll');
+    }
+
+    // funcion para mostrar modal
     function showModal(configModal = {}) {
       const noopFunction = () => {};
       const btnCloseModal = document.querySelector('.btn-close-modal');
 
-      const { 
+      const {
         continueText = 'publicar',
-        clickContinue = noopFunction, 
-        beforeLoad = noopFunction, 
-        onClose = noopFunction
+        clickContinue = noopFunction,
+        beforeLoad = noopFunction,
+        onClose = noopFunction,
       } = configModal;
 
       postForm['btn-publicar'].innerText = continueText;
 
-      postForm['btn-publicar'].addEventListener('click', clickContinue)
-      btnCloseModal.addEventListener('click', onClose)
+      postForm['btn-publicar'].addEventListener('click', clickContinue);
+      btnCloseModal.addEventListener('click', onClose);
 
       beforeLoad();
 
-      modalPublication.classList.add('show-modal-publication'); 
+      modalPublication.classList.add('show-modal-publication');
       // Esta en nav.css
     }
 
-    //funcion para remover modal
+    // funcion para remover modal
     function removeModal(clickContinue = () => {}) {
       console.log(clickContinue);
-      postForm['btn-publicar'].removeEventListener('click', clickContinue)
+      postForm['btn-publicar'].removeEventListener('click', clickContinue);
 
       modalPublication.classList.remove('show-modal-publication');
-      activateScroll()
+      activateScroll();
     }
 
     // Menú desplegable
@@ -246,21 +242,19 @@ const home = {
 
           const clickContinue = (event) => {
             event.preventDefault();
-            
+
             const content = post.value;
-            updatePost(editId, { content })
-            
+            updatePost(editId, { content });
+
             removeModal(clickContinue);
             postForm.reset();
-          }
-
+          };
 
           showModal({
             continueText: 'Guardar',
             beforeLoad: async () => {
-
               try {
-                const doc = await getPost(editId);              
+                const doc = await getPost(editId);
                 const publication = doc.data();
                 post.value = publication.content;
                 blockScroll();
@@ -271,7 +265,7 @@ const home = {
             clickContinue,
             onClose: () => {
               removeModal(clickContinue);
-            }
+            },
           });
         });
       });
