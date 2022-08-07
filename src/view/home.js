@@ -21,10 +21,11 @@ const home = {
         </div>
         <div class="publicar-nav">
           <button id="btn-publicar-nav" class="btn-nav">
-            <img src="./img/photo_camera.png">Publicar</button>
+            <img src="./img/photo_camera.png">Publicar
+          </button>
         </div>
         <div class="buscar-nav">
-          <button id="btn-buscar-nav" class="btn-nav">
+          <button id="btn-buscar-nav" class=" btn-nav">
             <img src="./img/search.png">Buscar</button>
         </div>
       </div>
@@ -61,6 +62,7 @@ const home = {
     const nameRestaurant = document.querySelector('#name-restaurant');
     const post = document.querySelector('.publicacion');
     const modalPublication = document.querySelector('.modal-container');
+    let currentUser;
 
         /* let currentUser; */
     // Traer el nombre de usuario, (el observador)
@@ -75,99 +77,6 @@ const home = {
     }
     observer(authCallBack);
 
-    // Menú desplegable
-    function menuPublication() {
-      const menusDesplegables = document.querySelectorAll('.img-tree-dots');
-      menusDesplegables.forEach((menuDesplegable) => {
-        menuDesplegable.addEventListener('click', (event) => {
-          const btnMenu = event.target.closest('.menu-desplegable').querySelector('.btn-edit-delete');
-          if (btnMenu.classList.contains('show-menu')) {
-            btnMenu.classList.remove('show-menu');
-          } else {
-            btnMenu.classList.add('show-menu');
-          }
-        });
-      });
-    }
-
-    //funciones para bloquear y activar scroll del modal
-    function blockScroll() {
-      document.querySelector(".content-post").classList.add("hidden-scroll")
-    } 
-
-    function activateScroll() {
-      document.querySelector(".content-post").classList.remove("hidden-scroll")
-    }
-
-    //funcion para mostrar modal
-    async function showModal(configModal = {}) {
-      const noopFunction = () => {};
-      const btnCloseModal = document.querySelector('.btn-close-modal');
-
-      const { 
-        continueText = 'publicar',
-        clickContinue = noopFunction, 
-        beforeLoad = noopFunction, 
-        onClose = noopFunction
-      } = configModal;
-
-      postForm['btn-publicar'].innerText = continueText;
-
-      postForm['btn-publicar'].addEventListener('click', clickContinue)
-      btnCloseModal.addEventListener('click', onClose)
-
-      beforeLoad();
-
-      modalPublication.classList.add('show-modal-publication'); 
-      // Esta en nav.css
-    }
-
-    //funcion para remover modal
-    function removeModal(clickContinue = () => {}) {
-      console.log(clickContinue);
-      postForm['btn-publicar'].removeEventListener('click', clickContinue)
-
-      modalPublication.classList.remove('show-modal-publication');
-    }
-
-    //evento cuando le dan click al boton del nav-publicar
-    const btnPublicarNav = document.querySelector('#btn-publicar-nav');
-    btnPublicarNav.addEventListener('click', () => {
-
-      const clickContinue = (event) => {
-        event.preventDefault();
-
-        const userPublication = post.value;
-        const userRestaurant = nameRestaurant.value;
-        savePost({
-          content: userPublication,
-          title: userRestaurant,
-          userName: currentUser.displayName,
-          userID: currentUser.uid,
-          avatar: currentUser.photoURL,
-          urlImage: '',
-          likes: 0,
-          commets: [],
-        });
-
-        removeModal(clickContinue);
-
-        postForm.reset();
-      }
-
-      showModal({
-        clickContinue,
-        onClose: () => {
-          removeModal(clickContinue);
-          activateScroll()
-        },
-        beforeLoad:()=>{
-          blockScroll();
-        }
-      });
-    });
-
-    let currentUser;
     // Haciendo el post
     onGetPost((querySnapshot) => { // Cuando ocurra 1 cambio te mando los nuevos dts
       let html = '';
@@ -175,7 +84,7 @@ const home = {
       querySnapshot.forEach((doc) => {
         // Si el userID del post no es igual al id del currentUser no muestro el boton de eliminar
         const contentPost = doc.data();
-        const avatarUser = contentPost.avatar !== null ? contentPost.avatar : './img/photo-user-blanco.png';
+        const avatarUser = contentPost.avatar === null ? './img/photo-user-blanco.png' : contentPost.avatar ;
         /* console.log(contentPost.userID, currentUser.uid); */
 
         html += ` 
@@ -224,12 +133,105 @@ const home = {
       deletePostFinal();
       editPostFinal();
     });
+
+    //evento cuando le dan click al boton del nav-publicar
+    const btnPublicarNav = document.querySelector('#btn-publicar-nav');
+    btnPublicarNav.addEventListener('click', () => {
+
+      const clickContinue = (event) => {
+        event.preventDefault();
+
+        const userPublication = post.value;
+        const userRestaurant = nameRestaurant.value;
+        
+        savePost({
+          content: userPublication,
+          title: userRestaurant,
+          userName: currentUser.displayName,
+          userID: currentUser.uid,
+          avatar: currentUser.photoURL,
+          urlImage: '',
+          likes: 0,
+          commets: [],
+        });
+        removeModal(clickContinue)
+        postForm.reset();
+      }
+
+      showModal({
+        beforeLoad:()=>{
+          blockScroll();
+        },
+        clickContinue,
+        onClose: () => {
+          removeModal(clickContinue);
+        }
+      });
+    });
+    
+
     // Eliminando post
     function deletePostFinal() {
       const btnsDelete = containerPost.querySelectorAll('.btn-delete');
       btnsDelete.forEach((btn) => {
         btn.addEventListener('click', (event) => {
           deletePost(event.target.dataset.id);
+        });
+      });
+    }
+
+    //funciones para bloquear y activar scroll del modal
+    function blockScroll() {
+      document.querySelector(".content-post").classList.add("hidden-scroll")
+    } 
+
+    function activateScroll() {
+      document.querySelector(".content-post").classList.remove("hidden-scroll")
+    }
+
+    //funcion para mostrar modal
+    function showModal(configModal = {}) {
+      const noopFunction = () => {};
+      const btnCloseModal = document.querySelector('.btn-close-modal');
+
+      const { 
+        continueText = 'publicar',
+        clickContinue = noopFunction, 
+        beforeLoad = noopFunction, 
+        onClose = noopFunction
+      } = configModal;
+
+      postForm['btn-publicar'].innerText = continueText;
+
+      postForm['btn-publicar'].addEventListener('click', clickContinue)
+      btnCloseModal.addEventListener('click', onClose)
+
+      beforeLoad();
+
+      modalPublication.classList.add('show-modal-publication'); 
+      // Esta en nav.css
+    }
+
+    //funcion para remover modal
+    function removeModal(clickContinue = () => {}) {
+      console.log(clickContinue);
+      postForm['btn-publicar'].removeEventListener('click', clickContinue)
+
+      modalPublication.classList.remove('show-modal-publication');
+      activateScroll()
+    }
+
+    // Menú desplegable
+    function menuPublication() {
+      const menusDesplegables = document.querySelectorAll('.img-tree-dots');
+      menusDesplegables.forEach((menuDesplegable) => {
+        menuDesplegable.addEventListener('click', (event) => {
+          const btnMenu = event.target.closest('.menu-desplegable').querySelector('.btn-edit-delete');
+          if (btnMenu.classList.contains('show-menu')) {
+            btnMenu.classList.remove('show-menu');
+          } else {
+            btnMenu.classList.add('show-menu');
+          }
         });
       });
     }
@@ -245,7 +247,6 @@ const home = {
           const clickContinue = (event) => {
             event.preventDefault();
             
-            console.log(post.value);
             const content = post.value;
             updatePost(editId, { content })
             
@@ -258,18 +259,18 @@ const home = {
             continueText: 'Guardar',
             beforeLoad: async () => {
 
-              const doc = await getPost(editId);
-              const publication = doc.data();
-      
-              post.value = publication.content;
+              try {
+                const doc = await getPost(editId);              
+                const publication = doc.data();
+                post.value = publication.content;
+                blockScroll();
+              } catch (error) {
+                console.log(error);
+              }
             },
             clickContinue,
             onClose: () => {
               removeModal(clickContinue);
-              activateScroll();
-            },
-            beforeLoad:()=>{
-              blockScroll();
             }
           });
         });
