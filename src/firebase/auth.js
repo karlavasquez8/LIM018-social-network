@@ -99,19 +99,7 @@ export const logOut = () => {
 
 const db = getFirestore(app); // conección a la BD
 // Con el type module se puede exportar fx
-export const updateUser = (currentUser, inputName) => {
-  console.log(currentUser);
-  updateProfile(currentUser, {
-    displayName: inputName,
-  }).then((user) => {
-    // Profile updated!
-    console.log(user);
-    // ...
-  }).catch((error) => {
-    // An error occurred
-    // ...
-  });
-};
+export const updateUser = (currentUser, inputName) => updateProfile(currentUser, {displayName: inputName})
 
 export const recoverPass = (email) => {
   sendPasswordResetEmail(auth, email);
@@ -123,7 +111,8 @@ export const savePost = (post) => {
   addDoc(collection(db, 'publication'), post);
 };
 
-export const getPost = () => getDocs(collection(db, 'publication'));
+export const getPosts = () => getDocs(collection(db, 'publication'));
+export const getPost = (id) => getDoc(doc(db, 'publication', id));
 
 export const onGetPost = (callback) => onSnapshot(collection(db, 'publication'), callback);
 
@@ -131,7 +120,7 @@ export const onGetPost = (callback) => onSnapshot(collection(db, 'publication'),
 export const deletePost = (id) => deleteDoc(doc(db, 'publication', id));
 
 // Función para editar los posts
-export const editPost = (id) => getDoc(doc(db, 'publication', id));
+
 
 // Función para actualizar posts
 export const updatePost = (id, newFields) => updateDoc(doc(db, 'publication', id), newFields);

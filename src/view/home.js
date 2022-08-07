@@ -1,5 +1,5 @@
 import {
-  getPost, logOut, observer, savePost, onGetPost, deletePost, editPost, updatePost,
+  getPosts, logOut, observer, savePost, onGetPost, deletePost, getPost, updatePost,
 } from '../firebase/auth.js';
 
 const home = {
@@ -16,15 +16,15 @@ const home = {
 
       <div class="nav">
         <div class="home-nav">
-          <button id="home-modal" class="btn-nav">
+          <button id="btn-home-nav" class="btn-nav">
             <img src="./img/recipe (Stroke).png">Home</button>
         </div>
         <div class="publicar-nav">
-          <button id="publicar-modal" class="btn-nav">
+          <button id="btn-publicar-nav" class="btn-nav">
             <img src="./img/photo_camera.png">Publicar</button>
         </div>
         <div class="buscar-nav">
-          <button id="buscar-modal" class="btn-nav">
+          <button id="btn-buscar-nav" class="btn-nav">
             <img src="./img/search.png">Buscar</button>
         </div>
       </div>
@@ -32,14 +32,14 @@ const home = {
       <div class="modal-container">
         <div class="modal no-verified-email">
           <form id="create-post" class="create-post">
-            <input type="text" id = "name-restaurant" placeholder="¿Que restaurante recomiendas?">
-            <textarea id="publicacion" class="publicacion" placeholder="¿Que lugar nos quieres recomendar?"></textarea>
+            <label><input type="text" id = "name-restaurant" class="name-restaurant" placeholder="Restaurante"></label>
+            <textarea id="publicacion" class="publicacion" placeholder="¿Por qué nos recomiendas este lugar?"></textarea>
               <div class="iconos-post">
                 <div>
-                  <span class="material-symbols-outlined">add_location_alt</span>
                   <span class="material-symbols-outlined">image</span>
                 </div>
-                <button id="btn-publicar" class="btn-publicar">Publicar</button>
+                <button id="btn-publicar" class="btn-primary btn-publicar">Publicar</button>
+                <button class="btn-primary btn-close-modal">Cancelar</button>
               </div>
           </form>
         </div>
@@ -59,26 +59,19 @@ const home = {
     const postForm = document.querySelector('.create-post');
     const nameRestaurant = document.querySelector('#name-restaurant');
     const post = document.querySelector('.publicacion');
-    const btnPublicar = document.querySelector('.btn-publicar');
     const modalPublication = document.querySelector('.modal-container');
-    let editStatus = false; // Para editar
-    let id = '';
 
-    function blockScroll() {
-      document.querySelector('.content-post').classList.add('hidden-scroll');
+    /* let currentUser; */
+    // Traer el nombre de usuario, (el observador)
+    function authCallBack(user) {
+      currentUser = user; // Usuario actual
+      const photoUser = document.querySelector('.photo-user');
+      photoUser.setAttribute('src', user.photoURL); // Cambia el contenido src x la foto
+      if (user.photoURL == null) {
+        photoUser.setAttribute('src', '../img/photo-user.png');
+      }
     }
-    function activateScroll() {
-      document.querySelector('.content-post').classList.remove('hidden-scroll');
-    }
-
-    function showModal() {
-      modalPublication.classList.add('show-modal-publication');
-      // Esta en nav.css
-    }
-
-    function removeModal() {
-      modalPublication.classList.remove('show-modal-publication');
-    }
+    observer(authCallBack);
 
     // Menú desplegable
     function menuPublication() {
@@ -95,38 +88,81 @@ const home = {
       });
     }
 
-    // Eliminando post
-    function deletePostFinal() {
-      const btnsDelete = containerPost.querySelectorAll('.btn-delete');
-      btnsDelete.forEach((btn) => {
-        btn.addEventListener('click', (event) => {
-          deletePost(event.target.dataset.id);
-        });
-      });
+    // funciones para bloquear y activar scroll del modal
+    function blockScroll() {
+      document.querySelector('.content-post').classList.add('hidden-scroll');
     }
 
-    // Editar post
-    function editPostFinal() {
-      const btnsEdit = containerPost.querySelectorAll('.btn-edit');
-      btnsEdit.forEach((btn) => {
-        btn.addEventListener('click', async (event) => {
-          showModal();
+    function activateScroll() {
+      document.querySelector('.content-post').classList.remove('hidden-scroll');
+    }
+
+    // funcion para mostrar modal
+    async function showModal(configModal = {}) {
+      const noopFunction = () => {};
+      const btnCloseModal = document.querySelector('.btn-close-modal');
+
+      const {
+        continueText = 'Publicar',
+        clickContinue = noopFunction,
+        beforeLoad = noopFunction,
+        onClose = noopFunction,
+      } = configModal;
+
+      postForm['btn-publicar'].innerText = continueText;
+
+      postForm['btn-publicar'].addEventListener('click', clickContinue);
+      btnCloseModal.addEventListener('click', onClose);
+
+      beforeLoad();
+
+      modalPublication.classList.add('show-modal-publication');
+      // Esta en nav.css
+    }
+
+    // funcion para remover modal
+    function removeModal(clickContinue = () => {}) {
+      console.log(clickContinue);
+      postForm['btn-publicar'].removeEventListener('click', clickContinue);
+
+      modalPublication.classList.remove('show-modal-publication');
+      activateScroll();
+    }
+
+    // evento cuando le dan click al boton del nav-publicar
+    const btnPublicarNav = document.querySelector('#btn-publicar-nav');
+    btnPublicarNav.addEventListener('click', () => {
+      const clickContinue = (event) => {
+        event.preventDefault();
+
+        const userPublication = post.value;
+        const userRestaurant = nameRestaurant.value;
+        savePost({
+          content: userPublication,
+          title: userRestaurant,
+          userName: currentUser.displayName,
+          userID: currentUser.uid,
+          avatar: currentUser.photoURL,
+          urlImage: '',
+          likes: 0,
+          commets: [],
+        });
+
+        removeModal(clickContinue);
+
+        postForm.reset();
+      };
+
+      showModal({
+        clickContinue,
+        onClose: () => {
+          removeModal(clickContinue);
+        },
+        beforeLoad: () => {
           blockScroll();
-          const doc = await editPost(event.target.dataset.id);
-          const publication = doc.data();
-
-          postForm.publicacion.value = publication.content;
-
-          editStatus = true;
-          id = event.target.dataset.id;
-          postForm['btn-publicar'].innerText = 'Guardar';
-          // obtener el modal
-          // llenar los campos
-          // mostarr el modal
-        });
-        activateScroll();
+        },
       });
-    }
+    });
 
     let currentUser;
     // Haciendo el post
@@ -185,54 +221,54 @@ const home = {
       deletePostFinal();
       editPostFinal();
     });
-
-    /* let currentUser; */
-    // Traer el nombre de usuario
-    function authCallBack(user) {
-      currentUser = user; // Usuario actual
-      const photoUser = document.querySelector('.photo-user');
-      photoUser.setAttribute('src', user.photoURL); // Cambia el contenido src x la foto
-      if (user.photoURL == null) {
-        photoUser.setAttribute('src', '../img/photo-user.png');
-      }
-    }
-    observer(authCallBack);
-
-    const publicarModal = document.querySelector('#publicar-modal');
-    publicarModal.addEventListener('click', () => {
-      showModal();
-      blockScroll();
-    });
-
-    btnPublicar.addEventListener('click', (event) => {
-      event.preventDefault();
-      removeModal();
-      activateScroll();
-
-      if (!editStatus) {
-        const userPublication = post.value;
-        const userRestaurant = nameRestaurant.value;
-        savePost({
-          content: userPublication,
-          title: userRestaurant,
-          userName: currentUser.displayName,
-          userID: currentUser.uid,
-          avatar: currentUser.photoURL,
-          urlImage: '',
-          likes: 0,
-          commets: [],
+    // Eliminando post
+    function deletePostFinal() {
+      const btnsDelete = containerPost.querySelectorAll('.btn-delete');
+      btnsDelete.forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+          deletePost(event.target.dataset.id);
         });
-      } else {
-        updatePost(
-          id,
-          {
-            content: post.value,
-          },
-        );
-      }
+      });
+    }
 
-      postForm.reset();
-    });
+    // Editar post
+    function editPostFinal() {
+      const btnsEdit = containerPost.querySelectorAll('.btn-edit');
+
+      btnsEdit.forEach((btn) => {
+        btn.addEventListener('click', async (event) => {
+          const editId = event.target.dataset.id;
+
+          const clickContinue = (event) => {
+            event.preventDefault();
+
+            console.log(post.value);
+            const content = post.value;
+            updatePost(editId, { content });
+
+            removeModal(clickContinue);
+            postForm.reset();
+          };
+
+          showModal({
+            continueText: 'Guardar',
+            beforeLoad: async () => {
+              const doc = await getPost(editId);
+              const publication = doc.data();
+
+              post.value = publication.content;
+            },
+            clickContinue,
+            onClose: () => {
+              removeModal(clickContinue);
+            },
+            beforeLoad: () => {
+              blockScroll();
+            },
+          });
+        });
+      });
+    }
   },
 };
 
