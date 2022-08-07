@@ -1,4 +1,6 @@
-import { loginGoogle, logIn, observer } from '../firebase/auth.js';
+import {
+  loginGoogle, logIn, observer, recoverPass,
+} from '../firebase/auth.js';
 
 const login = {
   template: () => {
@@ -15,8 +17,8 @@ const login = {
             <input name="password" type="password" class ="input-register" placeholder="Contraseña">
             <p class= "condicion loginError" id="error-contraseña"></p>
             <button type="submit" class="btn-log-email"> Iniciar sesión </button>
-          </form>
-          <a href="#newPassword"> Recupera tu contraseña </a>
+            </form>
+            <a href="#/recover" id ="recover-pass"> Recupera tu contraseña </a>
           <div class="separator"><hr class="hr">O<hr class="hr"></div>
           <div class="button-index">
             <button class="button" id="googleLogin">
@@ -43,18 +45,18 @@ const login = {
   },
   init: () => {
     document.querySelector('#googleLogin').addEventListener('click', loginGoogle);
-    const buttonLogIn = document.querySelector('.form-email');
+    const formEmail = document.querySelector('.form-email');
     const modal = document.querySelector('.modal-container');
     const errorUser = document.querySelector('#error-usuario');
     const errorPassword = document.querySelector('#error-contraseña');
 
-    buttonLogIn.addEventListener('submit', (event) => {
+    formEmail.addEventListener('submit', (event) => {
       event.preventDefault();
       errorUser.innerHTML = '';
       errorPassword.innerHTML = '';
       // eslint-disable-next-line max-len
-      const formEmail = new FormData(event.target); /* el event.target se refiere elemento clickado  */
-      logIn(formEmail.get('email'), formEmail.get('password'))
+      const newFormEmail = new FormData(event.target); /* el event.target se refiere elemento clickado  */
+      logIn(newFormEmail.get('email'), newFormEmail.get('password'))
         /*  Get - devuelve el primer valor asociado con una clave dada en un objeto  */
         .then((user) => {
           if (!user.emailVerified) {

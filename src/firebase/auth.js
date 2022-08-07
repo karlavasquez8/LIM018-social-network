@@ -10,6 +10,7 @@ import {
   GoogleAuthProvider,
   signOut,
   updateProfile,
+  sendPasswordResetEmail,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 
@@ -30,18 +31,16 @@ import {
 // eslint-disable-next-line import/no-named-as-default
 import app from './config.js';
 
-// REGISTRAR USUARIOS NUEVOS
-const auth = getAuth(app); // Registra usuarios nuevos
+const auth = getAuth(app);
 /* console.log(auth); */
 
 // eslint-disable-next-line max-len
 export const createNewUser = (email, password) => createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-    /* console.log(userCredential); */
     const user = userCredential.user;
     sendEmailVerification(auth.currentUser)
       .then(() => {
-        console.log('correo enviado'); // Aceptar y me regresa al login
+        console.log('correo enviado');
         // eslint-disable-next-line no-use-before-define
         logOut();
       })
@@ -51,7 +50,6 @@ export const createNewUser = (email, password) => createUserWithEmailAndPassword
     return user;
   });
 
-// INICIAR SESIÓN CON EMAIL
 export const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
@@ -103,6 +101,11 @@ const db = getFirestore(app); // conección a la BD
 // Con el type module se puede exportar fx
 export const updateUser = (currentUser, inputName) => updateProfile(currentUser, {displayName: inputName})
 
+export const recoverPass = (email) => {
+  sendPasswordResetEmail(auth, email);
+};
+
+// Firestore
 // Guardar los post
 export const savePost = (post) => {
   addDoc(collection(db, 'publication'), post);

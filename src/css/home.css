@@ -133,7 +133,7 @@ h4 {
 
 .btn-interaccion {
     padding: 0.3rem;
-    background: #c13d53;
+    background: #F63D5D;
     border-radius: 10px;
     gap:0.3rem;
     width: fit-content;
@@ -269,6 +269,7 @@ p {
     margin: 0;
     list-style: none;
 }
+
 #contentPost {
     display: flex;
     flex-direction: column;
