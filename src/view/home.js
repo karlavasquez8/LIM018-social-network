@@ -266,7 +266,7 @@ const home = {
           userID: currentUser.uid,
           avatar: currentUser.photoURL,
           urlImage: '',
-          likes: 0,
+          likes: [],
           commets: [],
         });
         removeModal(clickContinue);
