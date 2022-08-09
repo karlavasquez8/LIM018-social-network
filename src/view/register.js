@@ -1,10 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-import { createNewUser, observer, updateUser} from '../firebase/auth.js';
+import { createNewUser, updateUser } from '../firebase/auth.js';
 /* import { saveForm } from '../firebase/config.js'; */
 
 const register = {
   template: () => {
-    const register = ` 
+    const registerTemplate = ` 
     <section class="first-view">
       <div class="container-index">
         <img src="./img/cubiertos.png" alt="Cubiertos">
@@ -34,7 +34,7 @@ const register = {
     const divRegister = document.createElement('div');
     /* console.log(divRegister); */
     divRegister.classList.add('registers'); // clase en style.css
-    divRegister.innerHTML = register; // Reemplaza x el template de register
+    divRegister.innerHTML = registerTemplate; // Reemplaza x el template de register
     return divRegister;
   },
 
@@ -52,13 +52,8 @@ const register = {
           modal.classList.add('show-modal');
           // eslint-disable-next-line no-undef
           updateUser(user, inputName); // Actualizar usuario
-          console.log(user);
           /* saveForm(user.uid, inputName, inputEmail); // updateprrofile */
           // cuando se escriba los inputs voy a ejecutar la fx saveForm
-        })
-        .catch((error) => {
-          alert('llena tus datos'); // Falta capturar este error
-          console.log(error);
         });
     });
     const closeModal = document.querySelector('.btn-modal');

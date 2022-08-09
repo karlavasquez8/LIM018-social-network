@@ -16,7 +16,6 @@ import {
 
 import {
   getFirestore, // Conección a firestore
-  setDoc,
   doc,
   addDoc, // Documento
   collection, // Colección de datos
@@ -40,12 +39,8 @@ export const createNewUser = (email, password) => createUserWithEmailAndPassword
     const user = userCredential.user;
     sendEmailVerification(auth.currentUser)
       .then(() => {
-        console.log('correo enviado');
         // eslint-disable-next-line no-use-before-define
         logOut();
-      })
-      .catch((error) => {
-        console.log(error);
       });
     return user;
   });
@@ -71,35 +66,28 @@ export const observer = (authCallBack, noAuthCallBack = () => {}) => {
 
 const provider = new GoogleAuthProvider();
 export const loginGoogle = () => {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-    }).catch((error) => {
-    // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-    // ...
-    });
+  signInWithPopup(auth, provider);
+  // .then((result) => {
+  // const credential = GoogleAuthProvider.credentialFromResult(result);
+  // const token = credential.accessToken;
+  // const user = result.user;
+  // }); // .catch((error) => {
+  // Handle Errors here.
+  // const errorCode = error.code;
+  // const errorMessage = error.message;
+  // The email of the user's account used.
+  // const email = error.customData.email;
+  // The AuthCredential type that was used.
+  // const credential = GoogleAuthProvider.credentialFromError(error);
+  // ...
+  // });
 };
 
-export const logOut = () => {
-  signOut(auth).then(() => {
-    // Sign-out successful.
-    console.log('cerrosesion');
-  }).catch((error) => {
-    // An error happened.
-  });
-};
+export const logOut = () => { signOut(auth); };
 
 const db = getFirestore(app); // conección a la BD
 // Con el type module se puede exportar fx
-export const updateUser = (currentUser, inputName) => updateProfile(currentUser, {displayName: inputName})
+export const updateUser = (currentUser, inputName) => updateProfile(currentUser, { displayName: inputName });
 
 export const recoverPass = (email) => {
   sendPasswordResetEmail(auth, email);
@@ -120,7 +108,6 @@ export const onGetPost = (callback) => onSnapshot(collection(db, 'publication'),
 export const deletePost = (id) => deleteDoc(doc(db, 'publication', id));
 
 // Función para editar los posts
-
 
 // Función para actualizar posts
 export const updatePost = (id, newFields) => updateDoc(doc(db, 'publication', id), newFields);
