@@ -1,6 +1,6 @@
 .home {
     background: linear-gradient(168.8deg, #FFF5F3 -8.88%, #FFEFEF 102.78%);
-    width: 100%;; 
+    width: 100%;
 }
 
 .header-home {
@@ -111,24 +111,18 @@
 }
 
 h4 {
-    font-family: 'Open Sans';
-    font-weight: 700;
+    font:var(--h4);
     font-size: 14px;
     margin: 0;
-
 }
 
 .user-publi{
-    font-family: 'Open Sans';
-    font-weight: 700;
-    font-size: 13px;
+    font:var(--h4);
     line-height: 12px;
     margin: 0;
 }
 
 .time-publi {
-    font-family: 'Open Sans';
-    font-style: normal;
     font-weight: 580;
     font-size: 11px;
     color: #FFFFFF;
@@ -225,7 +219,7 @@ p {
     display: flex;
     justify-content: space-between;
     justify-items: end;
-    color:  #424141;;
+    color:  #424141;
     background-color: #FFEFEF;
     position: fixed;
     bottom: 0;
@@ -250,12 +244,7 @@ p {
 }
 
 /* Menú desplegable */
-
-.btn-edit-delete{
-    display: none;
-}
-
-.show-menu{
+.btn-edit-delete.show-menu {
     display: block;
 }
 
@@ -264,7 +253,6 @@ p {
     right: 0;
     position: absolute;
     margin-block: 1rem;
-
 }
 
 .img-tree-dots{
@@ -275,6 +263,7 @@ p {
 }
 
 .btn-edit-delete{
+    display: none;
     position: absolute;
     z-index: 1;
     right: 8px;

@@ -1,10 +1,15 @@
 import {
-  getPosts, logOut, observer, savePost, onGetPost, deletePost, getPost, updatePost,
+  observer,
+  savePost,
+  onGetPost,
+  deletePost,
+  getPost,
+  updatePost,
 } from '../firebase/auth.js';
 
 const home = {
   template: () => { /* Backticks: Permiten concatenar y trabajar con cadenas */
-    const home = `   
+    const homeTemplate = `   
     <section class="home">
       <div class="header-home">
         <h1>HELP TASTER</h1>
@@ -50,7 +55,7 @@ const home = {
 
     const divRegister = document.createElement('div');
     divRegister.classList.add('registers');
-    divRegister.innerHTML = home;
+    divRegister.innerHTML = homeTemplate;
     return divRegister;
   },
 
@@ -74,6 +79,119 @@ const home = {
       }
     }
     observer(authCallBack);
+
+    // funciones para bloquear y activar scroll del modal
+    function blockScroll() {
+      document.querySelector('.content-post').classList.add('hidden-scroll');
+    }
+
+    function activateScroll() {
+      document.querySelector('.content-post').classList.remove('hidden-scroll');
+    }
+
+    // funcion para mostrar modal
+    function showModal(configModal = {}) {
+      const noopFunction = () => {};
+      const btnCloseModal = document.querySelector('.btn-close-modal');
+
+      const {
+        continueText = 'publicar',
+        clickContinue = noopFunction,
+        beforeLoad = noopFunction,
+        onClose = noopFunction,
+      } = configModal;
+
+      postForm['btn-publicar'].innerText = continueText;
+
+      postForm['btn-publicar'].addEventListener('click', clickContinue);
+      btnCloseModal.addEventListener('click', onClose);
+
+      beforeLoad();
+
+      modalPublication.classList.add('show-modal-publication');
+      // Esta en nav.css
+    }
+
+    // funcion para remover modal
+    function removeModal(clickContinue = () => {}) {
+      postForm['btn-publicar'].removeEventListener('click', clickContinue);
+
+      modalPublication.classList.remove('show-modal-publication');
+      activateScroll();
+    }
+
+    // Menú desplegable
+    function menuPublication() {
+      const menusDesplegables = document.querySelectorAll('.img-tree-dots');
+      menusDesplegables.forEach((menuDesplegable) => {
+        menuDesplegable.addEventListener('click', (event) => {
+          const btnMenu = event.target.closest('.menu-desplegable').querySelector('.btn-edit-delete');
+          if (btnMenu.classList.contains('show-menu')) {
+            btnMenu.classList.remove('show-menu');
+          } else {
+            btnMenu.classList.add('show-menu');
+          }
+        });
+      });
+    }
+
+    // Eliminando post
+    function deletePostFinal() {
+      const btnsDelete = containerPost.querySelectorAll('.btn-delete');
+      btnsDelete.forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+          deletePost(event.target.dataset.id);
+        });
+      });
+    }
+
+    // Editar post
+    function editPostFinal() {
+      const btnsEdit = containerPost.querySelectorAll('.btn-edit');
+
+      btnsEdit.forEach((btn) => {
+        btn.addEventListener('click', async (event) => {
+          const editId = event.target.dataset.id;
+
+          const clickContinue = (e) => {
+            e.preventDefault();
+
+            const content = post.value;
+            updatePost(editId, { content });
+
+            removeModal(clickContinue);
+            postForm.reset();
+          };
+
+          showModal({
+            continueText: 'Guardar',
+            beforeLoad: async () => {
+              const doc = await getPost(editId);
+              const publication = doc.data();
+              post.value = publication.content;
+              blockScroll();
+            },
+            clickContinue,
+            onClose: () => {
+              removeModal(clickContinue);
+            },
+          });
+        });
+      });
+    }
+    function counterLike() {
+      const btnLikes = document.querySelectorAll('.btn-likes');
+      btnLikes.forEach((btnLike) => {
+        btnLike.addEventListener('click', async (event) => {
+          const elementBtnLike = event.target.closest('.btn-likes');
+          const idPost = elementBtnLike.dataset.id;
+          const doc = await getPost(idPost);
+          const publication = doc.data();
+          const likes = publication.likes + 1;
+          updatePost(idPost, { likes });
+        });
+      });
+    }
 
     // Haciendo el post
     onGetPost((querySnapshot) => { // Cuando ocurra 1 cambio te mando los nuevos dts
@@ -112,24 +230,24 @@ const home = {
             <p class="description">${contentPost.content}</p>
 
             <div class="interacciones">
-              <button class="btn-interaccion"> 
+              <button class="btn-interaccion btn-likes" data-id="${doc.id}"> 
               <img src = "../img/corazon.png">
-              <span class="conteo">123</span>
+              <span class="conteo">${contentPost.likes}</span>
               </button>
               <button class="btn-interaccion">
               <img src = "../img/coment.png">
-              <span class = "conteo">1234</span>
+              <span class = "conteo comentarios">1234</span>
               </button>
             </div>
           </div>
         </div>
         `;
       });
-
       containerPost.innerHTML = html;
       menuPublication();
       deletePostFinal();
       editPostFinal();
+      counterLike();
     });
 
     // evento cuando le dan click al boton del nav-publicar
@@ -165,111 +283,6 @@ const home = {
         },
       });
     });
-
-    // Eliminando post
-    function deletePostFinal() {
-      const btnsDelete = containerPost.querySelectorAll('.btn-delete');
-      btnsDelete.forEach((btn) => {
-        btn.addEventListener('click', (event) => {
-          deletePost(event.target.dataset.id);
-        });
-      });
-    }
-
-    // funciones para bloquear y activar scroll del modal
-    function blockScroll() {
-      document.querySelector('.content-post').classList.add('hidden-scroll');
-    }
-
-    function activateScroll() {
-      document.querySelector('.content-post').classList.remove('hidden-scroll');
-    }
-
-    // funcion para mostrar modal
-    function showModal(configModal = {}) {
-      const noopFunction = () => {};
-      const btnCloseModal = document.querySelector('.btn-close-modal');
-
-      const {
-        continueText = 'Publicar',
-        clickContinue = noopFunction,
-        beforeLoad = noopFunction,
-        onClose = noopFunction,
-      } = configModal;
-
-      postForm['btn-publicar'].innerText = continueText;
-
-      postForm['btn-publicar'].addEventListener('click', clickContinue);
-      btnCloseModal.addEventListener('click', onClose);
-
-      beforeLoad();
-
-      modalPublication.classList.add('show-modal-publication');
-      // Esta en nav.css
-    }
-
-    // funcion para remover modal
-    function removeModal(clickContinue = () => {}) {
-      console.log(clickContinue);
-      postForm['btn-publicar'].removeEventListener('click', clickContinue);
-
-      modalPublication.classList.remove('show-modal-publication');
-      activateScroll();
-    }
-
-    // Menú desplegable
-    function menuPublication() {
-      const menusDesplegables = document.querySelectorAll('.img-tree-dots');
-      menusDesplegables.forEach((menuDesplegable) => {
-        menuDesplegable.addEventListener('click', (event) => {
-          const btnMenu = event.target.closest('.menu-desplegable').querySelector('.btn-edit-delete');
-          if (btnMenu.classList.contains('show-menu')) {
-            btnMenu.classList.remove('show-menu');
-          } else {
-            btnMenu.classList.add('show-menu');
-          }
-        });
-      });
-    }
-
-    // Editar post
-    function editPostFinal() {
-      const btnsEdit = containerPost.querySelectorAll('.btn-edit');
-
-      btnsEdit.forEach((btn) => {
-        btn.addEventListener('click', async (event) => {
-          const editId = event.target.dataset.id;
-
-          const clickContinue = (event) => {
-            event.preventDefault();
-
-            const content = post.value;
-            updatePost(editId, { content });
-
-            removeModal(clickContinue);
-            postForm.reset();
-          };
-
-          showModal({
-            continueText: 'Guardar',
-            beforeLoad: async () => {
-              try {
-                const doc = await getPost(editId);
-                const publication = doc.data();
-                post.value = publication.content;
-                blockScroll();
-              } catch (error) {
-                console.log(error);
-              }
-            },
-            clickContinue,
-            onClose: () => {
-              removeModal(clickContinue);
-            },
-          });
-        });
-      });
-    }
   },
 };
 
