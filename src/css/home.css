@@ -35,17 +35,16 @@
     padding: 0.4rem;
 }
 
-.publicacion, .name-restaurant:focus{
-    outline: none;
-}
-
 .name-restaurant {
     width: 90%;
     padding: 0.5rem;
     max-width: 300px;
     border: 1px solid #F8C7CF;
     border-radius: 6px;
+}
 
+.publicacion, .name-restaurant:focus{
+    outline: none;
 }
 
 .name-restaurant::placeholder{
