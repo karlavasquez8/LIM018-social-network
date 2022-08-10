@@ -1,10 +1,11 @@
 import {
-  loginGoogle, logIn, observer, recoverPass,
+  loginGoogle,
+  logIn,
 } from '../firebase/auth.js';
 
 const login = {
   template: () => {
-    const login = `
+    const loginTemplate = `
       <section class="first-view">
         <div class="container-index">
           <img src="./img/cubiertos.png" alt="Cubiertos">
@@ -40,7 +41,7 @@ const login = {
 
     const divLogin = document.createElement('div');
     divLogin.classList.add('login');
-    divLogin.innerHTML = login;
+    divLogin.innerHTML = loginTemplate;
     return divLogin;
   },
   init: () => {
