@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`home should check template 1`] = `
+<div
+  class="registers"
+>
+     
+    
+  <section
+    class="home"
+  >
+    
+      
+    <div
+      class="header-home"
+    >
+      
+        
+      <h1>
+        HELP TASTER
+      </h1>
+      
+        
+      <div
+        class="description-img"
+      >
+        
+          
+        <img
+          class="photo-user"
+          referrerpolicy="no-referrer"
+          src=""
+        />
+        
+        
+      </div>
+      
+      
+    </div>
+    
+      
+    <div
+      class="content-post"
+      id="contentPost"
+    />
+    
+
+      
+    <div
+      class="nav"
+    >
+      
+        
+      <div
+        class="home-nav"
+      >
+        
+          
+        <button
+          class="btn-nav"
+          id="btn-home-nav"
+        >
+          
+            
+          <img
+            src="./img/recipe (Stroke).png"
+          />
+          Home
+        </button>
+        
+        
+      </div>
+      
+        
+      <div
+        class="publicar-nav"
+      >
+        
+          
+        <button
+          class="btn-nav"
+          id="btn-publicar-nav"
+        >
+          
+            
+          <img
+            src="./img/photo_camera.png"
+          />
+          Publicar
+          
+        </button>
+        
+        
+      </div>
+      
+        
+      <div
+        class="buscar-nav"
+      >
+        
+          
+        <button
+          class=" btn-nav"
+          id="btn-buscar-nav"
+        >
+          
+            
+          <img
+            src="./img/search.png"
+          />
+          Buscar
+        </button>
+        
+        
+      </div>
+      
+      
+    </div>
+    
+
+      
+    <div
+      class="modal-container"
+    >
+      
+        
+      <div
+        class="modal no-verified-email"
+      >
+        
+          
+        <form
+          class="create-post"
+          id="create-post"
+        >
+          
+            
+          <label>
+            <input
+              class="name-restaurant"
+              id="name-restaurant"
+              placeholder="Restaurante"
+              type="text"
+            />
+          </label>
+          
+            
+          <textarea
+            class="publicacion"
+            id="publicacion"
+            placeholder="¿Por qué nos recomiendas este lugar?"
+          />
+          
+              
+          <div
+            class="iconos-post"
+          >
+            
+                
+            <div>
+              
+                  
+              <span
+                class="material-symbols-outlined"
+              >
+                image
+              </span>
+              
+                
+            </div>
+            
+                
+            <button
+              class="btn-primary btn-publicar"
+              id="btn-publicar"
+            >
+              Publicar
+            </button>
+            
+                
+            <button
+              class="btn-primary btn-close-modal"
+            >
+              Cancelar
+            </button>
+            
+              
+          </div>
+          
+          
+        </form>
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+  </section>
+  
+    
+</div>
+`;
