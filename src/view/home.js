@@ -72,6 +72,7 @@ const home = {
     // Traer el nombre de usuario, (el observador)
     function authCallBack(user) {
       currentUser = user; // Usuario actual
+      // console.log({ currentUser });
       const photoUser = document.querySelector('.photo-user');
       photoUser.setAttribute('src', user.photoURL); // Cambia el contenido src x la foto
       if (user.photoURL == null) {
@@ -185,10 +186,15 @@ const home = {
         btnLike.addEventListener('click', async (event) => {
           const elementBtnLike = event.target.closest('.btn-likes');
           const idPost = elementBtnLike.dataset.id;
-          const doc = await getPost(idPost);
-          const publication = doc.data();
-          const likes = publication.likes + 1;
-          updatePost(idPost, { likes });
+          const docPost = await getPost(idPost);
+          const publication = docPost.data();
+          const likes = publication.likes;
+          if (likes.includes(currentUser.uid)) {
+            const filterLikes = likes.filter((idLike) => idLike !== currentUser.uid);
+            updatePost(idPost, { likes: filterLikes });
+          } else {
+            updatePost(idPost, { likes: [...likes, currentUser.uid] });
+          }
         });
       });
     }
@@ -232,7 +238,7 @@ const home = {
             <div class="interacciones">
               <button class="btn-interaccion btn-likes" data-id="${doc.id}"> 
               <img src = "../img/corazon.png">
-              <span class="conteo">${contentPost.likes}</span>
+              <span class="conteo">${contentPost.likes.length}</span>
               </button>
               <button class="btn-interaccion">
               <img src = "../img/coment.png">
