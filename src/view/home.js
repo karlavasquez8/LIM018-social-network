@@ -5,6 +5,7 @@ import {
   deletePost,
   getPost,
   updatePost,
+  serverTime,
 } from '../firebase/auth.js';
 
 const home = {
@@ -72,7 +73,7 @@ const home = {
     // Traer el nombre de usuario, (el observador)
     function authCallBack(user) {
       currentUser = user; // Usuario actual
-      // console.log({ currentUser });
+      console.log({ currentUser });
       const photoUser = document.querySelector('.photo-user');
       photoUser.setAttribute('src', user.photoURL); // Cambia el contenido src x la foto
       if (user.photoURL == null) {
@@ -206,6 +207,7 @@ const home = {
       querySnapshot.forEach((doc) => {
         // Si el userID del post no es igual al id del currentUser no muestro el boton de eliminar
         const contentPost = doc.data();
+        console.log(contentPost);
         const avatarUser = contentPost.avatar === null ? './img/photo-user-blanco.png' : contentPost.avatar;
         /* console.log(contentPost.userID, currentUser.uid); */
 
@@ -227,7 +229,7 @@ const home = {
               <img class="photo-user-post" src="${avatarUser}" referrerpolicy="no-referrer">
               <div>
               <p class="user-publi">${contentPost.userName}</p>
-              <span class="time-publi">hace 2 horas</span>
+              <span class="time-publi">${contentPost.datePost.toDate().toLocaleDateString()}</span>
               </div>
             </div>
           </div>
@@ -274,6 +276,7 @@ const home = {
           urlImage: '',
           likes: 0,
           commets: [],
+          datePost: serverTime,
         });
         removeModal(clickContinue);
         postForm.reset();

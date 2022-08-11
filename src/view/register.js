@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { createNewUser, updateUser } from '../firebase/auth.js';
+import { createNewUser, updateUser, loginGoogle } from '../firebase/auth.js';
 /* import { saveForm } from '../firebase/config.js'; */
 
 const register = {
@@ -20,6 +20,13 @@ const register = {
           </div>
           <button type="submit" class ="button-register"> Registrar </button>
         </form>
+        <div class="separator"><hr class="hr">O<hr class="hr"></div>
+        <div class="button-index">
+          <button class="button" id="googleLogin">
+            <img src="./img/Google.png">
+            Inicia con Google
+          </button>
+        </div>
         <span> Al registrarte, aceptas nuestras Condiciones,la Política de datos y la Política de cookies.</span>
       </div>
       <div class="modal-container"> 
@@ -39,6 +46,7 @@ const register = {
   },
 
   init: () => { // Iniciar un obj
+    document.querySelector('#googleLogin').addEventListener('click', loginGoogle);
     const formEmail = document.querySelector('.form-email'); // seleccionamos el formulario
     const modal = document.querySelector('.modal-container');
 

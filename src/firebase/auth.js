@@ -24,6 +24,9 @@ import {
   deleteDoc,
   getDoc,
   updateDoc,
+  query,
+  orderBy,
+  serverTimestamp,
 // eslint-disable-next-line import/no-unresolved
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
 
@@ -102,7 +105,10 @@ export const savePost = (post) => {
 export const getPosts = () => getDocs(collection(db, 'publication'));
 export const getPost = (id) => getDoc(doc(db, 'publication', id));
 
-export const onGetPost = (callback) => onSnapshot(collection(db, 'publication'), callback);
+export const onGetPost = (querySnapshot) => {
+  const queryPost = query(collection(db, 'publication'), orderBy('datePost', 'desc'));
+  onSnapshot(queryPost, querySnapshot);
+};
 
 // Función para eliminar los posts
 export const deletePost = (id) => deleteDoc(doc(db, 'publication', id));
@@ -111,3 +117,4 @@ export const deletePost = (id) => deleteDoc(doc(db, 'publication', id));
 
 // Función para actualizar posts
 export const updatePost = (id, newFields) => updateDoc(doc(db, 'publication', id), newFields);
+export const serverTime = serverTimestamp();

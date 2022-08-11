@@ -19,7 +19,6 @@ const login = {
             <p class= "condicion loginError" id="error-contraseña"></p>
             <button type="submit" class="btn-log-email"> Iniciar sesión </button>
             </form>
-            <a href="#/recover" id ="recover-pass"> Recupera tu contraseña </a>
           <div class="separator"><hr class="hr">O<hr class="hr"></div>
           <div class="button-index">
             <button class="button" id="googleLogin">
