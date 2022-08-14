@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login should check template 1`] = `
+<div
+  class="login"
+>
+  
+      
+  <section
+    class="first-view"
+  >
+    
+        
+    <div
+      class="container-index"
+    >
+      
+          
+      <img
+        alt="Cubiertos"
+        src="./img/cubiertos.png"
+      />
+      
+          
+      <h1>
+         HELP TASTER 
+      </h1>
+      
+          
+      <h2>
+         ¿Que deseas probar hoy? 
+      </h2>
+      
+          
+      <span>
+         Te ayudamos a encontrar los mejores lugares para disfrutar tus comidas!!
+      </span>
+      
+          
+      <form
+        class="form-email"
+      >
+        
+            
+        <input
+          class="input-register"
+          name="email"
+          placeholder="E-mail"
+          type="email"
+        />
+        
+            
+        <p
+          class="condicion loginError"
+          id="error-usuario"
+        />
+        
+            
+        <input
+          class="input-register"
+          name="password"
+          placeholder="Contraseña"
+          type="password"
+        />
+        
+            
+        <p
+          class="condicion loginError"
+          id="error-contraseña"
+        />
+        
+            
+        <button
+          class="btn-log-email"
+          type="submit"
+        >
+           Iniciar sesión 
+        </button>
+        
+            
+      </form>
+      
+          
+      <div
+        class="separator"
+      >
+        <hr
+          class="hr"
+        />
+        O
+        <hr
+          class="hr"
+        />
+      </div>
+      
+          
+      <div
+        class="button-index"
+      >
+        
+            
+        <button
+          class="button"
+          id="googleLogin"
+        >
+          
+              
+          <img
+            src="./img/Google.png"
+          />
+          
+              Inicia con Google
+            
+        </button>
+        
+          
+      </div>
+      
+          
+      <span>
+        ¿No tienes una cuenta ?
+      </span>
+      
+          
+      <a
+        href="#/register"
+      >
+         Registrate aqui
+      </a>
+      
+        
+    </div>
+      
+        
+    <div
+      class="modal-container"
+    >
+      
+          
+      <div
+        class="modal no-verified-email"
+      >
+        
+            
+        <img
+          src="./img/verificacion.webp"
+        />
+         
+            
+        <span>
+           No se verifico, revisa su correo
+        </span>
+        
+            
+        <button
+          class="btn-modal"
+        >
+           Aceptar 
+        </button>
+        
+          
+      </div>
+      
+        
+    </div>
+    
+      
+  </section>
+</div>
+`;

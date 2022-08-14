@@ -60,9 +60,9 @@ export const logIn = (email, password) => signInWithEmailAndPassword(auth, email
 export const observer = (authCallBack, noAuthCallBack = () => {}) => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      authCallBack(user);
+      authCallBack(user); // devuelve la llamada
     } else {
-      noAuthCallBack();
+      noAuthCallBack(); // no devuelve la llamada
     }
   });
 };
@@ -86,7 +86,11 @@ export const loginGoogle = () => {
   // });
 };
 
-export const logOut = () => { signOut(auth); };
+export const logOut = () => {
+  signOut(auth);
+  console.log('cerrastese');
+  window.location.hash = '';
+};
 
 const db = getFirestore(app); // conección a la BD
 // Con el type module se puede exportar fx

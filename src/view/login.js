@@ -50,6 +50,13 @@ const login = {
     const errorUser = document.querySelector('#error-usuario');
     const errorPassword = document.querySelector('#error-contraseña');
 
+    function closeModal() {
+      const btnModal = document.querySelector('.btn-modal');
+      btnModal.addEventListener('click', () => {
+        modal.classList.remove('show-modal');
+      });
+    }
+
     formEmail.addEventListener('submit', (event) => {
       event.preventDefault();
       errorUser.innerHTML = '';
@@ -77,11 +84,7 @@ const login = {
           }
         });
     });
-    const closeModal = document.querySelector('.btn-modal');
-    closeModal.addEventListener('click', () => {
-      modal.classList.remove('show-modal');
-      // observer();
-    });
+    closeModal();
   },
 
 };
