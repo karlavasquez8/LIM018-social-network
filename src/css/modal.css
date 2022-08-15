@@ -42,6 +42,7 @@
 .show-modal{
     display: flex;
 }
+
 .hidden-scroll{
     overflow: hidden;
     position: fixed;

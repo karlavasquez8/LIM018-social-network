@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login should check template 1`] = `
+<div
+  class="registers"
+>
+   
+    
+  <section
+    class="first-view"
+  >
+    
+      
+    <div
+      class="container-index"
+    >
+      
+        
+      <img
+        alt="Cubiertos"
+        src="./img/cubiertos.png"
+      />
+      
+        
+      <h1>
+         HELP TASTER 
+      </h1>
+      
+        
+      <h2>
+         Registrate aquí
+      </h2>
+      
+        
+      <span>
+         Podrás ver las fotos de los lugares que tienen la mejor comida de tú país..
+      </span>
+      
+        
+      <form
+        class="form-email"
+      >
+        
+          
+        <input
+          class="input-register"
+          id="inputName"
+          name="name"
+          placeholder="Nombre "
+          type="text"
+        />
+        
+          
+        <input
+          class="input-register"
+          id="inputEmail"
+          name="email"
+          placeholder="E-mail"
+          type="email"
+        />
+        
+          
+        <div>
+          
+            
+          <input
+            class="input-register"
+            id="inputPassword"
+            name="password"
+            placeholder="Contraseña"
+            type="password"
+          />
+          
+            
+          <p
+            class="condicion"
+          >
+             Tu contraseña debe contener mínimo 6 carácteres
+          </p>
+          
+          
+        </div>
+        
+          
+        <button
+          class="button-register"
+          type="submit"
+        >
+           Registrar 
+        </button>
+        
+        
+      </form>
+      
+        
+      <div
+        class="separator"
+      >
+        <hr
+          class="hr"
+        />
+        O
+        <hr
+          class="hr"
+        />
+      </div>
+      
+        
+      <div
+        class="button-index"
+      >
+        
+          
+        <button
+          class="button"
+          id="googleLogin"
+        >
+          
+            
+          <img
+            src="./img/Google.png"
+          />
+          
+            Inicia con Google
+          
+        </button>
+        
+        
+      </div>
+      
+        
+      <span>
+         Al registrarte, aceptas nuestras Condiciones,la Política de datos y la Política de cookies.
+      </span>
+      
+      
+    </div>
+    
+      
+    <div
+      class="modal-container"
+    >
+       
+        
+      <div
+        class="modal"
+      >
+        
+          
+        <img
+          src="./img/verificacion.webp"
+        />
+         
+          
+        <span>
+          Para continuar con la creación de tu nueva cuenta de Help Taster, verifica tu dirección de correo electrónico.
+        </span>
+        
+          
+        <button
+          class="btn-modal"
+        >
+           Aceptar 
+        </button>
+        
+        
+      </div>
+      
+      
+    </div>
+    
+    
+  </section>
+</div>
+`;

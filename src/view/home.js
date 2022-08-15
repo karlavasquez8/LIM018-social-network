@@ -6,6 +6,7 @@ import {
   getPost,
   updatePost,
   serverTime,
+  logOut,
 } from '../firebase/auth.js';
 
 const home = {
@@ -16,9 +17,31 @@ const home = {
         <h1>HELP TASTER</h1>
         <div class="description-img">
           <img class="photo-user" src="" referrerpolicy="no-referrer">
+          <button class="btn-salir" >
+            <img src="../img/salir.png">
+          </button>
         </div>
       </div>
-      <div id = "contentPost" class = "content-post"></div>
+
+      <div class = "wrapper" >
+        <div class = "container-publi container-perfil" >
+          <div>
+          <img class="photo-user-perfil" src="" referrerpolicy="no-referrer">
+          </div>
+          <span><strong id='currentName'></strong></span>
+          <h3 class= "descripcion">Descripción</h3>
+          <span>Me gusta la cocina , soy  aficionad@. 
+          La comida Peruana es mi favorita, ya que esta dentro de los primeros lugares gastronomicos del mundo.
+          Quiero ampliar mi conocimiento respecto a los mejores restaurantes del Perú. 
+          Mis platos  favoritos son el chaufa y el picante de camarones a la tacneña. Recomiendame tú lugar fovorito!! </span>
+          <div class = "iconosFollow">
+            <img src = "../img/group.png">
+            <span> 23 followers  3 following </span>
+          </div>
+        </div>
+
+        <div id = "contentPost" class = "content-post"></div>
+      </div>
 
       <div class="nav">
         <div class="home-nav">
@@ -55,7 +78,7 @@ const home = {
     `;
 
     const divRegister = document.createElement('div');
-    divRegister.classList.add('registers');
+    divRegister.classList.add('registers'); // add class in style css
     divRegister.innerHTML = homeTemplate;
     return divRegister;
   },
@@ -63,24 +86,36 @@ const home = {
   init: () => {
     // Creando post
     const containerPost = document.querySelector('#contentPost');
-    const postForm = document.querySelector('.create-post');
+    const postForm = document.querySelector('.create-post'); // form modal
+    /* console.log(postForm); */
     const nameRestaurant = document.querySelector('#name-restaurant');
-    const post = document.querySelector('.publicacion');
-    const modalPublication = document.querySelector('.modal-container');
+    const post = document.querySelector('.publicacion'); // texto de publicación
+    const modalPublication = document.querySelector('.modal-container'); // div modal
     let currentUser;
 
-    /* let currentUser; */
     // Traer el nombre de usuario, (el observador)
     function authCallBack(user) {
       currentUser = user; // Usuario actual
-      console.log({ currentUser });
+      const userPerfil = document.querySelector('#currentName');
+      userPerfil.innerHTML = currentUser.displayName;
+
       const photoUser = document.querySelector('.photo-user');
+      const photoUserPerfil = document.querySelector('.photo-user-perfil');
+
       photoUser.setAttribute('src', user.photoURL); // Cambia el contenido src x la foto
+      photoUserPerfil.setAttribute('src', user.photoURL);
       if (user.photoURL == null) {
-        photoUser.setAttribute('src', '../img/photo-user.png');
+        photoUser.setAttribute('src', '../img/photo-user.png'); // img x defecto
+        photoUserPerfil.setAttribute('src', '../img/photo-user.png'); // img x defecto
       }
     }
-    observer(authCallBack);
+    observer(authCallBack); // al observer le paso la fx
+
+    // Función para salir
+    const btnSalir = document.querySelector('.btn-salir');
+    btnSalir.addEventListener('click', () => {
+      logOut();
+    });
 
     // funciones para bloquear y activar scroll del modal
     function blockScroll() {
@@ -92,7 +127,7 @@ const home = {
     }
 
     // funcion para mostrar modal
-    function showModal(configModal = {}) {
+    function showModal(configModal = {}) { // le doy como atributo el cofig de mi modal
       const noopFunction = () => {};
       const btnCloseModal = document.querySelector('.btn-close-modal');
 
@@ -102,21 +137,23 @@ const home = {
         beforeLoad = noopFunction,
         onClose = noopFunction,
       } = configModal;
+      console.log(postForm.innerHTML);
 
-      postForm['btn-publicar'].innerText = continueText;
+      document.getElementById('btn-publicar').innerText = continueText; // reemplazamos según lo q queremos
 
-      postForm['btn-publicar'].addEventListener('click', clickContinue);
+      document.getElementById('btn-publicar').addEventListener('click', clickContinue);
+      console.log(clickContinue);
       btnCloseModal.addEventListener('click', onClose);
 
       beforeLoad();
 
-      modalPublication.classList.add('show-modal-publication');
-      // Esta en nav.css
+      modalPublication.classList.add('show-modal-publication');// Esta en nav.css
+      // Se muestra el show modal
     }
 
     // funcion para remover modal
     function removeModal(clickContinue = () => {}) {
-      postForm['btn-publicar'].removeEventListener('click', clickContinue);
+      document.getElementById('btn-publicar').removeEventListener('click', clickContinue);
 
       modalPublication.classList.remove('show-modal-publication');
       activateScroll();
@@ -127,8 +164,8 @@ const home = {
       const menusDesplegables = document.querySelectorAll('.img-tree-dots');
       menusDesplegables.forEach((menuDesplegable) => {
         menuDesplegable.addEventListener('click', (event) => {
-          const btnMenu = event.target.closest('.menu-desplegable').querySelector('.btn-edit-delete');
-          if (btnMenu.classList.contains('show-menu')) {
+          const btnMenu = event.target.closest('.menu-desplegable').querySelector('.btn-edit-delete'); // btns edit,delete
+          if (btnMenu.classList.contains('show-menu')) { // class show.menu
             btnMenu.classList.remove('show-menu');
           } else {
             btnMenu.classList.add('show-menu');
@@ -141,13 +178,13 @@ const home = {
     function deletePostFinal() {
       const btnsDelete = containerPost.querySelectorAll('.btn-delete');
       btnsDelete.forEach((btn) => {
-        btn.addEventListener('click', (event) => {
+        btn.addEventListener('click', (event) => { // del evento quiero el target-dataset-id
           deletePost(event.target.dataset.id);
         });
       });
     }
 
-    // Editar post
+    // Función editar post
     function editPostFinal() {
       const btnsEdit = containerPost.querySelectorAll('.btn-edit');
 
@@ -155,18 +192,21 @@ const home = {
         btn.addEventListener('click', async (event) => {
           const editId = event.target.dataset.id;
 
+          // función para
           const clickContinue = (e) => {
             e.preventDefault();
 
-            const content = post.value;
+            const content = post.value; // contenido del post
+            /* console.log(content); */
             updatePost(editId, { content });
 
-            removeModal(clickContinue);
+            removeModal(clickContinue); // elimina el evento
             postForm.reset();
           };
 
+          // Editando el post
           showModal({
-            continueText: 'Guardar',
+            continueText: 'Guardar', // cambiar el nombre del btn
             beforeLoad: async () => {
               const doc = await getPost(editId);
               const publication = doc.data();
@@ -181,20 +221,29 @@ const home = {
         });
       });
     }
+
+    // Contador de likes
     function counterLike() {
       const btnLikes = document.querySelectorAll('.btn-likes');
       btnLikes.forEach((btnLike) => {
         btnLike.addEventListener('click', async (event) => {
-          const elementBtnLike = event.target.closest('.btn-likes');
+          const elementBtnLike = event.target.closest('.btn-likes'); // elemento al que se le hace click
           const idPost = elementBtnLike.dataset.id;
-          const docPost = await getPost(idPost);
-          const publication = docPost.data();
-          const likes = publication.likes;
-          if (likes.includes(currentUser.uid)) {
+          const docPost = await getPost(idPost); // recibe como argumento 1 id
+          const publication = docPost.data(); // convertirlo en 1 obj de Js
+          const likes = publication.likes; // array de usuarios que le dieron like
+          const likeImg = document.querySelector('.like-img');
+          console.log(likeImg);
+
+          if (likes.includes(currentUser.uid)) { // quita like
             const filterLikes = likes.filter((idLike) => idLike !== currentUser.uid);
             updatePost(idPost, { likes: filterLikes });
+            /* likeImg.setAttribute('src', '../img/corazon.png');
+            console.log(likeImg, 'dentro del if'); */
           } else {
-            updatePost(idPost, { likes: [...likes, currentUser.uid] });
+            updatePost(idPost, { likes: [...likes, currentUser.uid] }); // agrega like
+            likeImg.setAttribute('src', '../img/corazonActivo.png');
+            console.log(likeImg, 'dentro del else');
           }
         });
       });
@@ -207,7 +256,7 @@ const home = {
       querySnapshot.forEach((doc) => {
         // Si el userID del post no es igual al id del currentUser no muestro el boton de eliminar
         const contentPost = doc.data();
-        console.log(contentPost);
+        /* console.log(contentPost); */
         const avatarUser = contentPost.avatar === null ? './img/photo-user-blanco.png' : contentPost.avatar;
         /* console.log(contentPost.userID, currentUser.uid); */
 
@@ -239,7 +288,7 @@ const home = {
 
             <div class="interacciones">
               <button class="btn-interaccion btn-likes" data-id="${doc.id}"> 
-              <img src = "../img/corazon.png">
+              <img class="like-img" src = '../img/corazon.png'>
               <span class="conteo">${contentPost.likes.length}</span>
               </button>
               <button class="btn-interaccion">
@@ -261,7 +310,7 @@ const home = {
     // evento cuando le dan click al boton del nav-publicar
     const btnPublicarNav = document.querySelector('#btn-publicar-nav');
     btnPublicarNav.addEventListener('click', () => {
-      const clickContinue = (event) => {
+      const clickContinue = (event) => { // clickContinue de la linea 110
         event.preventDefault();
 
         const userPublication = post.value;
@@ -278,13 +327,13 @@ const home = {
           commets: [],
           datePost: serverTime,
         });
-        removeModal(clickContinue);
+        removeModal();
         postForm.reset();
       };
 
       showModal({
-        beforeLoad: () => {
-          blockScroll();
+        beforeLoad: () => { // antes de mostrarte bloquea el scroll
+          blockScroll(); // bloquea el scroll
         },
         clickContinue,
         onClose: () => {

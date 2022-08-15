@@ -5,6 +5,8 @@ jest.mock('../src/firebase/auth.js', () => ({
   getPost: jest.fn(),
   observer: jest.fn().mockImplementationOnce((authCallBack) => authCallBack({ photoURL: null })),
   onGetPost: jest.fn(),
+  savePost: jest.fn(),
+
 }));
 
 describe('home', () => {
@@ -20,14 +22,32 @@ describe('home', () => {
   it('should render template home', () => {
     document.body.appendChild(home.template());
     home.init();
+    const elem = document.querySelector('.description-img');
+    expect(elem instanceof HTMLElement).toBeTruthy();
   });
 
   it('should open modal publish post', () => {
     document.body.appendChild(home.template());
     home.init();
 
-    const btnPublish = document.querySelector('#btn-publicar-nav');
-    btnPublish.click();
+    const btnPublicarNav = document.querySelector('#btn-publicar-nav');
+    btnPublicarNav.click();
+  });
+
+  it('should close modal publish post', () => {
+    document.body.appendChild(home.template());
+    home.init();
+
+    const btnPublicarModal = document.querySelector('#btn-publicar');
+    btnPublicarModal.click();
+    /* expect(btnPublicarModal instanceof HTMLElement).toBe(true); */
+  });
+
+  // Testeando la función menuPublicación
+  it('debería mostrar el boton img-tree-dots', () => {
+    document.body.appendChild(home.template());
+    home.init();
+    const menusDesplegables = document.querySelectorAll('.img-tree-dots');
+    expect(menusDesplegables instanceof HTMLElement).toBeTruthy();
   });
 });
-// wt
