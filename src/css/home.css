@@ -162,29 +162,6 @@ h4 {
     border-radius: 50%;
 }
 
-.like , .coment {
-    display: block;
-    background-image: url(../img/corazon.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 3rem;
-    height: 3rem;
-    padding: 0;
-    background-color: #F63D5D;
-    border-radius: 50%;
-    margin: 1rem;
-}
-
-.coment {
-    background-image: url(../img/coment.png);
-}
-
-.like:focus {
-    background-image: url(../img/corazonActivo.png);
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
 h3 {
     font: var(--fontMain);
     font-weight: bold;
