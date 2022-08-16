@@ -32,17 +32,101 @@ exports[`home should check template 1`] = `
           src=""
         />
         
+          
+        <button
+          class="btn-salir"
+        >
+          
+            
+          <img
+            src="../img/salir.png"
+          />
+          
+          
+        </button>
+        
         
       </div>
       
       
     </div>
     
+
       
     <div
-      class="content-post"
-      id="contentPost"
-    />
+      class="wrapper"
+    >
+      
+        
+      <div
+        class="container-publi container-perfil"
+      >
+        
+          
+        <div>
+          
+          
+          <img
+            class="photo-user-perfil"
+            referrerpolicy="no-referrer"
+            src=""
+          />
+          
+          
+        </div>
+        
+          
+        <span>
+          <strong
+            id="currentName"
+          />
+        </span>
+        
+          
+        <h3
+          class="descripcion"
+        >
+          Descripción
+        </h3>
+        
+          
+        <span>
+          Me gusta la cocina , soy  aficionad@. 
+          La comida Peruana es mi favorita, ya que esta dentro de los primeros lugares gastronomicos del mundo.
+          Quiero ampliar mi conocimiento respecto a los mejores restaurantes del Perú. 
+          Mis platos  favoritos son el chaufa y el picante de camarones a la tacneña. Recomiendame tú lugar fovorito!! 
+        </span>
+        
+          
+        <div
+          class="iconosFollow"
+        >
+          
+            
+          <img
+            src="../img/group.png"
+          />
+          
+            
+          <span>
+             23 followers  3 following 
+          </span>
+          
+          
+        </div>
+        
+        
+      </div>
+      
+
+        
+      <div
+        class="content-post"
+        id="contentPost"
+      />
+      
+      
+    </div>
     
 
       

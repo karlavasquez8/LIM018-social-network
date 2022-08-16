@@ -1,10 +1,7 @@
 import login from '../src/view/login.js';
 
-jest.mock('../src/__mocks__/auth.js');
-
 jest.mock('../src/firebase/auth.js', () => ({
   loginGoogle: jest.fn(),
-  /* logIn: jest.fn(), */
 }));
 
 describe('login', () => {
@@ -24,7 +21,7 @@ describe('login', () => {
     expect(elem instanceof HTMLElement).toBeTruthy();
   });
 
-  it('should cerrarse modal', () => {
+  it('should close modal', () => {
     document.body.appendChild(login.template());
     login.init();
     const btnModal = document.querySelector('.btn-modal');

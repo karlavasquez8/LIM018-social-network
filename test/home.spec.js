@@ -1,13 +1,51 @@
-// import { getPost } from '../src/firebase/auth';
+import * as authFunctions from '../src/firebase/auth';
 import home from '../src/view/home.js';
+
+const q = (querySnapshot) => querySnapshot([
+  {
+    data: () => ({
+      avatar: null,
+      userID: '123',
+      userName: 'Pedro',
+      content: 'contenido 1',
+      title: 'titulo 1',
+      likes: [],
+      datePost: {
+        toDate: () => new Date(),
+      },
+    }),
+    id: 'doc-1',
+  },
+  {
+    data: () => ({
+      avatar: null,
+      userID: '124',
+      userName: 'Carlos',
+      content: 'contenido 2',
+      title: 'titulo 2',
+      datePost: {
+        toDate: () => new Date(),
+      },
+      likes: ['id-1', 'id-2'],
+    }),
+    id: 'doc-2',
+  },
+]);
 
 jest.mock('../src/firebase/auth.js', () => ({
   getPost: jest.fn(),
-  observer: jest.fn().mockImplementationOnce((authCallBack) => authCallBack({ photoURL: null })),
+  observer: jest.fn(),
   onGetPost: jest.fn(),
   savePost: jest.fn(),
-
+  logOut: jest.fn(),
 }));
+
+const renderApp = () => {
+  window.location.href = '#/home';
+  document.body.innerHTML = '';
+  document.body.appendChild(home.template());
+  home.init();
+};
 
 describe('home', () => {
   it('should be a function', () => {
@@ -20,34 +58,55 @@ describe('home', () => {
   });
 
   it('should render template home', () => {
-    document.body.appendChild(home.template());
-    home.init();
+    jest.spyOn(authFunctions, 'observer').mockImplementationOnce((authCallBack) => authCallBack({ photoURL: null }));
+    jest.spyOn(authFunctions, 'onGetPost').mockImplementationOnce(q);
+    renderApp();
+
     const elem = document.querySelector('.description-img');
     expect(elem instanceof HTMLElement).toBeTruthy();
+
+    const userName = document.querySelector('.container-publi .user-publi').textContent;
+    expect(userName).toBe('Pedro');
   });
 
-  it('should open modal publish post', () => {
-    document.body.appendChild(home.template());
-    home.init();
+  it('should open and close modal publish post', () => {
+    renderApp();
 
+    const modalContainer = document.querySelector('.modal-container');
     const btnPublicarNav = document.querySelector('#btn-publicar-nav');
+
+    expect(modalContainer.classList.contains('show-modal-publication')).toBeFalsy();
     btnPublicarNav.click();
-  });
+    expect(modalContainer.classList.contains('show-modal-publication')).toBeTruthy();
 
-  it('should close modal publish post', () => {
-    document.body.appendChild(home.template());
-    home.init();
-
-    const btnPublicarModal = document.querySelector('#btn-publicar');
-    btnPublicarModal.click();
-    /* expect(btnPublicarModal instanceof HTMLElement).toBe(true); */
+    const btnCloseModal = document.querySelector('.btn-close-modal');
+    expect(modalContainer.classList.contains('show-modal-publication')).toBeTruthy();
+    btnCloseModal.click();
+    expect(modalContainer.classList.contains('show-modal-publication')).toBeFalsy();
   });
 
   // Testeando la función menuPublicación
-  it('debería mostrar el boton img-tree-dots', () => {
-    document.body.appendChild(home.template());
-    home.init();
-    const menusDesplegables = document.querySelectorAll('.img-tree-dots');
-    expect(menusDesplegables instanceof HTMLElement).toBeTruthy();
+
+  it('should post edit', () => {
+    jest.spyOn(authFunctions, 'observer').mockImplementationOnce((authCallBack) => authCallBack({ photoURL: null, uid: '123' }));
+    jest.spyOn(authFunctions, 'onGetPost').mockImplementationOnce(q);
+    renderApp();
+
+    const options = document.querySelector('.btn-edit-delete');
+    expect(options.classList.contains('show-menu')).toBeFalsy();
+
+    const menuDesplegable = document.querySelector('.img-tree-dots');
+    menuDesplegable.click();
+    expect(options.classList.contains('show-menu')).toBeTruthy();
+
+    menuDesplegable.click();
+    expect(options.classList.contains('show-menu')).toBeFalsy();
+  });
+  it('should salir', () => {
+    renderApp();
+    const btnSalir = document.querySelector('.btn-salir');
+    expect(window.location.href).toContain('#/home');
+    btnSalir.click();
+    expect(window.location.href).not.toContain('#/home');
   });
 });
