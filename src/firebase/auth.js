@@ -43,7 +43,7 @@ export const createNewUser = (email, password) => createUserWithEmailAndPassword
     sendEmailVerification(auth.currentUser)
       .then(() => {
         // eslint-disable-next-line no-use-before-define
-        logOut();
+
       });
     return user;
   });
@@ -88,8 +88,6 @@ export const loginGoogle = () => {
 
 export const logOut = () => {
   signOut(auth);
-  console.log('cerrastese');
-  window.location.hash = '';
 };
 
 const db = getFirestore(app); // conección a la BD

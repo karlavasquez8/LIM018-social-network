@@ -2,6 +2,7 @@ import register from '../src/view/register';
 
 jest.mock('../src/firebase/auth.js', () => ({
   loginGoogle: jest.fn(),
+  createNewUser: jest.fn(),
 
 }));
 
