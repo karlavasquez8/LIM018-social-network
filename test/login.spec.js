@@ -1,4 +1,5 @@
 import login from '../src/view/login.js';
+/* import logIn from '../src/firebase/auth.js'; */
 
 jest.mock('../src/__mocks__/auth.js');
 
@@ -34,10 +35,14 @@ describe('login', () => {
     expect(modal instanceof HTMLElement).toBeTruthy();
   });
 
-  it('El usuario debería entrar a la apliacación', () => {
+  it('El usuario debería entrar a la aplicación', () => {
     document.body.appendChild(login.template());
     login.init();
     const formEmail = document.querySelector('.form-email');
+    /*  const email = document.querySelector('.input-email');
+    const password = document.querySelector('.input-password');
+    console.log(email);
+    console.log(password); */
     formEmail.submit();
   });
 });

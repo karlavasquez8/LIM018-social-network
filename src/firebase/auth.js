@@ -34,7 +34,7 @@ import {
 import app from './config.js';
 
 const auth = getAuth(app);
-/* console.log(auth); */
+console.log(auth);
 
 // eslint-disable-next-line max-len
 export const createNewUser = (email, password) => createUserWithEmailAndPassword(auth, email, password)
@@ -43,7 +43,6 @@ export const createNewUser = (email, password) => createUserWithEmailAndPassword
     sendEmailVerification(auth.currentUser)
       .then(() => {
         // eslint-disable-next-line no-use-before-define
-        logOut();
       });
     return user;
   });
@@ -88,7 +87,8 @@ export const loginGoogle = () => {
 
 export const logOut = () => {
   signOut(auth);
-  console.log('cerrastese');
+  console.log(auth);
+  console.log('cerraste sesión');
   window.location.hash = '';
 };
 

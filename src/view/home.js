@@ -110,6 +110,7 @@ const home = {
       }
     }
     observer(authCallBack); // al observer le paso la fx
+    console.log(authCallBack);
 
     // Función para salir
     const btnSalir = document.querySelector('.btn-salir');

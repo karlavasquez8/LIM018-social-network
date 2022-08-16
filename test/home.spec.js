@@ -9,6 +9,7 @@ jest.mock('../src/firebase/auth.js', () => ({
 
 }));
 
+
 describe('home', () => {
   it('should be a function', () => {
     expect(typeof home.template).toBe('function');
