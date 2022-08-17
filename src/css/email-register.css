@@ -77,3 +77,10 @@ input::placeholder {
     margin: 20px;
     background-color: #FFFFFF;
 }
+.message-error{
+    display: none;
+    color: red;
+}
+.show-message-error{
+    display: block;
+}
