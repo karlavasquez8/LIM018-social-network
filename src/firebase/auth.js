@@ -40,11 +40,8 @@ const auth = getAuth(app);
 export const createNewUser = (email, password) => createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
-    sendEmailVerification(auth.currentUser)
-      .then(() => {
-        // eslint-disable-next-line no-use-before-define
-
-      });
+    console.log(user, 'hola camaron con cola');
+    sendEmailVerification(auth.currentUser);
     return user;
   });
 
