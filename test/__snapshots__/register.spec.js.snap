@@ -93,6 +93,13 @@ exports[`login should check template 1`] = `
       </form>
       
         
+      <span
+        class="message-error"
+      >
+        Llena los campos
+      </span>
+      
+        
       <div
         class="separator"
       >
