@@ -13,12 +13,13 @@ const login = {
           <h2> ¿Que deseas probar hoy? </h2>
           <span> Te ayudamos a encontrar los mejores lugares para disfrutar tus comidas!!</span>
           <form class="form-email">
-            <input name="email" type="email" class="input-register" placeholder="E-mail">
+            <input name="email" type="email" id="inputEmail" class="input-register" placeholder="E-mail">
             <p class= "condicion loginError" id="error-usuario"></p>
-            <input name="password" type="password" class ="input-register" placeholder="Contraseña">
+            <input name="password" type="password" id="inputPassword" class ="input-register" placeholder="Contraseña">
             <p class= "condicion loginError" id="error-contraseña"></p>
             <button type="submit" class="btn-log-email"> Iniciar sesión </button>
-            </form>
+          </form>
+          <span class="message-error">Llena los campos</span>
           <div class="separator"><hr class="hr">O<hr class="hr"></div>
           <div class="button-index">
             <button class="button" id="googleLogin">
@@ -63,7 +64,17 @@ const login = {
       errorPassword.innerHTML = '';
       // eslint-disable-next-line max-len
       const newFormEmail = new FormData(event.target); /* el event.target se refiere elemento clickado  */
-      logIn(newFormEmail.get('email'), newFormEmail.get('password'))
+      const inputEmail = newFormEmail.get('email');
+      const inputPassword = newFormEmail.get('password');
+
+      const messageError = document.querySelector('.message-error');
+      messageError.classList.remove('show-message-error');
+      if (inputEmail === '' || inputPassword === '') {
+        messageError.classList.add('show-message-error');
+        return;
+      }
+
+      logIn(inputEmail, inputPassword)
         /*  Get - devuelve el primer valor asociado con una clave dada en un objeto  */
         .then((user) => {
           if (!user.emailVerified) {
