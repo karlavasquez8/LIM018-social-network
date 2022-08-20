@@ -1,12 +1,20 @@
 import login from '../src/view/login.js';
 /* import logIn from '../src/firebase/auth.js'; */
 
-jest.mock('../src/__mocks__/auth.js');
-
 jest.mock('../src/firebase/auth.js', () => ({
   loginGoogle: jest.fn(),
-  /* logIn: jest.fn(), */
+  logIn: jest.fn().mockImplementationOnce(() => Promise.resolve({
+    displayName: 'Karla', email: 'karlavasquez817@gmail.com', uid: 'jdfhds4545248',
+  })),
+  sendEmailVerification: jest.fn(),
 }));
+
+const renderLogin = () => {
+  window.location.href = '';
+  document.body.innerHTML = '';
+  document.body.appendChild(login.template());
+  login.init();
+};
 
 describe('login', () => {
   it('should be a function', () => {
@@ -18,16 +26,14 @@ describe('login', () => {
     expect(login.template()).toMatchSnapshot();
   });
 
-  it('should render template login', () => {
-    document.body.appendChild(login.template());
-    login.init();
+  it('should render template', () => {
+    renderLogin();
     const elem = document.querySelector('.form-email');
     expect(elem instanceof HTMLElement).toBeTruthy();
   });
 
-  it('should cerrarse modal', () => {
-    document.body.appendChild(login.template());
-    login.init();
+  it('should close modal', () => {
+    renderLogin();
     const btnModal = document.querySelector('.btn-modal');
     const modal = document.querySelector('.modal-container');
     btnModal.click();
@@ -35,14 +41,28 @@ describe('login', () => {
     expect(modal instanceof HTMLElement).toBeTruthy();
   });
 
-  it('El usuario debería entrar a la aplicación', () => {
-    document.body.appendChild(login.template());
-    login.init();
+  it('should render template login', () => {
+    renderLogin();
+
     const formEmail = document.querySelector('.form-email');
-    /*  const email = document.querySelector('.input-email');
-    const password = document.querySelector('.input-password');
-    console.log(email);
-    console.log(password); */
     formEmail.submit();
+    const messageError = document.querySelector('.message-error');
+    expect(messageError.classList.contains('show-message-error')).toBeTruthy();
+
+    const inputEmail = document.querySelector('#inputEmail');
+    const inputPassword = document.querySelector('#inputPassword');
+    inputEmail.value = 'karlavasquez817@gmail.com';
+    inputPassword.value = '1234567';
+    formEmail.submit();
+    expect(messageError.classList.contains('show-message-error')).toBeFalsy();
+  });
+
+  it('No deberia abrirse el modal si el email esta verificado', () => {
+    renderLogin();
+
+    const modalContainer = document.querySelector('.modal-container');
+    const btnModal = document.querySelector('.btn-log-email');
+    btnModal.click();
+    expect(modalContainer.classList.contains('show-modal')).toBeFalsy();
   });
 });

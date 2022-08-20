@@ -44,6 +44,7 @@ exports[`login should check template 1`] = `
             
         <input
           class="input-register"
+          id="inputEmail"
           name="email"
           placeholder="E-mail"
           type="email"
@@ -58,6 +59,7 @@ exports[`login should check template 1`] = `
             
         <input
           class="input-register"
+          id="inputPassword"
           name="password"
           placeholder="Contraseña"
           type="password"
@@ -77,8 +79,15 @@ exports[`login should check template 1`] = `
            Iniciar sesión 
         </button>
         
-            
+          
       </form>
+      
+          
+      <span
+        class="message-error"
+      >
+        Llena los campos
+      </span>
       
           
       <div

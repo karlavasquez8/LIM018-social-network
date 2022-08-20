@@ -20,6 +20,7 @@ const register = {
           </div>
           <button type="submit" class ="button-register"> Registrar </button>
         </form>
+        <span class="message-error">Llena los campos</span>
         <div class="separator"><hr class="hr">O<hr class="hr"></div>
         <div class="button-index">
           <button class="button" id="googleLogin">
@@ -54,8 +55,16 @@ const register = {
       event.preventDefault(); // cancelar el evento x defecto - no refresca la página
       const form = new FormData(event.target); // Captura la info del formulario
       const inputName = form.get('name');
+      const inputEmail = form.get('email');
+      const inputPassword = form.get('password');
 
-      createNewUser(form.get('email'), form.get('password'))
+      const messageError = document.querySelector('.message-error');
+      messageError.classList.remove('show-message-error');
+      if (inputName === '' || inputEmail === '' || inputPassword === '') {
+        messageError.classList.add('show-message-error');
+        return;
+      }
+      createNewUser(inputEmail, inputPassword)
         .then((user) => {
           modal.classList.add('show-modal');
           // eslint-disable-next-line no-undef

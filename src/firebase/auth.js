@@ -44,12 +44,15 @@ export const createNewUser = (email, password) => createUserWithEmailAndPassword
       .then(() => {
         // eslint-disable-next-line no-use-before-define
       });
+    console.log(user, 'hola camaron con cola');
+    sendEmailVerification(auth.currentUser);
     return user;
   });
 
 export const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
+    console.log(user, 'hola nuevo user');
     return user;
   });
 // observador va recibir como parametros funciones para

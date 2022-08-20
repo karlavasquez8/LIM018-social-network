@@ -7,6 +7,7 @@ import {
   updatePost,
   serverTime,
   logOut,
+  /* logOut, */
 } from '../firebase/auth.js';
 
 const home = {
@@ -17,9 +18,15 @@ const home = {
         <h1>HELP TASTER</h1>
         <div class="description-img">
           <img class="photo-user" src="" referrerpolicy="no-referrer">
-          <button class="btn-salir" >
+          <div class="menu-salir">
+            <button class="img-salir" >
             <img src="../img/salir.png">
-          </button>
+            </button> 
+            <ul class= "opciones-btn-salir">
+              <li><button class = "cerrar-sesion">Cerrar sesión</button></li>
+              <li><button class = "cancelar">Cancelar</button></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -112,10 +119,26 @@ const home = {
     observer(authCallBack); // al observer le paso la fx
     console.log(authCallBack);
 
-    // Función para salir
-    const btnSalir = document.querySelector('.btn-salir');
+    // Función para desplegar botones (cerrar sesión)
+    const menuDesplegableSalir = document.querySelector('.img-salir');
+    menuDesplegableSalir.addEventListener('click', (event) => {
+      const btnCerrarSesion = event.target.closest('.menu-salir').querySelector('.opciones-btn-salir');
+      if (btnCerrarSesion.classList.contains('show-logout')) {
+        btnCerrarSesion.classList.remove('show-logout');
+      } else {
+        btnCerrarSesion.classList.add('show-logout');
+      }
+    });
+
+    const btnSalir = document.querySelector('.cerrar-sesion');
     btnSalir.addEventListener('click', () => {
       logOut();
+    });
+
+    const btnCancelar = document.querySelector('.cancelar');
+    btnCancelar.addEventListener('click', (event) => {
+      const btnCerrarSesion = event.target.closest('.menu-salir').querySelector('.opciones-btn-salir');
+      btnCerrarSesion.classList.remove('show-logout');
     });
 
     // funciones para bloquear y activar scroll del modal
@@ -138,12 +161,10 @@ const home = {
         beforeLoad = noopFunction,
         onClose = noopFunction,
       } = configModal;
-      console.log(postForm.innerHTML);
 
       document.getElementById('btn-publicar').innerText = continueText; // reemplazamos según lo q queremos
 
       document.getElementById('btn-publicar').addEventListener('click', clickContinue);
-      console.log(clickContinue);
       btnCloseModal.addEventListener('click', onClose);
 
       beforeLoad();
@@ -233,8 +254,6 @@ const home = {
           const docPost = await getPost(idPost); // recibe como argumento 1 id
           const publication = docPost.data(); // convertirlo en 1 obj de Js
           const likes = publication.likes; // array de usuarios que le dieron like
-          const likeImg = document.querySelector('.like-img');
-          console.log(likeImg);
 
           if (likes.includes(currentUser.uid)) { // quita like
             const filterLikes = likes.filter((idLike) => idLike !== currentUser.uid);
@@ -243,8 +262,7 @@ const home = {
             console.log(likeImg, 'dentro del if'); */
           } else {
             updatePost(idPost, { likes: [...likes, currentUser.uid] }); // agrega like
-            likeImg.setAttribute('src', '../img/corazonActivo.png');
-            console.log(likeImg, 'dentro del else');
+            // likeImg.setAttribute('src', '../img/corazonActivo.png');
           }
         });
       });
@@ -252,6 +270,7 @@ const home = {
 
     // Haciendo el post
     onGetPost((querySnapshot) => { // Cuando ocurra 1 cambio te mando los nuevos dts
+      console.log(querySnapshot);
       let html = '';
 
       querySnapshot.forEach((doc) => {
@@ -259,6 +278,7 @@ const home = {
         const contentPost = doc.data();
         /* console.log(contentPost); */
         const avatarUser = contentPost.avatar === null ? './img/photo-user-blanco.png' : contentPost.avatar;
+        const isLiked = contentPost.likes.includes(currentUser.uid);
         /* console.log(contentPost.userID, currentUser.uid); */
 
         html += ` 
@@ -289,7 +309,7 @@ const home = {
 
             <div class="interacciones">
               <button class="btn-interaccion btn-likes" data-id="${doc.id}"> 
-              <img class="like-img" src = '../img/corazon.png'>
+              <img class="like-img" src='${isLiked ? '../img/corazonActivo.png' : '../img/corazon.png'}'>
               <span class="conteo">${contentPost.likes.length}</span>
               </button>
               <button class="btn-interaccion">
