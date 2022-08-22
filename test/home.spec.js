@@ -103,19 +103,20 @@ describe('home', () => {
     menuDesplegable.click();
     expect(options.classList.contains('show-menu')).toBeFalsy();
   });
-  it('should salir', () => {
+  it('should menu close', () => {
     renderApp();
-    const btnSalir = document.querySelector('.btn-salir');
-    expect(window.location.href).toContain('#/home');
-    btnSalir.click();
-    expect(window.location.href).not.toContain('#/home');
-  });
+    const optionCloseAp = document.querySelector('.opciones-btn-salir');
+    expect(optionCloseAp.classList.contains('show-logout')).toBeFalsy();
 
-  it('Debería eliminar el post', () => {
-    renderApp();
-    const containerPost = document.querySelector('#contentPost');
-    const btnsDelete = containerPost.querySelectorAll('.btn-delete');
-    btnsDelete.click();
-    /* expect(containerPost.classList.remove()) */
+    const imgSalir = document.querySelector('.img-salir');
+    imgSalir.click();
+    expect(optionCloseAp.classList.contains('show-logout')).toBeTruthy();
+    imgSalir.click();
+    expect(optionCloseAp.classList.contains('show-logout')).toBeFalsy();
+  });
+  it('should close App', () => {
+    const logoutApp = document.querySelector('.cerrar-sesion');
+    logoutApp.click();
+    expect(window.location.href).toContain('');
   });
 });

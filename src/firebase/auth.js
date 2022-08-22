@@ -1,4 +1,3 @@
-/* eslint-disable import/no-named-as-default-member */
 /* eslint-disable max-len */
 import {
   getAuth,
@@ -52,7 +51,6 @@ export const createNewUser = (email, password) => createUserWithEmailAndPassword
 export const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
-    console.log(user, 'hola nuevo user');
     return user;
   });
 // observador va recibir como parametros funciones para
