@@ -23,10 +23,10 @@ const q = (querySnapshot) => querySnapshot([
       userName: 'Carlos',
       content: 'contenido 2',
       title: 'titulo 2',
+      likes: ['id-1', 'id-2'],
       datePost: {
         toDate: () => new Date(),
       },
-      likes: ['id-1', 'id-2'],
     }),
     id: 'doc-2',
   },
@@ -38,6 +38,7 @@ jest.mock('../src/firebase/auth.js', () => ({
   onGetPost: jest.fn(),
   savePost: jest.fn(),
   logOut: jest.fn(),
+  delete: jest.fn(),
 }));
 
 const renderApp = () => {
@@ -108,5 +109,13 @@ describe('home', () => {
     expect(window.location.href).toContain('#/home');
     btnSalir.click();
     expect(window.location.href).not.toContain('#/home');
+  });
+
+  it('Debería eliminar el post', () => {
+    renderApp();
+    const containerPost = document.querySelector('#contentPost');
+    const btnsDelete = containerPost.querySelectorAll('.btn-delete');
+    btnsDelete.click();
+    /* expect(containerPost.classList.remove()) */
   });
 });

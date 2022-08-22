@@ -7,6 +7,7 @@ import {
   updatePost,
   serverTime,
   logOut,
+  /* logOut, */
 } from '../firebase/auth.js';
 
 const home = {
@@ -17,9 +18,15 @@ const home = {
         <h1>HELP TASTER</h1>
         <div class="description-img">
           <img class="photo-user" src="" referrerpolicy="no-referrer">
-          <button class="btn-salir" >
+          <div class="menu-salir">
+            <button class="img-salir" >
             <img src="../img/salir.png">
-          </button>
+            </button> 
+            <ul class= "opciones-btn-salir">
+              <li><button class = "cerrar-sesion">Cerrar sesión</button></li>
+              <li><button class = "cancelar">Cancelar</button></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -110,12 +117,28 @@ const home = {
       }
     }
     observer(authCallBack); // al observer le paso la fx
+    console.log(authCallBack);
 
-    // Función para salir
-    const btnSalir = document.querySelector('.btn-salir');
+    // Función para desplegar botones (cerrar sesión)
+    const menuDesplegableSalir = document.querySelector('.img-salir');
+    menuDesplegableSalir.addEventListener('click', (event) => {
+      const btnCerrarSesion = event.target.closest('.menu-salir').querySelector('.opciones-btn-salir');
+      if (btnCerrarSesion.classList.contains('show-logout')) {
+        btnCerrarSesion.classList.remove('show-logout');
+      } else {
+        btnCerrarSesion.classList.add('show-logout');
+      }
+    });
+
+    const btnSalir = document.querySelector('.cerrar-sesion');
     btnSalir.addEventListener('click', () => {
       logOut();
-      window.location.hash = '';
+    });
+
+    const btnCancelar = document.querySelector('.cancelar');
+    btnCancelar.addEventListener('click', (event) => {
+      const btnCerrarSesion = event.target.closest('.menu-salir').querySelector('.opciones-btn-salir');
+      btnCerrarSesion.classList.remove('show-logout');
     });
 
     // funciones para bloquear y activar scroll del modal
@@ -247,6 +270,7 @@ const home = {
 
     // Haciendo el post
     onGetPost((querySnapshot) => { // Cuando ocurra 1 cambio te mando los nuevos dts
+      console.log(querySnapshot);
       let html = '';
 
       querySnapshot.forEach((doc) => {

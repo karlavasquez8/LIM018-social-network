@@ -34,12 +34,16 @@ import {
 import app from './config.js';
 
 const auth = getAuth(app);
-/* console.log(auth); */
+console.log(auth);
 
 // eslint-disable-next-line max-len
 export const createNewUser = (email, password) => createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
+    sendEmailVerification(auth.currentUser)
+      .then(() => {
+        // eslint-disable-next-line no-use-before-define
+      });
     console.log(user, 'hola camaron con cola');
     sendEmailVerification(auth.currentUser);
     return user;
@@ -48,6 +52,7 @@ export const createNewUser = (email, password) => createUserWithEmailAndPassword
 export const logIn = (email, password) => signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
+    console.log(user, 'hola nuevo user');
     return user;
   });
 // observador va recibir como parametros funciones para
@@ -85,6 +90,9 @@ export const loginGoogle = () => {
 
 export const logOut = () => {
   signOut(auth);
+  console.log(auth);
+  console.log('cerraste sesión');
+  window.location.hash = '';
 };
 
 const db = getFirestore(app); // conección a la BD

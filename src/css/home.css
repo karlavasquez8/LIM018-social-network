@@ -318,6 +318,14 @@ p {
 
 } */
 
+.opciones-btn-salir{
+    display: none;
+}
+
+.show-logout{
+    display: block;
+}
+
 @media (min-width: 500px) {
     .container-perfil {
       display: flex;
