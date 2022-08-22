@@ -17,14 +17,14 @@ const home = {
       <div class="header-home">
         <h1>HELP TASTER</h1>
         <div class="description-img">
-          <img class="photo-user" src="" referrerpolicy="no-referrer">
+        <img class="photo-user" src="" referrerpolicy="no-referrer">
           <div class="menu-salir">
             <button class="img-salir" >
-            <img src="../img/salir.png">
+            <img src="../img/expand_more.png">
             </button> 
             <ul class= "opciones-btn-salir">
-              <li><button class = "cerrar-sesion">Cerrar sesión</button></li>
-              <li><button class = "cancelar">Cancelar</button></li>
+              <li><button class = "cerrar-sesion menu">Cerrar sesión</button></li>
+              <li><button class = "cancelar menu">Cancelar</button></li>
             </ul>
           </div>
         </div>
@@ -103,6 +103,7 @@ const home = {
     // Traer el nombre de usuario, (el observador)
     function authCallBack(user) {
       currentUser = user; // Usuario actual
+      console.log(currentUser);
       const userPerfil = document.querySelector('#currentName');
       userPerfil.innerHTML = currentUser.displayName;
 

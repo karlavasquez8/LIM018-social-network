@@ -8,8 +8,8 @@
     justify-content: space-between;
     align-items: center;
     padding-block: 2rem;
-    padding-inline: 3rem;
-    gap: 2rem;
+    padding-inline: 1.5rem;
+    gap: 1.5rem;
 }
 
 .home-h2{
@@ -219,6 +219,26 @@ p {
  
 }
 
+.img-salir {
+    width: fit-content;
+    border: none;
+    box-shadow: none;
+}
+
+.opciones-btn-salir{
+    list-style: none;
+}
+
+.menu-salir{
+    right: 0;
+    position: absolute;
+    
+}
+
+.description-img{
+    display: flex;
+}
+
 /* Menú desplegable */
 .btn-edit-delete.show-menu {
     display: block;
@@ -261,6 +281,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 2rem;
 }
 
 .btn[disabled] {
@@ -310,14 +331,6 @@ p {
     gap: 0.6rem;
 }
 
-/* @media screen and (max-withd:500px){
-    
-    .container-perfil {
-        background-color: #F63D5D;
-    }
-
-} */
-
 .opciones-btn-salir{
     display: none;
 }
@@ -331,5 +344,5 @@ p {
       display: flex;
     }
 
-
+    
 } 
