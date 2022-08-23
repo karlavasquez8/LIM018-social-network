@@ -301,7 +301,6 @@ p {
 .wrapper{
     display: flex;
     justify-content: center;
-    gap: 4rem;
 }
 
 .container-perfil{
@@ -311,6 +310,7 @@ p {
     flex-direction: column;
     gap: 1rem;
     padding: 2rem;
+    margin-inline-start: 4rem;
 }
 
 .photo-user-perfil{
@@ -322,7 +322,7 @@ p {
 
 .container-perfil:first-child{
     align-items: center;
-
+    width: 40%;
 }
 
 #currentName{
@@ -364,4 +364,17 @@ p {
     .header-home{
         padding-inline: 3.5rem;
     }
+
+    .content-post{
+        width: 50%;
+    }
+
+    .user-publi{
+        font-size: 0.9rem;
+    }
+
+    .description, h4{
+        font-size: 1rem;
+    }
+
 } 
