@@ -1,0 +1,367 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.home {
+    background: linear-gradient(168.8deg, #FFF5F3 -8.88%, #FFEFEF 102.78%);
+    width: 100%;
+}
+
+.header-home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 2rem;
+    padding-inline: 1.5rem;
+    gap: 1.5rem;
+    background-color: #F8C7CF;
+}
+
+.home-h2{
+    margin: 0;
+}
+
+.header-info{
+    padding-top: 0.5rem;
+}
+
+.publicacion {
+    width: 90%;
+    max-width: 300px;
+    background: #FFFFFF;
+    font: var(--fontMain);
+    padding: 0.5rem;
+    height: 70px;
+    border: 1px solid #F8C7CF;
+    border-radius: 6px;
+}
+.publicacion::placeholder{
+    font: var(--fontMain);
+    padding: 0.4rem;
+}
+
+.name-restaurant {
+    width: 90%;
+    padding: 0.5rem;
+    max-width: 300px;
+    border: 1px solid #F8C7CF;
+    border-radius: 6px;
+}
+
+.publicacion, .name-restaurant:focus{
+    outline: none;
+}
+
+.name-restaurant::placeholder{
+    font: var(--fontMain);
+    padding: 0.4rem;
+    color:#424141;
+}
+
+.create-post{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 70%;
+    background: #FFFFFF;
+    border-radius: 5px;
+    padding: 1rem;
+    font: var(--fontMain);
+    padding-bottom: 0;
+}
+
+.iconos-post{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.container-publi {
+    background-color: white;
+    box-shadow: 2px 4px 4px 2px rgba(0, 0, 0, 0.25);
+    margin: 2rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+.container-publi-img {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 88%),url(../img/restaurante.jpg);
+    background-position: center;
+    display: flex;
+    margin: 0.3rem;
+    justify-content:flex-end;
+    flex-direction: column;
+    height: 190px;
+    position: relative;
+    
+} 
+
+.info-publi {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    color: #000000;
+    margin-inline-start: 0.2rem;
+}
+
+.content-publi {
+    display: flex;
+    justify-content: flex-start;
+    padding-inline: 0.6rem;
+    gap: 1rem;
+    margin-block: 0.5rem;
+}
+
+h4 {
+    font:var(--h4);
+    font-size: 14px;
+    margin: 0;
+}
+
+.user-publi{
+    font:var(--h4);
+    font-size: 13px;
+    line-height: 12px;
+    margin: 0;
+}
+
+.time-publi {
+    font-weight: 580;
+    font-size: 11px;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.interacciones {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.description {
+    color: #000000;
+}
+
+.btn-interaccion {
+    padding: 0.3rem;
+    background: #F63D5D;
+    border-radius: 10px;
+    gap:0.3rem;
+    width: fit-content;
+}
+
+.btn-interaccion img{
+    width: 1rem;
+}
+
+.conteo{
+    font: var(--fontMain);
+    font-size: 11px;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+.photo-user-post {
+    width: 3rem;
+    border-radius: 50%;
+}
+
+h3 {
+    font: var(--fontMain);
+    font-weight: bold;
+    color: #FFEFEF;
+    margin: 0;
+}
+
+p {
+    color: #FFEFEF;
+    font: var(--fontMain);
+    font-size: 11px;
+    margin-block: 6px;
+   
+}
+
+.btn-primary{
+    display: block;
+    color: #FFFFFF;
+    width: 98px;
+    height: 24px;
+    padding-block: 0;
+    padding-inline: 0.5rem;
+    background: #F63D5D;
+    border-radius: 4px;
+    box-shadow: none;
+    margin: 1rem;
+}
+
+.section-search{
+    display: flex;
+    justify-content: space-between;
+    justify-items: end;
+    color:  #424141;
+    background-color: #FFEFEF;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    align-items: flex-end;
+
+}
+
+.cajita{
+    border: 1px solid red;
+    padding: 1.2rem ;
+    border-radius: 1rem 1rem 0 0 ;
+    font-size: 14px;
+    background-color: #FFEFEF;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.photo-user {
+    width: 41px;
+    border-radius: 50%;
+ 
+}
+
+.img-salir {
+    width: fit-content;
+    border: none;
+    box-shadow: none;
+}
+
+.opciones-btn-salir{
+    list-style: none;
+}
+
+
+.description-img{
+    display: flex;
+    width: 100%;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+    left: 0;
+}
+
+/* Menú desplegable */
+.btn-edit-delete.show-menu {
+    display: block;
+}
+
+.menu-desplegable{
+    top: 0;
+    right: 0;
+    position: absolute;
+    margin-block: 1rem;
+}
+
+.img-tree-dots{
+    background-color:#F63D5D;
+    width: 55%;
+    height: 30px;
+    position: sticky;
+}
+
+.btn-edit-delete{
+    display: none;
+    position: absolute;
+    z-index: 1;
+    right: 8px;
+    top: 33px;
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.menu {
+    width: 5rem;
+    font-size: 0.8rem;
+    border: 1px solid #F8C7CF;
+    border-radius: 6px;
+    padding: 0.5rem;
+}
+
+#contentPost {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.btn[disabled] {
+    background-color: #333;
+}
+
+/* Vista web */
+.wrapper{
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.container-perfil{
+    display: none;
+    width: 28.8rem;
+    height: fit-content;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.photo-user-perfil{
+    width: 8.6rem;
+    height: 9.3rem;
+    border-radius: 50%;
+    align-items: center;
+}
+
+.container-perfil:first-child{
+    align-items: center;
+
+}
+
+#currentName{
+    font-size: 1.5rem;
+}
+
+.descripcion{
+    color: #F63D5D;
+    font-size: 1.3rem;
+}
+
+.iconosFollow{
+    align-items: center;
+    display: flex;
+    gap: 0.6rem;
+}
+
+.opciones-btn-salir{
+    display: none;
+}
+
+.show-logout{
+    display: block;
+}
+
+@media (min-width: 600px) {
+    .container-perfil {
+      display: flex;
+    }
+
+    .description-img{
+        display: flex;
+        gap: 10px;
+        margin: 7px;
+        position: inherit;
+        width: fit-content;
+    }
+
+    .header-home{
+        padding-inline: 3.5rem;
+    }
+} 

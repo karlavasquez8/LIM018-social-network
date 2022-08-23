@@ -1,0 +1,17 @@
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #F8C7CF;
+}
+
+.show-modal-publication{
+    display: flex;
+}
+
+.btn-nav{ 
+    width: fit-content;
+    box-shadow: none;
+    background-color: #F8C7CF;
+}
