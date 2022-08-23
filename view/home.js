@@ -38,7 +38,7 @@ const home = {
         <div class="menu-salir">
             <button class="img-salir" >
             <img class="photo-user" src="" referrerpolicy="no-referrer">
-            <img src="../img/expand_more.png">
+            <img src="./img/expand_more.png">
             </button> 
             <ul class= "opciones-btn-salir">
               <li><button class = "cerrar-sesion menu">Cerrar sesión</button></li>
