@@ -13,7 +13,7 @@ import {
 const home = {
   template: () => { /* Backticks: Permiten concatenar y trabajar con cadenas */
     const homeTemplate = `   
-    <section class="home">
+    <section class="home container-wrapper">
       <div class="header-home">
         <h1>HELP TASTER</h1>
         <div class="description-img">
@@ -143,11 +143,11 @@ const home = {
 
     // funciones para bloquear y activar scroll del modal
     function blockScroll() {
-      document.querySelector('.content-post').classList.add('hidden-scroll');
+      document.querySelector('.container-wrapper').classList.add('hidden-scroll');
     }
 
     function activateScroll() {
-      document.querySelector('.content-post').classList.remove('hidden-scroll');
+      document.querySelector('.container-wrapper').classList.remove('hidden-scroll');
     }
 
     // funcion para mostrar modal
