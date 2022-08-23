@@ -26,10 +26,15 @@ describe('login', () => {
     expect(login.template()).toMatchSnapshot();
   });
 
-  it('should render template', () => {
+  it('should render template login', () => {
     renderLogin();
-    const elem = document.querySelector('.form-email');
-    expect(elem instanceof HTMLElement).toBeTruthy();
+    const formEmail = document.querySelector('.form-email');
+    const inputEmail = document.querySelector('#inputEmail');
+    const inputPassword = document.querySelector('#inputPassword');
+    inputEmail.value = 'karlavasquez817@gmail.com';
+    inputPassword.value = '1234567';
+    formEmail.submit();
+    // expect(elem instanceof HTMLElement).toBeTruthy();
   });
 
   it('should close modal', () => {
@@ -41,9 +46,8 @@ describe('login', () => {
     expect(modal instanceof HTMLElement).toBeTruthy();
   });
 
-  it('should render template login', () => {
+  it('El usuario debería entrar a la apliacación', () => {
     renderLogin();
-
     const formEmail = document.querySelector('.form-email');
     formEmail.submit();
     const messageError = document.querySelector('.message-error');

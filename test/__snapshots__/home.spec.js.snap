@@ -7,7 +7,7 @@ exports[`home should check template 1`] = `
      
     
   <section
-    class="home"
+    class="home container-wrapper"
   >
     
       
@@ -33,17 +33,51 @@ exports[`home should check template 1`] = `
         />
         
           
-        <button
-          class="btn-salir"
+        <div
+          class="menu-salir"
         >
           
             
-          <img
-            src="../img/salir.png"
-          />
+          <button
+            class="img-salir"
+          >
+            
+            
+            <img
+              src="../img/salir.png"
+            />
+            
+            
+          </button>
+           
+            
+          <ul
+            class="opciones-btn-salir"
+          >
+            
+              
+            <li>
+              <button
+                class="cerrar-sesion"
+              >
+                Cerrar sesión
+              </button>
+            </li>
+            
+              
+            <li>
+              <button
+                class="cancelar"
+              >
+                Cancelar
+              </button>
+            </li>
+            
+            
+          </ul>
           
           
-        </button>
+        </div>
         
         
       </div>
