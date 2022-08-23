@@ -38,9 +38,9 @@ const home = {
         <div class="menu-salir">
             <button class="img-salir" >
             <img class="photo-user" src="" referrerpolicy="no-referrer">
-            <img src="../img/expand_more.png">
+            <img src="./img/expand_more.png">
             </button> 
-            <ul class= "opciones-btn-salir">
+            <ul class= "opciones-btn-salir opciones-menu">
               <li><button class = "cerrar-sesion menu">Cerrar sesión</button></li>
               <li><button class = "cancelar menu">Cancelar</button></li>
             </ul>
@@ -59,7 +59,7 @@ const home = {
           Quiero ampliar mi conocimiento respecto a los mejores restaurantes del Perú. 
           Mis platos  favoritos son el chaufa y el picante de camarones a la tacneña. Recomiendame tú lugar fovorito!! </span>
           <div class = "iconosFollow">
-            <img src = "../img/group.png">
+            <img src = "./img/group.png">
             <span> 23 followers  3 following </span>
           </div>
         </div>
@@ -105,7 +105,6 @@ const home = {
     // Traer el nombre de usuario, (el observador)
     function authCallBack(user) {
       currentUser = user; // Usuario actual
-      console.log(currentUser);
       const userPerfil = document.querySelector('#currentName');
       userPerfil.innerHTML = currentUser.displayName;
 
@@ -115,12 +114,11 @@ const home = {
       photoUser.setAttribute('src', user.photoURL); // Cambia el contenido src x la foto
       photoUserPerfil.setAttribute('src', user.photoURL);
       if (user.photoURL == null) {
-        photoUser.setAttribute('src', '../img/photo-user.png'); // img x defecto
-        photoUserPerfil.setAttribute('src', '../img/photo-user.png'); // img x defecto
+        photoUser.setAttribute('src', './img/photo-user.png'); // img x defecto
+        photoUserPerfil.setAttribute('src', './img/photo-user.png'); // img x defecto
       }
     }
     observer(authCallBack); // al observer le paso la fx
-    console.log(authCallBack);
 
     // Función para desplegar botones (cerrar sesión)
     const menuDesplegableSalir = document.querySelector('.img-salir');
@@ -273,7 +271,6 @@ const home = {
 
     // Haciendo el post
     onGetPost((querySnapshot) => { // Cuando ocurra 1 cambio te mando los nuevos dts
-      console.log(querySnapshot);
       let html = '';
 
       querySnapshot.forEach((doc) => {
@@ -290,7 +287,7 @@ const home = {
 
             ${contentPost.userID === currentUser.uid ? `<div class="menu-desplegable" >
               <button class="img-tree-dots" >
-                <img src="../img/menu-desplegable.png">
+                <img src="./img/menu-desplegable.png">
               </button>
               <ul class="btn-edit-delete">
                 <li><button type="button" class="btn-edit menu" data-id="${doc.id}">Editar</button></li>
@@ -312,11 +309,11 @@ const home = {
 
             <div class="interacciones">
               <button class="btn-interaccion btn-likes" data-id="${doc.id}"> 
-              <img class="like-img" src='${isLiked ? '../img/corazonActivo.png' : '../img/corazon.png'}'>
+              <img class="like-img" src='${isLiked ? './img/corazonActivo.png' : './img/corazon.png'}'>
               <span class="conteo">${contentPost.likes.length}</span>
               </button>
               <button class="btn-interaccion">
-              <img src = "../img/coment.png">
+              <img src = "./img/coment.png">
               <span class = "conteo comentarios">364</span>
               </button>
             </div>
