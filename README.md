@@ -6,7 +6,6 @@
 * [2. Historias de usuario](#2-historia-de-usuario)
 * [3. Prototipo de baja fidelidad](#3-prototipo-de-baja-fidelidad)
 * [4. Prototipo de alta fidelidad](#4-prototipo-de-alta-fidelidad)
-* [5. GitHub Pages](#5-github-pages)
 
 ## 1. ¿Que es HELP TASTER?
 
@@ -84,12 +83,12 @@ Como usuario quiero salir de la red social.
 
 ![PrototipoBajaFidelidad](baja-fidelidad.PNG)
 
-## 3. Prototipo de baja fidelidad
+## 4. Prototipo de baja fidelidad
 
-![PrototipoAltaFidelidad](baja-fidelidad.PNG)
-
-
-
+![Login](login.jpeg)
+![Register](regiter.PNG)
+![Home Movile](home-movile.JPG)
+![Home Desktop](desktop-home.JPG)
 
 ________________________________________________________________________________________
 # Creando una Red Social
