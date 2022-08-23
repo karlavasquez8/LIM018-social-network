@@ -1,3 +1,9 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 .home {
     background: linear-gradient(168.8deg, #FFF5F3 -8.88%, #FFEFEF 102.78%);
     width: 100%;
@@ -10,6 +16,7 @@
     padding-block: 2rem;
     padding-inline: 1.5rem;
     gap: 1.5rem;
+    background-color: #F8C7CF;
 }
 
 .home-h2{
@@ -82,7 +89,7 @@
 }
 
 .container-publi-img {
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 88%),url(../img/chiriuchu.png);
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 88%),url(../img/restaurante.jpg);
     background-position: center;
     display: flex;
     margin: 0.3rem;
@@ -117,6 +124,7 @@ h4 {
 
 .user-publi{
     font:var(--h4);
+    font-size: 13px;
     line-height: 12px;
     margin: 0;
 }
@@ -173,7 +181,7 @@ p {
     color: #FFEFEF;
     font: var(--fontMain);
     font-size: 11px;
-    margin-block-start: 6px;
+    margin-block: 6px;
    
 }
 
@@ -229,14 +237,16 @@ p {
     list-style: none;
 }
 
-.menu-salir{
-    right: 0;
-    position: absolute;
-    
-}
 
 .description-img{
     display: flex;
+    width: 100%;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+    left: 0;
 }
 
 /* Menú desplegable */
@@ -339,9 +349,17 @@ p {
     display: block;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 600px) {
     .container-perfil {
       display: flex;
+    }
+
+    .description-img{
+        display: flex;
+        gap: 10px;
+        margin: 7px;
+        position: inherit;
+        width: 0%;
     }
 
     
