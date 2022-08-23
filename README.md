@@ -83,10 +83,10 @@ Como usuario quiero salir de la red social.
 
 ![PrototipoBajaFidelidad](baja-fidelidad.PNG)
 
-## 4. Prototipo de baja fidelidad
+## 4. Prototipo de alta fidelidad
 
 ![Login](login.jpeg)
-![Register](regiter.PNG)
+![Register](register.PNG)
 ![Home Movile](home-movile.JPG)
 ![Home Desktop](desktop-home.JPG)
 
