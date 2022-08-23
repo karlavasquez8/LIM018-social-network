@@ -1,3 +1,97 @@
+# HELP TASTER
+
+## Índice
+
+* [1. ¿Que es HELP TASTER?](#1-resumen)
+* [2. Historias de usuario](#2-historia-de-usuario)
+* [3. Prototipo de baja fidelidad](#3-prototipo-de-baja-fidelidad)
+* [4. Prototipo de alta fidelidad](#4-prototipo-de-alta-fidelidad)
+* [5. GitHub Pages](#5-github-pages)
+
+## 1. ¿Que es HELP TASTER?
+
+Es una red social creada para los amantes de la gastronomia mundial, donde pueden compartir recomendaciones de los mejores restaurantes del mundo. En esta red social, los usuarios pueden postear información relacionada a restaurantes y sugerencias sobre sobre los mejores platos que han degustado. Además le permite editar, eliminar sus publicaciones y darle like a las publicaciones de otros usuarios.
+
+## 2. Historias de usuario
+
+### :bust_in_silhouette: Usuarios
+
+### Historia de usuario 1
+
+Como usuario quiero registrarme con mi correo, para poder logearme en la red social.
+Quiero llenar mis datos (nombre, correo y contraseña).
+
+* *Criterios de aceptación**
+- [ ]  En el campo contraseña tiene que tener la indicación: La contraseña debe contener mínimo 6 caracteres.
+- [ ]  Cuando el usuario no llene ningún campo de los datos, le saldra el mensaje: Llena tus datos.
+
+### Historia de usuario 2
+
+Como usuario quiero iniciar sesión en la red social con mi cuenta, usando mi correo electrónico y contraseña existente.
+
+### Historia de usuario 3
+
+Como usuario quiero ingresar a la red social logueandome con Google.
+
+* *Criterios de aceptación**
+- [ ] Al darle click al botón inicia con Google, me sale la ventana de elegir un correo.
+- [ ] Al elegir el correo, se ingresara al home de la red social.
+
+### Historia de usuario 4
+
+Como usuario quiero publicar y ver las publicaciones que hicieron otros usuarios, para conocer más recomendaciones de restaurantes.
+
+* *Criterios de aceptación**
+- [ ] Al darle click al botón publicar, tiene que salir un modal.
+- [ ] El modal debe contener un campo para llenar (Restaurante) y otro campo para llenar (¿Por qué nos recomiendas este lugar).
+- [ ] El modal debe tener 2 botones que le permita al usuario publicar o cancelar.
+
+### Historia de usuario 5
+
+Como usuario quiero editar y eliminar mis publicaciones.
+
+* *Criterios de aceptación**
+- [ ] El usuario tiene que poder editar y eliminar solo sus publicaciones.
+- [ ] Al darle click al botón de los 3 puntitos, se tiene que desplegar las opciones editar y eliminar.
+- [ ] Cuando le de click al botón editar, tiene que salir un modal que debe contener una sección para editar el campo (Restaurante) y otra sección para editar (¿Por qué nos recomiendas este lugar).
+- [ ] El modal debe tener 2 botones que le permita al usuario guardar y cancelar.
+
+### Historia de usuario 6
+
+Como usuario quiero darle y quitarle likes a las publicaciones, para que los demás usuarios sepan que contenido me gusta.
+
+* *Criterios de aceptación**
+- [ ] El usuario tiene que poder darle like a todas las publicaciones.
+- [ ] El usuario tiene que poder quitar su like a las publicaciones que ya no le gustan.
+
+### Historia de usuario 7
+
+Como usuario quiero poder ver mi perfil y mi foto en el home de la página web.
+
+* *Criterios de aceptación**
+- [ ] El usuario tiene que poder ver su foto de perfil.
+- [ ] El usuario tiene que poder tener una descripción de su perfil.
+
+### Historia de usuario 8
+
+Como usuario quiero salir de la red social.
+
+* *Criterios de aceptación**
+- [ ] El usuario tiene que poder ver un botón desplegable, y al darle click pueda ver 2 opciones: Cerrar sesión y Cancelar.
+- [ ] Al darle click al botón Cerrar sesión le tiene que enviar a la página de inicio. 
+
+## 3. Prototipo de baja fidelidad
+
+![PrototipoBajaFidelidad](baja-fidelidad.PNG)
+
+## 3. Prototipo de baja fidelidad
+
+![PrototipoAltaFidelidad](baja-fidelidad.PNG)
+
+
+
+
+________________________________________________________________________________________
 # Creando una Red Social
 
 ## Índice
