@@ -16,18 +16,35 @@ const home = {
     <section class="home container-wrapper">
       <div class="header-home">
         <h1>HELP TASTER</h1>
+
         <div class="description-img">
-          <img class="photo-user" src="" referrerpolicy="no-referrer">
-          <div class="menu-salir">
-            <button class="img-salir" >
-            <img src="../img/salir.png">
-            </button> 
-            <ul class= "opciones-btn-salir">
-              <li><button class = "cerrar-sesion">Cerrar sesión</button></li>
-              <li><button class = "cancelar">Cancelar</button></li>
-            </ul>
+        <div class="nav">
+          <div class="home-nav">
+            <button id="btn-home-nav" class="btn-nav">
+              <img src="./img/recipe (Stroke).png">Home</button>
+          </div>
+          <div class="publicar-nav">
+            <button id="btn-publicar-nav" class="btn-nav">
+              <img src="./img/photo_camera.png">Publicar
+            </button>
+          </div>
+          <div class="buscar-nav">
+            <button id="btn-buscar-nav" class=" btn-nav">
+              <img src="./img/search.png">Buscar</button>
           </div>
         </div>
+
+        </div>
+        <div class="menu-salir">
+            <button class="img-salir" >
+            <img class="photo-user" src="" referrerpolicy="no-referrer">
+            <img src="../img/expand_more.png">
+            </button> 
+            <ul class= "opciones-btn-salir">
+              <li><button class = "cerrar-sesion menu">Cerrar sesión</button></li>
+              <li><button class = "cancelar menu">Cancelar</button></li>
+            </ul>
+          </div>
       </div>
 
       <div class = "wrapper" >
@@ -50,22 +67,7 @@ const home = {
         <div id = "contentPost" class = "content-post"></div>
       </div>
 
-      <div class="nav">
-        <div class="home-nav">
-          <button id="btn-home-nav" class="btn-nav">
-            <img src="./img/recipe (Stroke).png">Home</button>
-        </div>
-        <div class="publicar-nav">
-          <button id="btn-publicar-nav" class="btn-nav">
-            <img src="./img/photo_camera.png">Publicar
-          </button>
-        </div>
-        <div class="buscar-nav">
-          <button id="btn-buscar-nav" class=" btn-nav">
-            <img src="./img/search.png">Buscar</button>
-        </div>
-      </div>
-
+      
       <div class="modal-container">
         <div class="modal no-verified-email">
           <form id="create-post" class="create-post">
@@ -103,6 +105,7 @@ const home = {
     // Traer el nombre de usuario, (el observador)
     function authCallBack(user) {
       currentUser = user; // Usuario actual
+      console.log(currentUser);
       const userPerfil = document.querySelector('#currentName');
       userPerfil.innerHTML = currentUser.displayName;
 
@@ -156,7 +159,7 @@ const home = {
       const btnCloseModal = document.querySelector('.btn-close-modal');
 
       const {
-        continueText = 'publicar',
+        continueText = 'Publicar',
         clickContinue = noopFunction,
         beforeLoad = noopFunction,
         onClose = noopFunction,
@@ -304,7 +307,7 @@ const home = {
             </div>
           </div>
           <div class="info-publi">
-            <h4>${contentPost.title}</h4>
+            <h4>${contentPost.title} 🍴🥄</h4>
             <p class="description">${contentPost.content}</p>
 
             <div class="interacciones">
