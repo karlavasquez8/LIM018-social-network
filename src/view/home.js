@@ -317,7 +317,7 @@ const home = {
               </button>
               <button class="btn-interaccion">
               <img src = "../img/coment.png">
-              <span class = "conteo comentarios">1234</span>
+              <span class = "conteo comentarios">364</span>
               </button>
             </div>
           </div>
