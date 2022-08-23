@@ -279,7 +279,6 @@ p {
 }
 
 .menu {
-    width: 5rem;
     font-size: 0.8rem;
     border: 1px solid #F8C7CF;
     border-radius: 6px;
@@ -346,6 +345,17 @@ p {
 
 .show-logout{
     display: block;
+}
+
+.opciones-menu{
+    position: absolute;
+    z-index: 1;
+    padding: 0;
+    width: 100%;
+}
+
+.menu-salir{
+    position: relative;
 }
 
 @media (min-width: 600px) {
