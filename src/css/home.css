@@ -310,6 +310,8 @@ p {
     gap: 1rem;
     padding: 2rem;
     margin-inline-start: 4rem;
+    position: sticky;
+    top: 10px;
 }
 
 .photo-user-perfil{
